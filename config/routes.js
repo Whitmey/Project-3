@@ -13,12 +13,12 @@ router
 
 router.route('/foods')
   .get(foodsController.index)
-  .post(foodsController.create);
+  .post(secureRoute, foodsController.create);
 
 router.route('/foods/:id')
   .get(foodsController.show)
-  .put(foodsController.update)
-  .delete(foodsController.delete);
+  .put(secureRoute, foodsController.update)
+  .delete(secureRoute, foodsController.delete);
 
 
 module.exports = router;
