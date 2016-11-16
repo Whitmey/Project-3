@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const authController = require('../controllers/auth');
-// const secureRoute = require('../lib/secureRoute');
+const secureRoute = require('../lib/secureRoute');
 // const oauthController = require('../controllers/oauth');
 const foodsController = require('../controllers/foods');
 
