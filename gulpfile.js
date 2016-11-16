@@ -92,7 +92,7 @@ gulp.task('watch', () => {
   livereload.listen();
   gulp.watch('src/**/*.html', ['html']);
   gulp.watch('src/**/*.js', ['scripts']);
-  gulp.watch('src/**/*.scss', ['style']);
+  gulp.watch('src/**/*.scss', ['styles']);
 });
 
 gulp.task('default', sequence('clean', ['bower:js', 'bower:css'], ['scripts', 'styles', 'html'], 'watch', 'nodemon'));
