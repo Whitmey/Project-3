@@ -5,13 +5,12 @@ angular.module('foodApp')
 RegisterController.$inject = ['$auth', '$state'];
 function RegisterController($auth, $state) {
   const register = this;
-
   register.user = {};
-
   function submit() {
+    console.log(register.user);
     $auth.signup(register.user)
     .then(() => {
-      $state.go('login');
+      $state.go('foodsIndex');
     });
   }
   register.submit = submit;
@@ -19,18 +18,15 @@ function RegisterController($auth, $state) {
 
 LoginController.$inject = ['$auth', '$state'];
 function LoginController($auth, $state) {
-  console.log('submitted');
   const login = this;
-
   login.credentials = {};
-
   function submit() {
+    console.log(login.credentials);
     $auth.login(login.credentials)
     .then(() => {
       $state.go('foodsIndex');
     });
   }
-
   function authenticate(provider) {
     $auth.authenticate(provider)
     .then(() => {

@@ -4,7 +4,8 @@ const bcrypt    = require('bcrypt');
 const userSchema = new mongoose.Schema({
   username: { type: String, unique: true, required: true },
   email: { type: String, unique: true, required: true },
-  passwordHash: { type: String }
+  passwordHash: { type: String },
+  facebookId: { type: String }
 });
 
 function setPassword(value){
@@ -21,7 +22,7 @@ function validatePassword(password){
 
 function preValidate(next) {
   if (this.isNew) {
-    if (!this._password) {
+    if (!this._password && !this.facebookId) {
       this.invalidate('password', 'A password is required.');
     }
   }
