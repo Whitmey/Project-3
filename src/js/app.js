@@ -10,6 +10,11 @@ function Router($stateProvider, $urlRouterProvider) {
       url: '/foods',
       templateUrl: '/templates/foodsIndex.html',
       controller: 'FoodsIndexController as foodsIndex'
+    })
+    .state('select', {
+      url: '/select',
+      templateUrl: '/templates/select.html',
+      controller: 'SelectController as select'
     });
 
   $urlRouterProvider.otherwise('/');
