@@ -11,6 +11,16 @@ function Router($stateProvider, $urlRouterProvider) {
       templateUrl: '/templates/foodsIndex.html',
       controller: 'FoodsIndexController as foodsIndex'
     })
+    .state('login', {
+      url: '/',
+      templateUrl: '/templates/landing.html',
+      controller: 'LoginController as login'
+    })
+    .state('register', {
+      url: '/',
+      templateUrl: '/templates/landing.html',
+      controller: 'RegisterController as register'
+    })
     .state('select', {
       url: '/select',
       templateUrl: '/templates/select.html',
