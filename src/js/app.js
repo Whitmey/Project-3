@@ -20,6 +20,11 @@ function Router($stateProvider, $urlRouterProvider) {
       url: '/',
       templateUrl: '/templates/landing.html',
       controller: 'RegisterController as register'
+    })
+    .state('select', {
+      url: '/select',
+      templateUrl: '/templates/select.html',
+      controller: 'SelectController as select'
     });
 
   $urlRouterProvider.otherwise('/');
