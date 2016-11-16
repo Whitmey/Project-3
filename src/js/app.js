@@ -23,8 +23,15 @@ function Router($stateProvider, $urlRouterProvider) {
     })
     .state('select', {
       url: '/select',
-      templateUrl: '/templates/select.html',
-      controller: 'SelectController as select'
+      templateUrl: '/templates/select.html'
+    })
+    .state('dietProfile', {
+      url: '/dietProfile',
+      templateUrl: '/templates/dietProfile.html'
+    })
+    .state('dietFriends', {
+      url: '/dietFriends',
+      templateUrl: '/templates/dietFriends.html'
     });
 
   $urlRouterProvider.otherwise('/');
