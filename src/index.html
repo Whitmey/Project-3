@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html>
   <head ng-app="foodApp">
     <meta charset="utf-8">
@@ -11,6 +12,24 @@
     <header class="container">
       <h1>Project 3</h1>
       <nav ng-controller="MainController as main">
+=======
+<!DOCTYPE html>
+<html ng-app="foodApp">
+<!-- <head ng-app="foodApp"> -->
+<head>
+  <meta charset="utf-8">
+  <title>Better</title>
+  <link rel="stylesheet" href="/css/vendor.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/vendor.js" charset="utf-8"></script>
+  <script src="/js/app.js" charset="utf-8"></script>
+</head>
+<body>
+  <header class="container">
+    <h1>Project 3</h1>
+    <nav>
+      <div ng-controller="LoginController as login">
+>>>>>>> development
         <form novalidate ng-submit="login.submit()">
           <div class="row">
             <label>Email:</label>
@@ -22,6 +41,7 @@
           </div>
           <button>Login</button>
         </form>
+<<<<<<< HEAD
         <form novalidate ng-submit="">
           <div class="row">
             <label>FullName:</label>
@@ -45,4 +65,32 @@
     </header>
     <main class="container" ui-view></main>
   </body>
+=======
+      </div>
+      <div ng-controller="RegisterController as register">
+        <form novalidate ng-submit="register.submit()">
+          <div class="row">
+            <label>Name:</label>
+            <input class="u-full-width" type="text" placeholder="Name" ng-model="register.user.username">
+          </div>
+          <div class="row">
+            <label>Email:</label>
+            <input class="u-full-width" type="email" placeholder="Email" ng-model="register.user.email">
+          </div>
+          <div class="row">
+            <label>Password:</label>
+            <input class="u-full-width" type="password" placeholder="Password" ng-model="register.user.password">
+          </div>
+          <div class="row">
+            <label>Password Confirmation:</label>
+            <input class="u-full-width" type="password" placeholder="Password" ng-model="register.user.passwordConfirmation">
+          </div>
+          <button>Register</button>
+        </form>
+      </div>
+    </nav>
+  </header>
+  <main class="container" ui-view></main>
+</body>
+>>>>>>> development
 </html>
