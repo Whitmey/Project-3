@@ -19,6 +19,7 @@ function RegisterController($auth, $state) {
 
 LoginController.$inject = ['$auth', '$state'];
 function LoginController($auth, $state) {
+  console.log('submitted');
   const login = this;
 
   login.credentials = {};
