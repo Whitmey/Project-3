@@ -1,45 +1,47 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="/css/vendor.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="/js/vendor.js" charset="utf-8"></script>
-    <script src="/js/app.js" charset="utf-8"></script>
-  </head>
-  <body>
-    <div class="container">
-      <div id="logo">Logo</div>
-      <div id="login">LOGIN
-        <form action="index.html" method="post">
-          <label>Username: </label>
-          <input type='text' name='username' id='username'/>
-          <br>
-          <label>Password: </label>
-          <input type='text' name='password' id='password'/>
-          <br>
-          <input type='submit' name='Submit' value='Submit' />
-        </form>
-      </div>
-      <div id="register">REGISTER
-        <form action="index.html" method="post">
-            <label>Your Full Name: </label>
-            <input type='text' name='name' id='name'/>
-            <br>
-            <label>Email Address:</label>
-            <input type='text' name='email' id='email'/>
-
-            <label>Password:</label>
-            <input type='text' name='username' id='username'/>
-            <br>
-
-            <label>PasswordConfirmation:</label>
-            <input type='password' name='password' id='password'/>
-            <br>
-            <input type='submit' name='Submit' value='Submit' />
-        </form>
-      </div>
-    </div>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="/css/vendor.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/vendor.js" charset="utf-8"></script>
+  <script src="/js/app.js" charset="utf-8"></script>
+</head>
+<body>
+  <header class="container">
+    <h1>Project 3</h1>
+    <nav ng-controller="AuthController as auth">
+      <form novalidate ng-submit="login.submit()">
+        <div class="row">
+          <label>Email:</label>
+          <input class="u-full-width" type="email" placeholder="Email" ng-model="login.credentials.email">
+        </div>
+        <div class="row">
+          <label>Password:</label>
+          <input class="u-full-width" type="password" placeholder="Password" ng-model="login.credentials.password">
+        </div>
+        <button>Login</button>
+      </form>
+      <form novalidate ng-submit="">
+        <div class="row">
+          <label>FullName:</label>
+          <input class="u-full-width" type="name" placeholder="fullname" ng-model="">
+        </div>
+        <div class="row">
+          <label>Email:</label>
+          <input class="u-full-width" type="email" placeholder="Email" ng-model="">
+        </div>
+        <div class="row">
+          <label>Password:</label>
+          <input class="u-full-width" type="password" placeholder="Password" ng-model="">
+        </div>
+        <div class="row">
+          <label>Password Confirmation:</label>
+          <input class="u-full-width" type="password" placeholder="Password" ng-model="">
+        </div>
+        <button>Register</button>
+      </form>
+    </nav>
+  </header>
+  <main class="container" ui-view></main>
+</body>
 </html>
