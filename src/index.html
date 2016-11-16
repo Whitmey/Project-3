@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="/css/vendor.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="/js/vendor.js" charset="utf-8"></script>
-    <script src="/js/app.js" charset="utf-8"></script>
-  </head>
-  <body ng-controller="MainController as main">
-    <header class="container">
-      <h1>Project 3</h1>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="/css/vendor.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/vendor.js" charset="utf-8"></script>
+  <script src="/js/app.js" charset="utf-8"></script>
+</head>
+<body>
+  <header class="container">
+    <h1>Project 3</h1>
+    <nav ng-controller="AuthController as auth">
+      <form novalidate ng-submit="login.submit()">
+        <div class="row">
+          <label>Email</label>
+          <input class="u-full-width" type="email" placeholder="Email" ng-model="login.credentials.email">
+        </div>
+        <div class="row">
+          <label>Password</label>
+          <input class="u-full-width" type="password" placeholder="Password" ng-model="login.credentials.password">
+        </div>
 
-      <main class="container" ui-view>
-
-      </main>
-  </body>
+        <button>Login</button>
+      </form>
+    </nav>
+  </header>
+  <main class="container" ui-view></main>
+</body>
 </html>
