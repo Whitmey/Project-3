@@ -24,14 +24,14 @@ function LoginController($auth, $state) {
     console.log(login.credentials);
     $auth.login(login.credentials)
     .then(() => {
-      $state.go('foodsIndex');
+      $state.go('select');
     });
   }
   function authenticate(provider) {
     $auth.authenticate(provider)
     .then(() => {
       // console.log(res);
-      $state.go('foodsIndex');
+      $state.go('select');
     });
   }
   login.submit = submit;
