@@ -1,54 +1,60 @@
 angular.module('foodApp')
-  .controller('FoodsIndexController', FoodsIndexController);
+// .controller('FoodsIndexController', FoodsIndexController)
+// .controller('FoodsNewController', FoodsNewController)
+// .controller('FoodsShowController', FoodsShowController)
+// .controller('FoodsEditController', FoodsEditController)
+.controller('FoodsController', FoodsController);
 
 
-FoodsIndexController.$inject = ['Food'];
-function FoodsIndexController(Food){
-  const foodsIndex = this;
 
-  foodsIndex.all = Food.query();
-}
-FoodsNewController.$inject = ['Food', '$state'];
-function FoodsNewController(Food, $state) {
-  const foodsNew = this;
+FoodsController.$inject = ['Food', '$state', '$auth'];
+function FoodsController(Food, $state) {
 
-  foodsNew.food = {};
+  const foods = this;
+  // foods.getIndex = getIndex;
+  // foods.newFood = newFood;
+  // foods.showFoods = showFoods;
+  foods.editFoods = editFoods;
+  foods.create = create;
+  foods.delete = foodsDelete;
+
+
+  foods.all = Food.query();
+
+
+  foods.foodsNew = {};
 
   function create() {
-    Food.save(foodsNew.food, () => {
-      $state.go('foodsIndex');
-    });
-  }
-  foodsNew.create = create;
-}
-FoodsShowController.$inject = ['Food', '$state', '$auth'];
-function FoodsShowController(Food, $state, $auth) {
-  const foodsShow = this;
-
-  foodsShow.food = Food.get($state.params);
-
-  function deleteFood() {
-    foodsShow.food.$remove(() => {
-      $state.go('foodsIndex');
+    Food.save(foods.foodsNew, () => {
+      $state.reload();
     });
   }
 
-  foodsShow.delete = deleteFood;
-  foodsShow.isLoggedIn = $auth.isAuthenticated;
-}
+  function foodsDelete(foodId) {
+    console.log(foods.all);
 
-FoodsEditController.$inject = ['Food', '$state'];
-function FoodsEditController(Food, $state) {
-  const foodsEdit = this;
-
-  foodsEdit.food = Food.get($state.params);
-
-  function update() {
-    foodsEdit.food.$update(() => {
-      $state.go('foodsShow', $state.params);
-    });
+    for(var i = 0; i< foods.all.length; i++) {
+      if(foods.all[i]._id === foodId)
+        foods.all[i].$remove(() => {
+          $state.reload();
+        });
+    }
   }
 
-  this.update = update;
+
+  function editFoods(Food, $state) {
+    const foodsEdit = this;
+
+    foodsEdit.food = Food.get($state.params);
+
+    function update() {
+      foodsEdit.food.$update(() => {
+        $state.go('foodsShow', $state.params);
+      });
+    }
+
+    this.update = update;
+
+  }
 
 }

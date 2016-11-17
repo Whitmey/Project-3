@@ -9,7 +9,7 @@ function Router($stateProvider, $urlRouterProvider) {
     .state('foodsIndex', {
       url: '/foods',
       templateUrl: '/templates/foodsIndex.html',
-      controller: 'FoodsIndexController as foodsIndex'
+      controller: 'FoodsController as foods'
     })
     .state('login', {
       url: '/',
