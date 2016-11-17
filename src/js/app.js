@@ -31,7 +31,8 @@ function Router($stateProvider, $urlRouterProvider) {
     })
     .state('dietFriends', {
       url: '/dietFriends',
-      templateUrl: '/templates/dietFriends.html'
+      templateUrl: '/templates/dietFriends.html',
+      controller: 'UsersIndexController as usersIndex'
     });
 
   $urlRouterProvider.otherwise('/');
