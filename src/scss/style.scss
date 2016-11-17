@@ -12,8 +12,15 @@ img {
 }
 
 #progressbar{
-  width: 80%;
+  width: 70%;
 }
+progress {
+  background-color: teal;
+  border: 5px;
+  height: 20px;
+  border-radius: 3px;
+}
+
 .profileBox {
   width: 20%;
 }

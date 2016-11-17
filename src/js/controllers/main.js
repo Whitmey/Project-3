@@ -61,13 +61,11 @@ function MainController($auth, $state, $rootScope) {
         }]
       },
       options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
+        scales: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
       }
     });
   }
