@@ -13,12 +13,14 @@
 <section>
 <ul ng-repeat="food in foods.all" >
   <div class="meal"><li>Meal: {{ food.name }} Calories: {{ food.calories }}</li><button ng-click="foods.delete(food._id)">X</button>
-    <button ng-click="foods.edit(food._id)">Edit</button>
-    <form ng-submit="foods.update()" method="post">
+    <button ng-click="showForm = !showForm; foods.edit(food._id)">Edit</button>
+
+    <form ng-show="showForm" ng-submit="foods.update()" method="post">
       <label>Food/Drink/Meal eaten:</label>
       <input type="text" name="name" ng-model="foods.editFood.name" >
       <label>Calories:</label>
       <input type="number" name="calories" ng-model="foods.editFood.calories">
+      <button>Save</button>
     </form></div>
 
 

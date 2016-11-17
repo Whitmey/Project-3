@@ -18,6 +18,7 @@ function FoodsController(Food, $state) {
   foods.create = create;
   foods.delete = foodsDelete;
   foods.editFood = {};
+  foods.update = update;
 
   foods.all = Food.query();
 
@@ -44,20 +45,15 @@ function FoodsController(Food, $state) {
 
 
   function editFoods(foodId) {
-
-
     for(var i = 0; i< foods.all.length; i++) {
       if(foods.all[i]._id === foodId)
         foods.editFood = foods.all[i];
     }
+  }
 
-  //   function update() {
-  //     foodsEdit.food.$update(() => {
-  //       $state.go('foodsShow', $state.params);
-  //     });
-  //   }
-  //
-  //   this.update = update;
-  //
-  // }
-  }}
+  function update() {
+    foods.editFood.$update(() => {
+      $state.reload();
+    });
+  }
+}
