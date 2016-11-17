@@ -24,7 +24,7 @@ User.create([{
   username: 'Elliot Brock',
   dob: 'December-15-1994',
   profileImage: 'https://img.buzzfeed.com/buzzfeed-static/static/2015-08/18/13/enhanced/webdr13/grid-cell-15170-1439918492-2.jpg',
-  email: 'curtis@example.com',
+  email: 'elliot@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
