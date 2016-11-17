@@ -18,10 +18,9 @@ function UsersIndexController(User, $auth) {
   }
 
   function unfollow(user) {
-    console.log(usersIndex.currentUser.following);
-    const i = usersIndex.currentUser.following.indexOf(user);
-    if(i === -1) {
-      usersIndex.currentUser.following.splice(user, 1);
+    const i = usersIndex.currentUser.following.indexOf(user._id);
+    if(i !== -1) {
+      usersIndex.currentUser.following.splice(i, 1);
       usersIndex.currentUser.$update(() => {
         console.log('I can\'t belive you\'ve done this');
       });
