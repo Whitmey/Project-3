@@ -1,10 +1,12 @@
-<div class="chartBox">
-  <img src="http://www.quickanddirtytips.com/sites/default/files/images/5360/line_graph.png" alt="Samprass" />
+<div ng-controller="MainController as main" class="chartBox">
+
+  <canvas id="myChart" fixedwidth="20" height="200"></canvas>
+  <progress id="progressbar" style="width: 100%" value="50" max="100"></progress>
+
   <button>Daily</button>
   <button>Weekly</button>
   <button>Monthly</button>
 </div>
 <p>Diet Profile</p>
-
 <button ui-sref="select">Back</button>
 <button ui-sref="dietFriends">Friends</button>
