@@ -14,15 +14,16 @@ function FoodsController(Food, $state) {
   // foods.getIndex = getIndex;
   // foods.newFood = newFood;
   // foods.showFoods = showFoods;
-  foods.editFoods = editFoods;
+  foods.edit = editFoods;
   foods.create = create;
   foods.delete = foodsDelete;
-
+  foods.editFood = {};
 
   foods.all = Food.query();
 
 
   foods.foodsNew = {};
+
 
   function create() {
     Food.save(foods.foodsNew, () => {
@@ -42,19 +43,21 @@ function FoodsController(Food, $state) {
   }
 
 
-  function editFoods(Food, $state) {
-    const foodsEdit = this;
+  function editFoods(foodId) {
 
-    foodsEdit.food = Food.get($state.params);
 
-    function update() {
-      foodsEdit.food.$update(() => {
-        $state.go('foodsShow', $state.params);
-      });
+    for(var i = 0; i< foods.all.length; i++) {
+      if(foods.all[i]._id === foodId)
+        foods.editFood = foods.all[i];
     }
 
-    this.update = update;
-
-  }
-
-}
+  //   function update() {
+  //     foodsEdit.food.$update(() => {
+  //       $state.go('foodsShow', $state.params);
+  //     });
+  //   }
+  //
+  //   this.update = update;
+  //
+  // }
+  }}
