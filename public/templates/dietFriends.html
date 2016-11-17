@@ -1,5 +1,11 @@
-<img src="http://footballburp.com/wp-content/uploads/2013/01/Arsene-Wengers-coat-gets-bigger-every-day.jpg"/>
+<!-- <img src="http://footballburp.com/wp-content/uploads/2013/01/Arsene-Wengers-coat-gets-bigger-every-day.jpg"/> -->
 <p>Friends</p>
+<div class="friendsBox">
+  <ul>
+    <li ng-repeat="user in usersIndex.all"><img src="{{ user.profileImage }}" alt="" /></li>
+  </ul>
+</div>
+
 
 <button ui-sref="dietProfile">Back</button>
 <button ui-sref="select">Back to select</button>
