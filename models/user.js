@@ -5,7 +5,9 @@ const userSchema = new mongoose.Schema({
   username: { type: String, unique: true, required: true },
   email: { type: String, unique: true, required: true },
   passwordHash: { type: String },
-  facebookId: { type: String }
+  facebookId: { type: String },
+  profileImage: { type: String },
+  dob: { type: String }
 });
 
 function setPassword(value){

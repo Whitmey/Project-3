@@ -3,6 +3,7 @@ const authController = require('../controllers/auth');
 const secureRoute = require('../lib/secureRoute');
 const oauthController = require('../controllers/oauth');
 const foodsController = require('../controllers/foods');
+const usersController = require('../controllers/users');
 
 
 router
@@ -20,5 +21,12 @@ router.route('/foods/:id')
   .put(secureRoute, foodsController.update)
   .delete(secureRoute, foodsController.delete);
 
+router
+  .get('/users', usersController.index);
+
+router.route('/users/:id')
+  .get(usersController.show)
+  .put(secureRoute, usersController.update)
+  .delete(secureRoute, usersController.delete);
 
 module.exports = router;
