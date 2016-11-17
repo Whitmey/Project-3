@@ -1,0 +1,31 @@
+<section class="row" ng-controller="GoalsController as goals">
+
+  <form ng-submit="goals.create()" method="post">
+    <label>Target:</label>
+    <input type="text" name="target" value="" ng-model="goals.goalsNew.target">
+    <label>Expiry:</label>
+    <input type="text" name="expiry" value="" ng-model="goals.goalsNew.expiry">
+
+    <button>Add goal</button>
+
+  </form>
+</section>
+
+<section>
+<ul ng-repeat="goal in goals.all" >
+  <div class="meal"><li>Target: {{ goal.target }} Expiry: {{ goal.expiry }}</li><button ng-click="goals.delete(goal._id)">X</button>
+    <button ng-click="showForm = !showForm; goals.edit(goal._id)">Edit</button>
+
+    <form ng-show="showForm" ng-submit="goals.update()" method="post">
+      <label>Target:</label>
+      <input type="text" name="target" ng-model="goals.editGoal.target" >
+      <label>Expiry:</label>
+      <input type="text" name="expiry" ng-model="goals.editGoal.expiry">
+      <button>Save</button>
+    </form></div>
+
+
+
+
+</ul>
+</section>

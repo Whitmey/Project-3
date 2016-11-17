@@ -1,10 +1,30 @@
-<section class="row">
-  <form ng-submit="foodsNew.create()">
-    <div class="twelve columns">
-      <label>Food</label>
-      <input type="text" name="type" placeholder="Type" ng-model="foodsNew.food.type" class="u-full-width">
-    </div>
+<section class="row" ng-controller="FoodsController as foods">
 
-    <button>Create</button>
+  <form ng-submit="foods.create()" method="post">
+    <label>Food/Drink/Meal eaten:</label>
+    <input type="text" name="name" value="" ng-model="foods.foodsNew.name">
+    <label>Calories:</label>
+    <input type="number" name="calories" value="" ng-model="foods.foodsNew.calories">
+
+    <button>Add meal</button>
+
   </form>
+</section>
+<section>
+<ul ng-repeat="food in foods.all" >
+  <div class="meal"><li>Meal: {{ food.name }} Calories: {{ food.calories }}</li><button ng-click="foods.delete(food._id)">X</button>
+    <button ng-click="showForm = !showForm; foods.edit(food._id)">Edit</button>
+
+    <form ng-show="showForm" ng-submit="foods.update()" method="post">
+      <label>Food/Drink/Meal eaten:</label>
+      <input type="text" name="name" ng-model="foods.editFood.name" >
+      <label>Calories:</label>
+      <input type="number" name="calories" ng-model="foods.editFood.calories">
+      <button>Save</button>
+    </form></div>
+
+
+
+
+</ul>
 </section>

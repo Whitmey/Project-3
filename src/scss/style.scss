@@ -6,9 +6,21 @@ img {
   width: 100%;
 }
 
-#progressbar{
-  width: 80%;
+.meal {
+  border: 2px solid black;
+  border-radius: 5px;
 }
+
+#progressbar{
+  width: 70%;
+}
+progress {
+  background-color: teal;
+  border: 5px;
+  height: 20px;
+  border-radius: 3px;
+}
+
 .profileBox {
   width: 20%;
 }
@@ -112,4 +124,5 @@ li {
       text-decoration: underline;
     }
   }
+
 }
