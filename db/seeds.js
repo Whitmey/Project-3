@@ -15,7 +15,7 @@ User.create([{
   passwordConfirmation: 'hunter2'
 },{
   username: 'Aaron',
-  dob: 'January-04-1990',
+  dob: 'May-29-1453',
   profileImage: 'https://s-media-cache-ak0.pinimg.com/736x/9b/a2/57/9ba25796112cad616be27e473ae1e149.jpg',
   email: 'aaron@example.com',
   password: 'hunter2',

@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema({
   passwordHash: { type: String },
   facebookId: { type: String },
   profileImage: { type: String },
-  dob: { type: String }
+  dob: { type: String },
+  following: [{ type: mongoose.Schema.ObjectId, ref: 'User' }]
 });
 
 function setPassword(value){

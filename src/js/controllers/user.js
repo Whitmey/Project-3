@@ -1,10 +1,47 @@
 angular.module('foodApp')
-  .controller('UsersIndexController', UsersIndexController);
+.controller('UsersIndexController', UsersIndexController);
 
-UsersIndexController.$inject = ['User'];
-function UsersIndexController(User) {
-  console.log('controller working');
+UsersIndexController.$inject = ['User', '$auth'];
+function UsersIndexController(User, $auth) {
   const usersIndex = this;
 
-  usersIndex.all = User.query();
+  User.get({ id: $auth.getPayload()._id }, (user) => {
+    usersIndex.currentUser = user;
+    usersIndex.all = User.query();
+  });
+
+  function follow(user) {
+    usersIndex.currentUser.following.push(user);
+    usersIndex.currentUser.$update(() => {
+      console.log('user @\'d');
+    });
+  }
+
+  function unfollow(user) {
+    console.log(usersIndex.currentUser.following);
+    const i = usersIndex.currentUser.following.indexOf(user);
+    if(i === -1) {
+      usersIndex.currentUser.following.splice(user, 1);
+      usersIndex.currentUser.$update(() => {
+        console.log('I can\'t belive you\'ve done this');
+      });
+    }
+  }
+
+  function isFollowing(user) {
+    return usersIndex.currentUser.following.filter((id) => {
+      return id === user._id;
+    }).length;
+  }
+
+  function isSelf(user) {
+    return user._id === usersIndex.currentUser._id;
+  }
+
+  usersIndex.isSelf = isSelf;
+  usersIndex.isFollowing = isFollowing;
+
+  usersIndex.follow = follow;
+  usersIndex.unfollow = unfollow;
+  usersIndex.filter = { username: '' };
 }
