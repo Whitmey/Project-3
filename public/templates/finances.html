@@ -1,36 +1,30 @@
 
 
-<section ng-controller='financeMainController as finance'>
-
-<canvas id="myChart1" fixedwidth="20" height="200"></canvas>
-
+<section ng-controller="financeMainController as financeMain">
+  <canvas id="myChart1" fixedwidth="20" height="200"></canvas>
 </section>
 
-<section class="row" ng-controller="FinancesController as finances">
-
-
-
+<section class="row">
   <form ng-submit="finances.create()" method="post">
-    <label>Purchase:</label>
-    <input type="text" name="name" value="" ng-model="finances.financesNew.name">
-    <label>Price:</label>
-    <input type="number" name="price" value="" ng-model="finances.financesNew.price">
-
+    <label>Category:</label>
+    <input type="text" name="category" ng-model="finances.financesNew.category">
+    <label>AmountSpent:</label>
+    <input type="number" name="amountSpent" ng-model="finances.financesNew.amountSpent">
     <button>Add purchase</button>
-
   </form>
 </section>
-<section>
-<ul ng-repeat="finance in finances.all" >
-  <div class="label"><li>Label: {{ finance.name }} Price: {{ finance.price }}</li><button ng-click="finances.delete(finance._id)">X</button>
-    <button ng-click="showForm = !showForm; finances.edit(finance._id)">Edit</button>
 
+<section>
+  <ul ng-repeat="finance in finances.all">
+    <div class="amountSpent"><li> Category: {{ finance.category }} Price: {{ finance.amountSpent }}</li><button ng-click="finances.delete(finance._id)">X</button>
+    <button ng-click="showForm = !showForm; finances.edit(finance._id)">Edit</button>
+    
     <form ng-show="showForm" ng-submit="finances.update()" method="post">
-      <label>Purchase:</label>
-      <input type="text" name="name" ng-model="finances.editFinance.name" >
-      <label>Price:</label>
-      <input type="number" name="price" ng-model="finances.editFinance.price">
+      <label>Category:</label>
+      <input type="text" name="category" ng-model="finances.editFinance.category" >
+      <label>AmountSpent:</label>
+      <input type="number" name="amountSpent" ng-model="finances.editFinance.amountSpent">
       <button>Save</button>
     </form></div>
-</ul>
+  </ul>
 </section>

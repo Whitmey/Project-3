@@ -37,7 +37,7 @@ function financeMainController($auth, $state, $rootScope) {
     const myChart = new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: ['entertanment', 'food', 'utilities', 'rent' ],
+        labels: ['Entertanment', 'Food', 'Utilities', 'Rent', 'Car' ],
         datasets: [{
           data: [12, 30, 200, 20, 40],
           backgroundColor: [
@@ -70,4 +70,5 @@ function financeMainController($auth, $state, $rootScope) {
   }
   main.createChart= createChart;
   main.createChart();
+
 }
