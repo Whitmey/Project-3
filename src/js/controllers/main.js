@@ -2,8 +2,8 @@ angular.module('foodApp')
   .controller('MainController', MainController);
 
 
-MainController.$inject = ['$auth', '$state', '$rootScope'];
-function MainController($auth, $state, $rootScope) {
+MainController.$inject = ['$auth', '$state', '$rootScope', 'moment'];
+function MainController($auth, $state, $rootScope, moment) {
   const main = this;
 
   main.isLoggedIn = $auth.isAuthenticated;

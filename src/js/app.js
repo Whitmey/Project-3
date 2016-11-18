@@ -1,5 +1,5 @@
 angular
-  .module('foodApp', ['ngResource', 'ui.router', 'satellizer'])
+  .module('foodApp', ['ngResource', 'ui.router', 'satellizer', 'angularMoment'])
   .config(Router)
   .config(Auth);
 
@@ -11,11 +11,11 @@ function Router($stateProvider, $urlRouterProvider) {
       templateUrl: '/templates/foodsIndex.html',
       controller: 'FoodsController as foods'
     })
-    .state('goalsIndex', {
-      url: '/goals',
-      templateUrl: '/templates/goalsIndex.html',
-      controller: 'GoalsController as goals'
-    })
+    // .state('goalsIndex', {
+    //   url: '/goals',
+    //   templateUrl: '/templates/goalsIndex.html',
+    //   controller: 'GoalsController as goals'
+    // })
     .state('login', {
       url: '/',
       templateUrl: '/templates/landing.html',

@@ -18,7 +18,7 @@ router.route('/foods')
   .post(secureRoute, foodsController.create);
 
 router.route('/foods/:id')
-  .get(foodsController.show)
+  // .get(foodsController.show)
   .put(secureRoute, foodsController.update)
   .delete(secureRoute, foodsController.delete);
 
@@ -27,7 +27,7 @@ router.route('/goals')
   .post(secureRoute, goalsController.create);
 
 router.route('/goals/:id')
-  .get(goalsController.show)
+  // .get(goalsController.show)
   .put(secureRoute, goalsController.update)
   .delete(secureRoute, goalsController.delete);
 

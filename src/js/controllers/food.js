@@ -7,8 +7,8 @@ angular.module('foodApp')
 
 
 
-FoodsController.$inject = ['Food', '$state', '$auth'];
-function FoodsController(Food, $state) {
+FoodsController.$inject = ['Food'];
+function FoodsController(Food) {
 
   const foods = this;
   // foods.getIndex = getIndex;
@@ -28,8 +28,9 @@ function FoodsController(Food, $state) {
 
   function create() {
     Food.save(foods.foodsNew, () => {
-      $state.reload();
+      foods.all = Food.query();
     });
+    document.getElementById('createFood').reset();
   }
 
   function foodsDelete(foodId) {
@@ -38,7 +39,7 @@ function FoodsController(Food, $state) {
     for(var i = 0; i< foods.all.length; i++) {
       if(foods.all[i]._id === foodId)
         foods.all[i].$remove(() => {
-          $state.reload();
+          foods.all = Food.query();
         });
     }
   }
@@ -53,7 +54,7 @@ function FoodsController(Food, $state) {
 
   function update() {
     foods.editFood.$update(() => {
-      $state.reload();
+      foods.all = Food.query();
     });
   }
 }

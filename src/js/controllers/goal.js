@@ -6,9 +6,8 @@ angular.module('foodApp')
 .controller('GoalsController', GoalsController);
 
 
-
-GoalsController.$inject = ['Goal', '$state', '$auth'];
-function GoalsController(Goal, $state) {
+GoalsController.$inject = ['Goal'];
+function GoalsController(Goal) {
 
   const goals = this;
   // goals.getIndex = getIndex;
@@ -28,17 +27,18 @@ function GoalsController(Goal, $state) {
 
   function create() {
     Goal.save(goals.goalsNew, () => {
-      $state.reload();
+      goals.all = Goal.query();
     });
+    document.getElementById('createGoal').reset();
   }
 
   function goalsDelete(goalId) {
-    console.log(goals.all);
+    // console.log(moment().weekday() );
 
     for(var i = 0; i< goals.all.length; i++) {
       if(goals.all[i]._id === goalId)
         goals.all[i].$remove(() => {
-          $state.reload();
+          goals.all = Goal.query();
         });
     }
   }
@@ -53,7 +53,7 @@ function GoalsController(Goal, $state) {
 
   function update() {
     goals.editGoal.$update(() => {
-      $state.reload();
+      goals.all = Goal.query();
     });
   }
 }

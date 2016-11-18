@@ -11,6 +11,29 @@ img {
   border-radius: 5px;
 }
 
+.button,button,li{margin-bottom:0}
+
+#sidebar {
+  border: 2px solid white;
+  border-radius: 5px;
+  button{
+    width: 100%;
+    text-align: center;
+    margin-bottom: none;
+  }
+  ul{
+    margin: 0 auto;
+  }
+  li{
+    margin: 0 auto;
+  }
+}
+
+section {
+  text-align: center;
+}
+
+
 #progressbar{
   width: 70%;
 }
@@ -125,4 +148,31 @@ li {
     }
   }
 
+}
+
+
+.add {
+  background-color: lime;
+  color: white;
+}
+
+#sidebar{
+  button.edit{
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    line-height: 30px;
+    color: white;
+    background-color: blue;
+  }
+  button.delete {
+    background-color: red;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    line-height: 30px;
+    color: white;
+  }
 }
