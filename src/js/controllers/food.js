@@ -29,6 +29,7 @@ function FoodsController(Food, $state) {
   function create() {
     Food.save(foods.foodsNew, () => {
       $state.reload();
+      console.log(foods);
     });
   }
 

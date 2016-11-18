@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
   profileImage: { type: String },
   dob: { type: String },
   following: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
+  eaten: [{ type: mongoose.Schema.ObjectId, ref: 'Food' }],
   dietGoals: Number,
   dietGoalDates: Date
 });

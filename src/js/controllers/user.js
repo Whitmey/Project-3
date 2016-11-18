@@ -1,3 +1,5 @@
+/* global Chart */
+
 angular.module('foodApp')
 .controller('UsersIndexController', UsersIndexController);
 
@@ -43,14 +45,19 @@ function UsersIndexController(User, $auth) {
   usersIndex.follow = follow;
   usersIndex.unfollow = unfollow;
   usersIndex.filter = { username: '' };
+  usersIndex.canShowCanvas = true;
 
-  let data = {};
   let labels = [];
   let datapoints = [];
+  let chart;
 
-  function createChart() {
-    const ctx = document.getElementById('myChart');
-    const myChart = new Chart(ctx, {
+  function createChart(data) {
+    const chartElement = document.getElementById('myChart');
+
+    if (chart && chart.destroy) {
+      chart.destroy();
+    }
+    chart = new Chart(chartElement, {
       type: 'line',
       data: data
     });
@@ -75,7 +82,7 @@ function UsersIndexController(User, $auth) {
   }
 
   function chartData(labels, datapoints) {
-    data = {
+    const data = {
       labels: labels,
       datasets: [
         {
@@ -102,11 +109,9 @@ function UsersIndexController(User, $auth) {
         }
       ]
     };
-    console.log('logging');
-    usersIndex.createChart();
+    createChart(data);
   }
 
-  usersIndex.createChart = createChart;
   usersIndex.dailyChart = dailyChart;
   usersIndex.weeklyChart = weeklyChart;
   usersIndex.monthlyChart = monthlyChart;
