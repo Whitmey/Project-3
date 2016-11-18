@@ -1,10 +1,9 @@
 angular.module('foodApp')
-  .controller('MainController', MainController);
+  .controller('financeMainController', financeMainController);
 
 
-
-MainController.$inject = ['$auth', '$state', '$rootScope'];
-function MainController($auth, $state, $rootScope) {
+financeMainController.$inject = ['$auth', '$state', '$rootScope'];
+function financeMainController($auth, $state, $rootScope) {
   const main = this;
 
   main.isLoggedIn = $auth.isAuthenticated;
@@ -34,13 +33,12 @@ function MainController($auth, $state, $rootScope) {
 
   function createChart() {
 
-    const ctx = document.getElementById('myChart');
+    const ctx = document.getElementById('myChart1');
     const myChart = new Chart(ctx, {
-      type: 'pie',
+      type: 'line',
       data: {
-        labels: ['Fibre', 'Protein', 'Carbohydrate', 'Fats', 'Water'],
+        labels: ['entertanment', 'food', 'utilities', 'rent' ],
         datasets: [{
-          label: 'Foods',
           data: [12, 30, 200, 20, 40],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',

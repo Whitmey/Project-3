@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
   facebookId: { type: String },
   profileImage: { type: String },
   dob: { type: String },
+  // goalsAchieved: Number,
   following: [{ type: mongoose.Schema.ObjectId, ref: 'User' }]
 });
 
