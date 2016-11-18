@@ -7,7 +7,7 @@
 
 
   <section ng-show="showFoods"  class="row" ng-controller="FoodsController as foods">
-
+    <h4>Add a new meal:</h4>
     <form id="createFood" ng-submit="foods.create()" method="post">
       <label>Food/Drink/Meal eaten:</label>
       <input type="text" name="name" value="" ng-model="foods.foodsNew.name">
@@ -15,7 +15,7 @@
       <input type="number" name="calories" value="" ng-model="foods.foodsNew.calories">
       <button>Add meal</button>
     </form>
-
+    <h4>My meals:</h4>
     <ul ng-repeat="food in foods.all" >
       <div class="meal"><li>Meal: {{ food.name }} Calories: {{ food.calories }}</li><button ng-click="foods.delete(food._id)">X</button>
         <button ng-click="showForm = !showForm; foods.edit(food._id)">Edit</button>
@@ -31,7 +31,7 @@
     </section>
 
 
-    <!-- <section ng-show="showGoals" class="row" ng-controller="GoalsController as goals">
+    <section ng-show="showGoals" class="row">
       <h4>Add a new goal:</h4>
       <form id="createGoal" ng-submit="goals.create()" method="post">
         <label>Target:</label>
@@ -55,4 +55,3 @@
         </form></div>
     </ul>
     </section>
-</div> -->
