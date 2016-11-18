@@ -1,5 +1,5 @@
 angular
-  .module('foodApp', ['ngResource', 'ui.router', 'satellizer'])
+  .module('foodApp', ['ngResource', 'ui.router', 'satellizer', 'angularMoment'])
   .config(Router)
   .config(Auth);
 

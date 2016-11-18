@@ -1,12 +1,18 @@
-<div ng-controller="MainController as main" class="chartBox">
-
+<div ng-controller="UsersIndexController as usersIndex" id="chartBox">
   <canvas id="myChart" fixedwidth="20" height="200"></canvas>
   <progress id="progressbar" style="width: 100%" value="25" max="100"></progress>
 
-  <button>Daily</button>
-  <button>Weekly</button>
-  <button>Monthly</button>
+  <button ng-click="usersIndex.dailyChart()">Daily</button>
+  <button ng-click="usersIndex.weeklyChart()">Weekly</button>
+  <button ng-click="usersIndex.monthlyChart()">Monthly</button>
+  <p>Diet Profile</p>
+  <button ui-sref="select">Back</button>
+  <button ui-sref="dietFriends">Friends</button>
+
+  <label for="calories">Calories per day</label>
+  <input type="number" id="calories" placeholder="{{ usersIndex.currentUser.dietGoals }}" ng-model="usersIndex.currentUser.goal">
+  <label for="targetDate">Untill</label>
+  <input type="date" id="targetDate" ng-model="usersIndex.currentUser.targetDate">
+  {{ usersIndex.currentUser.dietGoalDates }}
+  <button ng-click="usersIndex.setGoals(usersIndex.currentUser)">Set Goals</button>
 </div>
-<p>Diet Profile</p>
-<button ui-sref="select">Back</button>
-<button ui-sref="dietFriends">Friends</button>

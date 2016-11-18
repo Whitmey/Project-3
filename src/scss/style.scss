@@ -1,5 +1,5 @@
 body {
-  background-color: teal;
+  background-color: white;
 }
 
 img {
@@ -16,11 +16,34 @@ h3 {
 
 h1 {
   text-align: center;
-
 }
+
+.button,button,li{margin-bottom:0}
+
+#sidebar {
+  border: 2px solid white;
+  border-radius: 5px;
+  button{
+    width: 100%;
+    text-align: center;
+    margin-bottom: none;
+  }
+  ul{
+    margin: 0 auto;
+  }
+  li{
+    margin: 0 auto;
+  }
+}
+
+section {
+  text-align: center;
+}
+
 #progressbar{
   width: 70%;
 }
+
 progress {
   background-color: teal;
   border: 5px;
@@ -114,6 +137,83 @@ progress {
   -webkit-transition: max-height 0.5s ease-in-out;
   transition: max-height 0.5s ease-in-out;
 }
+
 header{
   float: left;
 }
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  font-size: 15px;
+  padding: 1px 0;
+  a {
+    text-decoration: none;
+    color: black;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.goalBox {
+  border: 1px black solid;
+}
+
+
+.add {
+  background-color: lime;
+  color: white;
+}
+
+#sidebar{
+  button.edit{
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    line-height: 30px;
+    color: white;
+    background-color: blue;
+  }
+  button.delete {
+    background-color: red;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    line-height: 30px;
+    color: white;
+  }
+}
+
+ #clockdiv{
+     font-family: sans-serif;
+     color: #fff;
+     display: inline-block;
+     font-weight: 100;
+     text-align: center;
+     font-size: 30px;
+ }
+
+ #clockdiv > div{
+     padding: 10px;
+     border-radius: 3px;
+     background: #00BF96;
+     display: inline-block;
+ }
+
+ #clockdiv div > span{
+     padding: 15px;
+     border-radius: 3px;
+     background: #00816A;
+     display: inline-block;
+ }
+
+ .smalltext{
+     padding-top: 5px;
+     font-size: 16px;
+ }
