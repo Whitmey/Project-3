@@ -22,7 +22,9 @@
     "skeleton": "^2.0.4",
     "angular-messages": "ng-messages#*",
     "moment": "^2.16.0",
-    "chart.js": "^2.4.0"
+    "chart.js": "^2.4.0",
+    "angular-momentjs": "^0.2.2",
+    "angular-moment": "^1.0.0"
   },
   "resolutions": {
     "angular": "1.5.8"
