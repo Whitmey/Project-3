@@ -8,9 +8,8 @@ angular.module('foodApp')
 
 
 FinancesController.$inject = ['Finance', '$state', '$auth'];
+let budget = 500;
 function FinancesController(Finance, $state) {
-
-  this.budget = 500;
 
 
 
@@ -33,8 +32,10 @@ function FinancesController(Finance, $state) {
   function create() {
     Finance.save(finances.financesNew, () => {
       const amountSpent = finances.financesNew.amountSpent;
-      this.budget -= amountSpent;
-      console.log(this.budget);
+      budget -= amountSpent;
+      console.log(budget);
+      budget = document.getElementById('budgetText').innerHTML;
+      console.log(budget);
       $state.reload();
     });
   }
