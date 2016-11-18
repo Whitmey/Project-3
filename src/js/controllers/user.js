@@ -5,6 +5,7 @@ UsersIndexController.$inject = ['User', '$auth'];
 function UsersIndexController(User, $auth) {
   const usersIndex = this;
 
+
   User.get({ id: $auth.getPayload()._id }, (user) => {
     usersIndex.currentUser = user;
     usersIndex.all = User.query();
