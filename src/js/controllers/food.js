@@ -7,8 +7,8 @@ angular.module('foodApp')
 
 
 
-FoodsController.$inject = ['Food'];
-function FoodsController(Food) {
+FoodsController.$inject = ['Food', 'User'];
+function FoodsController(Food, User) {
 
   const foods = this;
   // foods.getIndex = getIndex;

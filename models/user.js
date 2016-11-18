@@ -8,7 +8,9 @@ const userSchema = new mongoose.Schema({
   facebookId: { type: String },
   profileImage: { type: String },
   dob: { type: String },
-  following: [{ type: mongoose.Schema.ObjectId, ref: 'User' }]
+  following: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
+  dietGoals: Number,
+  dietGoalDates: Date
 });
 
 function setPassword(value){
