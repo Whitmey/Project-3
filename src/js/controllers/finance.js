@@ -3,41 +3,41 @@ angular.module('foodApp')
 // .controller('FinancesNewController', FinancesNewController)
 // .controller('FinancesShowController', FinancesShowController)
 // .controller('FinancesEditController', FinancesEditController)
-.controller('FinanceController', FinanceController);
+.controller('FinancesController', FinancesController);
 
 
 
-FinanceController.$inject = ['Finance', '$state', '$auth'];
-function FinanceController(Finance, $state) {
+FinancesController.$inject = ['Finance', '$state', '$auth'];
+function FinancesController(Finance, $state) {
 
-  const finance = this;
+  const finances = this;
   // finance.getIndex = getIndex;
   // finance.newFinance = newFinance;
   // finance.showFinances = showFinances;
-  finance.edit = editFinances;
-  finance.create = create;
-  finance.delete = financeDelete;
-  finance.editFinance = {};
-  finance.update = update;
+  finances.edit = editFinances;
+  finances.create = create;
+  finances.delete = financesDelete;
+  finances.editFinance = {};
+  finances.update = update;
 
-  finance.all = Finance.query();
+  finances.all = Finance.query();
 
 
-  finance.financeNew = {};
+  finances.financesNew = {};
 
 
   function create() {
-    Finance.save(finance.financeNew, () => {
+    Finance.save(finances.financesNew, () => {
       $state.reload();
     });
   }
 
-  function financeDelete(financeId) {
-    console.log(finance.all);
+  function financesDelete(financeId) {
+    console.log(finances.all);
 
-    for(var i = 0; i< finance.all.length; i++) {
-      if(finance.all[i]._id === financeId)
-        finance.all[i].$remove(() => {
+    for(var i = 0; i< finances.all.length; i++) {
+      if(finances.all[i]._id === financeId)
+        finances.all[i].$remove(() => {
           $state.reload();
         });
     }
@@ -45,14 +45,14 @@ function FinanceController(Finance, $state) {
 
 
   function editFinances(financeId) {
-    for(var i = 0; i< finance.all.length; i++) {
-      if(finance.all[i]._id === financeId)
-        finance.editFinance = finance.all[i];
+    for(var i = 0; i< finances.all.length; i++) {
+      if(finances.all[i]._id === financeId)
+        finances.editFinance = finances.all[i];
     }
   }
 
   function update() {
-    finance.editFinance.$update(() => {
+    finances.editFinance.$update(() => {
       $state.reload();
     });
   }

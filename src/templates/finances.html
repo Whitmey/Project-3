@@ -1,0 +1,36 @@
+
+
+<section ng-controller='financeMainController as finance'>
+
+<canvas id="myChart1" fixedwidth="20" height="200"></canvas>
+
+</section>
+
+<section class="row" ng-controller="FinancesController as finances">
+
+
+
+  <form ng-submit="finances.create()" method="post">
+    <label>Purchase:</label>
+    <input type="text" name="name" value="" ng-model="finances.financesNew.name">
+    <label>Price:</label>
+    <input type="number" name="price" value="" ng-model="finances.financesNew.price">
+
+    <button>Add purchase</button>
+
+  </form>
+</section>
+<section>
+<ul ng-repeat="finance in finances.all" >
+  <div class="label"><li>Label: {{ finance.name }} Price: {{ finance.price }}</li><button ng-click="finances.delete(finance._id)">X</button>
+    <button ng-click="showForm = !showForm; finances.edit(finance._id)">Edit</button>
+
+    <form ng-show="showForm" ng-submit="finances.update()" method="post">
+      <label>Purchase:</label>
+      <input type="text" name="name" ng-model="finances.editFinance.name" >
+      <label>Price:</label>
+      <input type="number" name="price" ng-model="finances.editFinance.price">
+      <button>Save</button>
+    </form></div>
+</ul>
+</section>

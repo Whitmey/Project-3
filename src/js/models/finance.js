@@ -3,7 +3,7 @@ angular.module('foodApp')
 
 Finance.$inject = ['$resource'];
 function Finance($resource) {
-  return new $resource('/finance/:id', { id: '@_id' }, {
+  return new $resource('/finances/:id', { id: '@_id' }, {
     update: { method: 'PUT' }
   });
 }

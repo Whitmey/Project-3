@@ -12,7 +12,7 @@ function financeMainController($auth, $state, $rootScope) {
   function logout() {
     $auth.logout()
     .then(() => {
-      $state.go('foodsIndex');
+      $state.go('financesIndex');
     });
   }
 
@@ -35,7 +35,7 @@ function financeMainController($auth, $state, $rootScope) {
 
     const ctx = document.getElementById('myChart1');
     const myChart = new Chart(ctx, {
-      type: 'line',
+      type: 'doughnut',
       data: {
         labels: ['entertanment', 'food', 'utilities', 'rent' ],
         datasets: [{

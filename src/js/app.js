@@ -39,10 +39,10 @@ function Router($stateProvider, $urlRouterProvider) {
       templateUrl: '/templates/dietFriends.html',
       controller: 'UsersIndexController as usersIndex'
     })
-    .state('finance', {
-      url: '/finance',
-      templateUrl: '/templates/finance.html',
-      controller: 'FinanceController as finance'
+    .state('finances', {
+      url: '/finances',
+      templateUrl: '/templates/finances.html',
+      controller: 'FinancesController as finances'
     });
   $urlRouterProvider.otherwise('/');
 }
