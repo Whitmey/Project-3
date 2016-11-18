@@ -10,6 +10,10 @@ angular.module('foodApp')
 FinancesController.$inject = ['Finance', '$state', '$auth'];
 function FinancesController(Finance, $state) {
 
+  this.budget = 500;
+
+
+
   const finances = this;
   // finance.getIndex = getIndex;
   // finance.newFinance = newFinance;
@@ -28,6 +32,9 @@ function FinancesController(Finance, $state) {
 
   function create() {
     Finance.save(finances.financesNew, () => {
+      const amountSpent = finances.financesNew.amountSpent;
+      this.budget -= amountSpent;
+      console.log(this.budget);
       $state.reload();
     });
   }
