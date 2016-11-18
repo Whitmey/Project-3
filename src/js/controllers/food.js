@@ -25,7 +25,8 @@ function FoodsController(Food, User, $auth, $state) {
 
   function create() {
     Food.save(foods.foodsNew, () => {
-      foods.all = Food.query();
+      $state.reload();
+      console.log(foods);
     });
     Food.query((res) => {
       foods.all = res;
