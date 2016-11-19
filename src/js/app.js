@@ -11,11 +11,11 @@ function Router($stateProvider, $urlRouterProvider) {
       templateUrl: '/templates/foodsIndex.html',
       controller: 'FoodsController as foods'
     })
-    // .state('goalsIndex', {
-    //   url: '/goals',
-    //   templateUrl: '/templates/goalsIndex.html',
-    //   controller: 'GoalsController as goals'
-    // })
+    .state('leaderboard', {
+      url: '/leaderboard',
+      templateUrl: '/templates/leaderboard.html',
+      controller: 'UsersIndexController as usersIndex'
+    })
     .state('login', {
       url: '/',
       templateUrl: '/templates/landing.html',
@@ -38,8 +38,12 @@ function Router($stateProvider, $urlRouterProvider) {
       url: '/dietFriends',
       templateUrl: '/templates/dietFriends.html',
       controller: 'UsersIndexController as usersIndex'
+    })
+    .state('finances', {
+      url: '/finances',
+      templateUrl: '/templates/finances.html',
+      controller: 'FinancesController as finances'
     });
-
   $urlRouterProvider.otherwise('/');
 }
 

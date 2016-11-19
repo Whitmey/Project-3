@@ -10,6 +10,13 @@ img {
   border: 2px solid black;
   border-radius: 5px;
 }
+h3 {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
 
 .button,button,li{margin-bottom:0}
 
@@ -33,10 +40,10 @@ section {
   text-align: center;
 }
 
-
 #progressbar{
   width: 70%;
 }
+
 progress {
   background-color: teal;
   border: 5px;
@@ -131,6 +138,9 @@ progress {
   transition: max-height 0.5s ease-in-out;
 }
 
+header{
+  float: left;
+}
 ul {
   margin: 0;
   padding: 0;

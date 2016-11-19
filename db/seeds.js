@@ -189,10 +189,10 @@ User.create([{
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
-  username: 'lil Yachty',
+  username: 'future',
   dob: 'Mar-06-1981',
-  profileImage: 'http://thefader-res.cloudinary.com/images/c_limit,w_1024/c_crop,h_392,w_753,x_145,y_75,f_auto,q_auto:best/90341C2-R01-006_cuwfd7/90341C2-R01-006_cuwfd7.jpg',
-  email: 'yachty@example.com',
+  profileImage: 'http://thehollywoodunlocked.com/wp-content/uploads/2016/07/kQXgKE9.png',
+  email: 'future@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
