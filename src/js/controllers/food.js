@@ -7,8 +7,8 @@ angular.module('foodApp')
 
 
 
-FoodsController.$inject = ['Food', 'User', '$auth', '$state'];
-function FoodsController(Food, User, $auth, $state) {
+FoodsController.$inject = ['Food', 'User', '$auth', '$state', 'moment'];
+function FoodsController(Food, User, $auth, $state, moment) {
 
   const foods = this;
   foods.edit = editFoods;
@@ -17,6 +17,7 @@ function FoodsController(Food, User, $auth, $state) {
   foods.editFood = {};
   foods.update = update;
   foods.foodsNew = {};
+  foods.foodsNew.date = moment().weekday();
 
   const thisUser = User.get({ id: $auth.getPayload()._id });
 

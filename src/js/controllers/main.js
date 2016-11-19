@@ -4,8 +4,8 @@ angular.module('foodApp')
 
 
 
-MainController.$inject = ['Food', 'User', '$auth', '$state', '$rootScope'];
-function MainController(Food, User, $auth, $state, $rootScope) {
+MainController.$inject = ['moment', 'Food', 'User', '$auth', '$state', '$rootScope'];
+function MainController(moment, Food, User, $auth, $state, $rootScope) {
   const main = this;
 
   main.isLoggedIn = $auth.isAuthenticated;
@@ -14,10 +14,11 @@ function MainController(Food, User, $auth, $state, $rootScope) {
   main.allFood = Food.query();
   main.caloryCounter = 0;
   main.allMyFoods = [];
+  main.today = moment().weekday();
 
   const thisUser = User.get({ id: $auth.getPayload()._id });
 
-
+  //this function gets just this current users foods from all existing foods. pushes them to main.allMyFoods
   function getFoods() {
     for(let j=0; j<main.allFood.length; j++) {
       if(thisUser.eaten.indexOf(main.allFood[j]._id) !== -1) {
@@ -26,17 +27,19 @@ function MainController(Food, User, $auth, $state, $rootScope) {
     }
   }
 
+  //this function checks if items in users foods were eaten on this weekday and adds up calories for just those items.
+  //instead of going by weekday will need to change this to specific date. could base axis on charts on weekday though.
   function todaysCals() {
     getFoods();
-    console.log('gotfoods', main.allMyFoods.length);
 
     for(let i=0; i<main.allMyFoods.length; i++) {
-      if (main.allMyFoods[i].date === '18/11/16'){
+      if (main.allMyFoods[i].date == main.today){
         main.caloryCounter += main.allMyFoods[i].calories;
       }
     }
-    console.log(thisUser.eaten[1]);
+    console.log(main.allMyFoods);
   }
+
 
   function logout() {
     $auth.logout()
