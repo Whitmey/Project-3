@@ -4,12 +4,27 @@ angular.module('foodApp')
 
 
 
-MainController.$inject = ['$auth', '$state', '$rootScope'];
-function MainController($auth, $state, $rootScope) {
+MainController.$inject = ['Food', 'User', '$auth', '$state', '$rootScope'];
+function MainController(Food, User, $auth, $state, $rootScope) {
   const main = this;
 
   main.isLoggedIn = $auth.isAuthenticated;
   main.message = null;
+  main.totalCals = totalCals;
+
+  const thisUser = User.get({ id: $auth.getPayload()._id });
+  main.caloryCounter = 0;
+
+  main.allFood = Food.query();
+
+  function totalCals() {
+    for(let i=0; i<main.allFood.length; i++) {
+      if (thisUser.eaten.indexOf(main.allFood[i]._id) !== -1 ){
+        main.caloryCounter += main.allFood[i].calories;
+      }
+    }
+    console.log(thisUser.eaten[1]);
+  }
 
   function logout() {
     $auth.logout()
@@ -105,5 +120,9 @@ function CountdownController() {
 
   var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
   initializeClock('clockdiv', deadline);
+
+
+
+
 
 }
