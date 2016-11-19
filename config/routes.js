@@ -5,6 +5,7 @@ const oauthController = require('../controllers/oauth');
 const foodsController = require('../controllers/foods');
 const usersController = require('../controllers/users');
 const financesController = require('../controllers/finances');
+// const imageUpload = require('../lib/imageUpload');
 
 
 router
@@ -19,7 +20,7 @@ router.route('/foods')
 
 router.route('/foods/:id')
   // .get(foodsController.show)
-  .put(secureRoute, foodsController.update)
+  // .put(secureRoute, imageUpload,foodsController.update)
   .delete(secureRoute, foodsController.delete);
 
 
