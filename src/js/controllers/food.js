@@ -20,19 +20,20 @@ function FoodsController(Food, User, $auth, $state) {
 
   const thisUser = User.get({ id: $auth.getPayload()._id });
 
-  foods.all = Food.query();
-
+  Food.query((res) => {
+    foods.all = res;
+    thisUser.$update();
+  });
 
   function create() {
     Food.save(foods.foodsNew, () => {
-      $state.reload();
-      console.log(foods);
-    });
-    Food.query((res) => {
-      foods.all = res;
-      thisUser.eaten.push(foods.all[foods.all.length-1]);
-      thisUser.$update();
-      console.log(thisUser);
+      Food.query((res) => {
+        foods.all = res;
+        thisUser.$update();
+        thisUser.eaten.push(foods.all[foods.all.length-1]);
+        console.log(thisUser);
+      });
+      document.getElementById('createFood').reset();
     });
   }
 
@@ -57,6 +58,8 @@ function FoodsController(Food, User, $auth, $state) {
 
 
   function editFoods(foodId) {
+    thisUser.$update();
+    console.log(thisUser);
     for(var i = 0; i< foods.all.length; i++) {
       if(foods.all[i]._id === foodId)
         foods.editFood = foods.all[i];
