@@ -10,17 +10,29 @@ function MainController(Food, User, $auth, $state, $rootScope) {
 
   main.isLoggedIn = $auth.isAuthenticated;
   main.message = null;
-  main.totalCals = totalCals;
+  main.todaysCals = todaysCals;
+  main.allFood = Food.query();
+  main.caloryCounter = 0;
+  main.allMyFoods = [];
 
   const thisUser = User.get({ id: $auth.getPayload()._id });
-  main.caloryCounter = 0;
 
-  main.allFood = Food.query();
 
-  function totalCals() {
-    for(let i=0; i<main.allFood.length; i++) {
-      if (thisUser.eaten.indexOf(main.allFood[i]._id) !== -1 ){
-        main.caloryCounter += main.allFood[i].calories;
+  function getFoods() {
+    for(let j=0; j<main.allFood.length; j++) {
+      if(thisUser.eaten.indexOf(main.allFood[j]._id) !== -1) {
+        main.allMyFoods.push(main.allFood[j]);
+      }
+    }
+  }
+
+  function todaysCals() {
+    getFoods();
+    console.log('gotfoods', main.allMyFoods.length);
+
+    for(let i=0; i<main.allMyFoods.length; i++) {
+      if (main.allMyFoods[i].date === '18/11/16'){
+        main.caloryCounter += main.allMyFoods[i].calories;
       }
     }
     console.log(thisUser.eaten[1]);
