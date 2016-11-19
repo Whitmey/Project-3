@@ -14,7 +14,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
   main.allFood = Food.query();
   main.caloryCounter = 0;
   main.allMyFoods = [];
-  main.today = moment().weekday();
+  main.today = moment().format('DD/MM/YYYY');
 
   const thisUser = User.get({ id: $auth.getPayload()._id });
 

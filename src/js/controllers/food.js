@@ -17,7 +17,7 @@ function FoodsController(Food, User, $auth, $state, moment) {
   foods.editFood = {};
   foods.update = update;
   foods.foodsNew = {};
-  foods.foodsNew.date = moment().weekday();
+  foods.foodsNew.date = moment().format('DD/MM/YYYY');
 
   const thisUser = User.get({ id: $auth.getPayload()._id });
 
