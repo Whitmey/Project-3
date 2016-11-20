@@ -71,14 +71,29 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
   main.logout = logout;
 
   let days = [];
-
+  //function to populate a weeks worth of objects with dates and calories. they will update each day.
   function getDays() {
     days = [];
     for (let day=1; day<7; day ++) {
-      days.push(moment().subtract(day, 'days').format('DD/MM/YYYY'));
+      days.push( {
+        date: moment().subtract(day, 'days').format('DD/MM/YYYY'),
+        calories: 0
+      });
     }
+    getCalories();
     console.log(days);
   }
+
+  function getCalories() {
+    for (let i=0; i<days.length; i++) {
+      for (let k = 0; k< main.allMyFoods.length; k++) {
+        if(main.allMyFoods[k].date === days[i].date) {
+          days[i].calories += main.allMyFoods[k].calories;
+        }
+      }
+    }
+  }
+
 
 
   main.createChart = createChart;
@@ -91,17 +106,18 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
     var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: [days[5], days[4], days[3], days[2], days[1], days[0], 'Today'],
+        labels: [days[5].date, days[4].date, days[3].date, days[2].date, days[1].date, days[0].date, 'Today'],
         datasets: [{
           label: '# of Votes',
-          data: [1500, 2000, 3000, 2150, 2430, main.yesterdayCounter, main.caloryCounter],
+          data: [days[5].calories, days[4].calories, days[3].calories, days[2].calories, days[1].calories, days[0].calories, main.caloryCounter],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
             'rgba(255, 206, 86, 0.2)',
             'rgba(75, 192, 192, 0.2)',
             'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(150, 205, 100, 0.2)'
           ],
           borderColor: [
             'rgba(255,99,132,1)',
@@ -109,7 +125,8 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
             'rgba(255, 206, 86, 1)',
             'rgba(75, 192, 192, 1)',
             'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
+            'rgba(255, 159, 64, 1)',
+            'rgba(150, 205, 100, 1)'
           ],
           borderWidth: 1
         }]
