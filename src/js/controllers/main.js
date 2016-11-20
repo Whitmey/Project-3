@@ -70,7 +70,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
 
   main.createChart = createChart;
 
-// COMMENTED OUT PIE CHART DATA FOR REFFERENCE
+//angular still breaks unless chart is initiated by a button click....
   function createChart() {
     todaysCals();
     var ctx = document.getElementById("myChart");
