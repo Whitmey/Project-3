@@ -12,11 +12,13 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
   main.message = null;
   main.todaysCals = todaysCals;
   main.allFood = Food.query();
+  main.yesterdayCounter = 0;
   main.caloryCounter = 0;
   main.allMyFoods = [];
   main.today = moment().format('DD/MM/YYYY');
 
   const thisUser = User.get({ id: $auth.getPayload()._id });
+
 
   //this function gets just this current users foods from all existing foods. pushes them to main.allMyFoods
   function getFoods() {
@@ -33,10 +35,13 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
   //instead of going by weekday will need to change this to specific date. could base axis on charts on weekday though.
   function todaysCals() {
     getFoods();
-
+    //should turn this into a switch statement v
     for(let i=0; i<main.allMyFoods.length; i++) {
       if (main.allMyFoods[i].date == main.today){
         main.caloryCounter += main.allMyFoods[i].calories;
+      }
+      else if (main.allMyFoods[i].date == moment().subtract(1, 'days').format('DD/MM/YYYY')) {
+        main.yesterdayCounter += main.allMyFoods[i].calories;
       }
     }
     console.log(main.allMyFoods);
@@ -65,50 +70,59 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
 
   main.logout = logout;
 
+  let days = [];
 
+  function getDays() {
+    days = [];
+    for (let day=1; day<7; day ++) {
+      days.push(moment().subtract(day, 'days').format('DD/MM/YYYY'));
+    }
+    console.log(days);
+  }
 
 
   main.createChart = createChart;
 
 //angular still breaks unless chart is initiated by a button click....
   function createChart() {
+    getDays();
     todaysCals();
     var ctx = document.getElementById("myChart");
     var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: [moment().subtract(4, 'days').format('DD/MM/YYYY'), moment().subtract(3, 'days').format('DD/MM/YYYY'), moment().subtract(2, 'days').format('DD/MM/YYYY'), moment().subtract(1, 'days').format('DD/MM/YYYY'), 'Today'],
-            datasets: [{
-                label: '# of Votes',
-                data: [1500, 2000, 3000, 2500, main.caloryCounter],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
+      type: 'bar',
+      data: {
+        labels: [days[5], days[4], days[3], days[2], days[1], days[0], 'Today'],
+        datasets: [{
+          label: '# of Votes',
+          data: [1500, 2000, 3000, 2150, 2430, main.yesterdayCounter, main.caloryCounter],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
             }
+          }]
         }
+      }
     });
   }
 }
