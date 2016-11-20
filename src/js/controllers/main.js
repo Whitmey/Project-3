@@ -18,6 +18,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
 
   const thisUser = User.get({ id: $auth.getPayload()._id });
 
+
   //this function gets just this current users foods from all existing foods. pushes them to main.allMyFoods
   function getFoods() {
     main.caloryCounter = 0;
@@ -75,40 +76,40 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
     todaysCals();
     var ctx = document.getElementById("myChart");
     var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: [moment().subtract(4, 'days').format('DD/MM/YYYY'), moment().subtract(3, 'days').format('DD/MM/YYYY'), moment().subtract(2, 'days').format('DD/MM/YYYY'), moment().subtract(1, 'days').format('DD/MM/YYYY'), 'Today'],
-            datasets: [{
-                label: '# of Votes',
-                data: [1500, 2000, 3000, 2500, main.caloryCounter],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
+      type: 'bar',
+      data: {
+        labels: [moment().subtract(4, 'days').format('DD/MM/YYYY'), moment().subtract(3, 'days').format('DD/MM/YYYY'), moment().subtract(2, 'days').format('DD/MM/YYYY'), moment().subtract(1, 'days').format('DD/MM/YYYY'), 'Today'],
+        datasets: [{
+          label: '# of Votes',
+          data: [1500, 2000, 3000, 2500, main.caloryCounter],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
             }
+          }]
         }
+      }
     });
   }
 }
