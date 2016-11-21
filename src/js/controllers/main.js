@@ -40,9 +40,6 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
       if (main.allMyFoods[i].date == main.today){
         main.caloryCounter += main.allMyFoods[i].calories;
       }
-      else if (main.allMyFoods[i].date == moment().subtract(1, 'days').format('DD/MM/YYYY')) {
-        main.yesterdayCounter += main.allMyFoods[i].calories;
-      }
     }
     console.log(main.allMyFoods);
   }

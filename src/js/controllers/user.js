@@ -49,7 +49,7 @@ function UsersIndexController(User, $auth) {
 
   function setGoals(user) {
     user.dietGoals = user.goal;
-    user.dietGoalDates = user.targetDate;
+    // user.dietGoalDates = user.targetDate;
     usersIndex.currentUser.$update(() => {
       console.log('Don\'t let your dreams be dreams');
     });

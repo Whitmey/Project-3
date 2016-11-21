@@ -6,10 +6,10 @@
   <button ui-sref="select">Back</button>
   <button ui-sref="dietFriends">Friends</button>
 
-  <label for="calories">Calories per day</label>
+  <label for="calories">Todays calory goal:</label>
   <input type="number" id="calories" placeholder="{{ usersIndex.currentUser.dietGoals }}" ng-model="usersIndex.currentUser.goal">
-  <label for="targetDate">Untill</label>
-  <input type="date" id="targetDate" ng-model="usersIndex.currentUser.targetDate">
+  <label for="targetDate">Date:</label>
+  <input type="text" id="targetDate" ng-model="usersIndex.currentUser.targetDate">
   {{ usersIndex.currentUser.dietGoalDates }}
   <button ng-click="usersIndex.setGoals(usersIndex.currentUser)">Set Goals</button>
 </div>
