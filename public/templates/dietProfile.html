@@ -1,9 +1,7 @@
 <div ng-controller="UsersIndexController as usersIndex" id="chartBox">
 
 
-  <button ng-click="usersIndex.dailyChart()">Daily</button>
-  <button ng-click="usersIndex.weeklyChart()">Weekly</button>
-  <button ng-click="usersIndex.monthlyChart()">Monthly</button>
+
   <p>Diet Profile</p>
   <button ui-sref="select">Back</button>
   <button ui-sref="dietFriends">Friends</button>
@@ -19,8 +17,11 @@
 
 
 <section ng-controller="MainController as main">
+  <button ng-click="main.dailyChart()">Daily</button>
+  <button ng-click="main.weeklyChart()">Weekly</button>
+  <button ng-click="main.monthlyChart()">Monthly</button>
   <h4>{{main.caloryCounter}}</h4>
-  <button ng-click="main.createChart()" id='makeChart'>Make chart</button>
+  <button ng-click="main.weeklyChart()" id='makeChart'>Make chart</button>
 
   <canvas id="myChart" fixedwidth="20" height="200"></canvas>
   <progress id="progressbar" style="width: 100%" value="25" max="100"></progress>

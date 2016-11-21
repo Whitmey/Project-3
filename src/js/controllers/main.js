@@ -1,6 +1,6 @@
 angular.module('foodApp')
-  .controller('MainController', MainController)
-  .controller('CountdownController', CountdownController);
+.controller('MainController', MainController)
+.controller('CountdownController', CountdownController);
 
 
 
@@ -98,56 +98,138 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
 
   main.createChart = createChart;
 
-// COMMENTED OUT PIE CHART DATA FOR REFFERENCE
-  function createChart() {
-    getDays();
-    todaysCals();
-    var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: [days[5].date, days[4].date, days[3].date, days[2].date, days[1].date, days[0].date, 'Today'],
-        datasets: [{
-          label: '# of Votes',
-          data: [days[5].calories, days[4].calories, days[3].calories, days[2].calories, days[1].calories, days[0].calories, main.caloryCounter],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(150, 205, 100, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)',
-            'rgba(150, 205, 100, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
+  // COMMENTED OUT PIE CHART DATA FOR REFFERENCE
+  // function createChart() {
+  //   todaysCals();
+  //   getDays();
+
+  //   var ctx = document.getElementById("myChart");
+  //   var myChart = new Chart(ctx, {
+  //     type: 'bar',
+  //     data: {
+  //       labels: [days[5].date, days[4].date, days[3].date, days[2].date, days[1].date, days[0].date, 'Today'],
+  //       datasets: [{
+  //         label: '# of Votes',
+  //         data: [days[5].calories, days[4].calories, days[3].calories, days[2].calories, days[1].calories, days[0].calories, main.caloryCounter],
+  //         backgroundColor: [
+  //           'rgba(255, 99, 132, 0.2)',
+  //           'rgba(54, 162, 235, 0.2)',
+  //           'rgba(255, 206, 86, 0.2)',
+  //           'rgba(75, 192, 192, 0.2)',
+  //           'rgba(153, 102, 255, 0.2)',
+  //           'rgba(255, 159, 64, 0.2)',
+  //           'rgba(150, 205, 100, 0.2)'
+  //         ],
+  //         borderColor: [
+  //           'rgba(255,99,132,1)',
+  //           'rgba(54, 162, 235, 1)',
+  //           'rgba(255, 206, 86, 1)',
+  //           'rgba(75, 192, 192, 1)',
+  //           'rgba(153, 102, 255, 1)',
+  //           'rgba(255, 159, 64, 1)',
+  //           'rgba(150, 205, 100, 1)'
+  //         ],
+  //         borderWidth: 1
+  //       }]
+  //     },
+  //     options: {
+  //       scales: {
+  //         yAxes: [{
+  //           ticks: {
+  //             beginAtZero: true
+  //           }
+  //         }]
+  //       }
+  //     }
+  //   });
+  // }
+
+
+
+  main.canShowCanvas = true;
+
+  let labels = [];
+  let datapoints = [];
+  let chart = null;
+
+  function createChart(data) {
+
+
+    const chartElement = document.getElementById('myChart');
+
+
+
+    if (chart && chart.destroy) {
+      chart.destroy();
+    }
+    chart = new Chart(chartElement, {
+      type: 'line',
+      data: data
     });
   }
+
+  function dailyChart() {
+    todaysCals();
+    getDays();
+    labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    datapoints = [65, 59, 80, 81, 56, 55, 40];
+    chartData(labels, datapoints);
+  }
+
+  function weeklyChart() {
+    todaysCals();
+    getDays();
+    labels = [days[5].date, days[4].date, days[3].date, days[2].date, days[1].date, days[0].date, 'Today'];
+    datapoints = [days[5].calories, days[4].calories, days[3].calories, days[2].calories, days[1].calories, days[0].calories, main.caloryCounter];
+    chartData(labels, datapoints);
+  }
+
+  function monthlyChart() {
+    todaysCals();
+    getDays();
+    labels = [];
+    datapoints = [];
+    chartData(labels, datapoints);
+  }
+
+  function chartData(labels, datapoints) {
+    const data = {
+      labels: labels,
+      datasets: [
+        {
+          label: 'My First dataset',
+          fill: true,
+          lineTension: 0.1,
+          backgroundColor: 'rgba(75,192,192,0.4)',
+          borderColor: 'rgba(75,192,192,1)',
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: 'rgba(75,192,192,1)',
+          pointBackgroundColor: '#fff',
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+          pointHoverBorderColor: 'rgba(220,220,220,1)',
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          data: datapoints,
+          spanGaps: false
+        }
+      ]
+    };
+    createChart(data);
+
+
+
+  }
+
+  main.dailyChart = dailyChart;
+  main.weeklyChart = weeklyChart;
+  main.monthlyChart = monthlyChart;
 }
-
-
-// tesco primary api key: a3e5d8d2bece47679e56b9e289f3c6b3
-// secondary key: 084af90bdc7e4569975087b403b43bcc
-
 
 CountdownController.$inject = [];
 function CountdownController() {
@@ -192,8 +274,6 @@ function CountdownController() {
 
   var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
   initializeClock('clockdiv', deadline);
-
-
 
 
 
