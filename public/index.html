@@ -13,18 +13,16 @@
   <header class="container">
     <input class="burger-check" id="burger-check" type="checkbox" style="opacity:0"><label for="burger-check" class="burger"></label>
     <nav id="navigation1" class="navigation">
-      <ul>
-        <li><a ui-sref="select">Select</a></li>
-        <li><a ui-sref="dietProfile">Profile</a></li>
-        <li><a ui-sref="foodsIndex">FoodIndex</a></li>
-        <li><a ui-sref="login">Logout</a></li>
-      </ul>
+        <ul>
+          <li><a ui-sref="select">Select</a></li>
+          <li><a ui-sref="dietProfile">Profile</a></li>
+          <li><a ui-sref="foodsIndex">FoodIndex</a></li>
+          <li><a ui-sref="login">Logout</a></li>
+        </ul>
     </nav>
   </header>
+
   <main class="container" ui-view></main>
-  <section ng-controller="MainController as main">
-    <button ng-click="main.logout()">LogOut</button>
-  </section>
 
 </body>
 </html>
