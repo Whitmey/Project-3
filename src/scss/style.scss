@@ -212,7 +212,7 @@ li {
      background: #00816A;
      display: inline-block;
  }
-
+// drag and drop option
  .smalltext{
      padding-top: 5px;
      font-size: 16px;
@@ -226,102 +226,193 @@ li {
 .active {
   background-color: #fcfcfc
 }
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:800);
-.box-with-text {
-  background-image: url('http://skipthepie.org/nutrition-photos/o/18958_130419356684071.jpg');
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
-}
 
-.box-with-text {
+// select page
+.menuCircle h1 {
+  color: #fff;
+  text-align: inherit;
+  line-height: 400px;
+}
+.menuCircle {
+  background: teal;
+  width: 400px;
+  height: 400px;
+  -webkit-border-radius: 500px;
+  -moz-border-radius: 500px;
+  border-radius: 500px;
+  -webkit-transition: height 1s, width 1s;
+  float: left;
+}
+.middle {
+  margin: 0 20px 0 20px;
+}
+.menuCircle:hover {
+  height: 450px;
+  width: 450px;
+  -webkit-transition: height 1s, width 1s;
+}
+// food index
+.frame {
   position: absolute;
   left: 50%;
-  -webkit-transform: translateX(-20%) translateY(-20%);
-  -ms-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
-  background-repeat: repeat;
-  background-position: 50% 50%;
-  background-size: cover;
-  white-space: nowrap;
-  text-align: center;
-  text-transform: uppercase;
-  font: 16vmax/.85 Open Sans, Impact;
+  width: 400px;
+  height: 400px;
+  border-radius: 2px;
+  color: teal;
+	font-family: 'Open Sans', Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 
-.text {
-  font: 10.5em/1 Open Sans, Impact;
-  text-transform: uppercase;
+.headline {
+	font-weight: 600;
+	font-size: 24px;
+	text-transform: uppercase;
+	text-align: center;
+	line-height: 22px;
+
+	.small {
+		font-weight: 300;
+		font-size: 16px;
+	}
+
+}
+.circle-big {
+	position: relative;
+	width: 114px;
+	height: 114px;
+	margin: 30px auto 25px auto;
+
+	svg {
+		width: 114px;
+		height: 114px;
+	}
+
+	.bg {
+		fill: none;
+		stroke-width: 10px;
+		stroke: #1B2A33;
+	}
+
+	.progress {
+		fill: none;
+		stroke-width: 10px;
+		stroke: #27E1AE;
+		stroke-linecap: round;
+    stroke-dasharray: (52*2*3.14);
+		stroke-dashoffset: 60;
+		transform: rotate(-90deg);
+		transform-origin: 50% 50%;
+		animation: big 1.5s ease-out;
+	}
+
+	.text {
+		position: absolute;
+		width: 100%;
+		top: 37px;
+		font-size: 24px;
+		text-align: center;
+		font-weight: 400;
+		line-height: 22px;
+
+		.small {
+			font-size: 14px;
+			color: #648192;
+		}
+
+	}
+
 }
 
-.simple {
-  fill: url(#gr-simple);
+.circles-small {
+	margin: 0 auto;
+	width: 400px;
+	height: 80px;
+	text-align: center;
 }
 
-.radial {
-  fill: url(#gr-radial);
-}
-/* Colorize pattern */
-.g-spots circle:nth-child(5n + 1) {
-  fill: #1D4259;
-}
-.g-spots circle:nth-child(5n + 2) {
-  fill: #0A7373;
-}
-.g-spots circle:nth-child(5n + 3) {
-  fill: #30BF7C;
-}
-.g-spots circle:nth-child(5n + 4) {
-  fill: #BAF266;
-}
-.g-spots circle:nth-child(5n + 5) {
-  fill: #EEF272;
-}
-.text-pattern {
-  fill: url(#p-spots);
-  stroke: #1D4259;
-  stroke-width: 5;
-  stroke-opacity: .5;
-  font: 10.5em/1 Open Sans, Impact;
-  text-transform: uppercase;
-  margin: 0;
-}
-.text-animate {
-  font: 10.5em/1 Open Sans, Impact;
-  text-transform: uppercase;
-  margin: 0;
-  fill: none;
-  stroke-width: 6;
-  stroke-linejoin: round;
-  stroke-dasharray: 70 330;
-  stroke-dashoffset: 0;
-  animation: stroke 6s infinite linear;
-}
-.text-animate:nth-child(5n + 1) {
-  stroke: teal;
-  animation-delay: -1.2s;
-}
-.text-animate:nth-child(5n + 2) {
-  stroke: teal;
-  animation-delay: -2.4s;
+.circle-small {
+	display: inline-block;
+	position: relative;
+	width: 80px;
+	height: 80px;
+	margin: 0 20px;
+
+	svg {
+		width: 80px;
+		height: 80px;
+	}
+
+	.bg {
+		fill: none;
+		stroke-width: 6px;
+		stroke: #1B2A33;
+	}
+
+	.progress {
+		fill: none;
+		stroke-width: 6px;
+		stroke: #5CE1EC;
+		stroke-linecap: round;
+    stroke-dasharray: (37*2*3.14);
+		transform: rotate(-90deg);
+		transform-origin: 50% 50%;
+
+		&.one {
+			stroke-dashoffset: 80;
+			animation: one 1.5s ease-out;
+		}
+
+		&.two {
+			stroke-dashoffset: 140;
+			animation: two 1.5s ease-out;
+		}
+	}
+	.text {
+		position: absolute;
+		width: 100%;
+		top: 26px;
+		font-size: 17px;
+		text-align: center;
+		font-weight: 400;
+		line-height: 16px;
+
+		.small {
+			font-size: 12px;
+			color: #648192;
+		}
+	}
 }
 
-.text-animate:nth-child(5n + 3) {
-  stroke: teal;
-  animation-delay: -3.6s;
+@keyframes big {
+	from {
+		stroke-dashoffset: (52*2*3.14);
+	}
+	to {
+		stroke-dashoffset: 60;
+	}
 }
 
-.text:nth-child(5n + 4) {
-  stroke: teal;
-  animation-delay: -4.8s;
+@keyframes one {
+	from {
+		stroke-dashoffset: (37*2*3.14);
+	}
+	to {
+		stroke-dashoffset: 80;
+	}
 }
 
-.text-animate:nth-child(5n + 5) {
-  stroke: teal;
-  animation-delay: -6s;
-}
-
-@keyframes stroke {
-  100% {
-    stroke-dashoffset: -400;
-  }
+@keyframes two {
+	from {
+		stroke-dashoffset: (37*2*3.14);
+	}
+	to {
+		stroke-dashoffset: 140;
+	}
 }

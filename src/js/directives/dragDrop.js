@@ -33,14 +33,14 @@ function dragDrop() {
       element
         .on('dragenter', () => {
           $scope.active = true;
-          $scope.apply();
+          $scope.$apply();
         })
         .on('dragover', (e) => {
           e.preventDefault();
         })
         .on('dragleave', () => {
           $scope.active = false;
-          $scope.apply();
+          $scope.$apply();
         })
       .on('drop', (e) => {
         e.preventDefault();

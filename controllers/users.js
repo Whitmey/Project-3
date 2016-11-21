@@ -16,10 +16,15 @@ function usersShow(req, res) {
 }
 
 function usersUpdate(req, res) {
-  // req.body.image = req.file;
+
   User.findById(req.params.id, (err, user) => {
     if(err) return res.status(500).json({ error: err });
     if(!user) return res.status(404).json({ error: 'Not found' });
+
+    if(req.file) {
+      if(req.query.image === 'before') req.body.before = req.file;
+      if(req.query.image === 'after') req.body.after = req.file;
+    }
 
     for(const key in req.body) {
       user[key] = req.body[key];

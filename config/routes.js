@@ -5,7 +5,8 @@ const oauthController = require('../controllers/oauth');
 const foodsController = require('../controllers/foods');
 const usersController = require('../controllers/users');
 const financesController = require('../controllers/finances');
-// const imageUpload = require('../lib/imageUpload');
+const imageUpload = require('../lib/imageUpload');
+
 
 
 router
@@ -39,7 +40,7 @@ router
 
 router.route('/users/:id')
   .get(usersController.show)
-  .put(secureRoute, usersController.update)
+  .put(secureRoute, imageUpload, usersController.update)
   .delete(secureRoute, usersController.delete);
 
 router.route('/finances')
@@ -50,6 +51,5 @@ router.route('/finances/:id')
     .get(financesController.show)
     .put(secureRoute, financesController.update)
     .delete(secureRoute, financesController.delete);
-
 
 module.exports = router;

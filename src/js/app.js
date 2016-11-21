@@ -43,6 +43,16 @@ function Router($stateProvider, $urlRouterProvider) {
       url: '/finances',
       templateUrl: '/templates/finances.html',
       controller: 'FinancesController as finances'
+    })
+    .state('picturesBefore', {
+      url: '/pictures/before',
+      templateUrl: '/templates/picturesBefore.html',
+      controller: 'PicturesBeforeController as picturesBefore'
+    })
+    .state('picturesAfter', {
+      url: '/pictures/after',
+      templateUrl: '/templates/picturesAfter.html',
+      controller: 'PicturesAfterController as picturesAfter'
     });
   $urlRouterProvider.otherwise('/');
 }

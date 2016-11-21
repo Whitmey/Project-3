@@ -6,7 +6,9 @@ const userSchema = new mongoose.Schema({
   email: { type: String, unique: true, required: true },
   passwordHash: { type: String },
   facebookId: { type: String },
-  profileImage: { type: String },
+  profileImage: { type: String, get: addImagePath, set: removeImagePath },
+  before: { type: String, get: addImagePath, set: removeImagePath },
+  after: { type: String, get: addImagePath, set: removeImagePath },
   dob: { type: String },
   following: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
   eaten: [{ type: mongoose.Schema.ObjectId, ref: 'Food' }],
@@ -53,6 +55,15 @@ function preSave(next) {
   next();
 }
 
+function addImagePath(filename) {
+  if(!filename) return null;
+  return `https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/${filename}`;
+}
+
+function removeImagePath(path) {
+  return path.split('/').splice(-1)[0];
+}
+
 userSchema
   .virtual('password')
   .set(setPassword);
@@ -68,6 +79,7 @@ userSchema.pre('validate', preValidate);
 userSchema.pre('save', preSave);
 
 userSchema.set('toJSON', {
+  getters: true,
   transform: function(doc, json) {
     delete json.passwordHash;
     delete json.email;
