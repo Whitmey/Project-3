@@ -74,7 +74,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
   //function to populate a weeks worth of objects with dates and calories. they will update each day.
   function getDays() {
     days = [];
-    for (let day=1; day<7; day ++) {
+    for (let day=1; day<28; day ++) {
       days.push( {
         date: moment().subtract(day, 'days').format('DD/MM/YYYY'),
         calories: 0
@@ -128,18 +128,26 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
   function dailyChart() {
     todaysCals();
     getDays();
-    labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    datapoints = [65, 59, 80, 81, 56, 55, 40];
+    labels = [' ', 'Today', ' '];
+    datapoints = [main.caloryCounter, main.caloryCounter, main.caloryCounter];
     chartData(labels, datapoints);
   }
 
   function weeklyChart() {
     todaysCals();
     getDays();
-    labels = [days[5].date, days[4].date, days[3].date, days[2].date, days[1].date, days[0].date, 'Today'];
-    datapoints = [days[5].calories, days[4].calories, days[3].calories, days[2].calories, days[1].calories, days[0].calories, main.caloryCounter];
-    chartData(labels, datapoints);
+    labels = [];
+    datapoints = [];
+    for (let i=0; i<6; i++) {
+      labels.push(days[i].date);
+      datapoints.push(days[i].calories);
+    }
+    labels.reverse();
+    datapoints.reverse();
+    labels.push('Today');
+    datapoints.push(main.caloryCounter);
 
+    chartData(labels, datapoints);
   }
 
   function monthlyChart() {
@@ -147,6 +155,14 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
     getDays();
     labels = [];
     datapoints = [];
+    for (let i=0; i<days.length; i++) {
+      labels.push(days[i].date);
+      datapoints.push(days[i].calories);
+    }
+    labels.reverse();
+    datapoints.reverse();
+    labels.push('Today');
+    datapoints.push(main.caloryCounter);
     chartData(labels, datapoints);
   }
 
@@ -232,7 +248,6 @@ function CountdownController() {
 
   var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
   initializeClock('clockdiv', deadline);
-
 
 
 }
