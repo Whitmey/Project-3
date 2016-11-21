@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
   following: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
   eaten: [{ type: mongoose.Schema.ObjectId, ref: 'Food' }],
   dietGoals: Number,
-  dietGoalDates: Date
+  dietGoalDates: Date,
+  score: Number
 });
 
 function setPassword(value){
