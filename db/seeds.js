@@ -99,7 +99,8 @@ User.create([{
   profileImage: 'https://img.buzzfeed.com/buzzfeed-static/static/2015-08/18/13/enhanced/webdr13/grid-cell-15170-1439918492-2.jpg',
   email: 'elliot@example.com',
   password: 'hunter2',
-  passwordConfirmation: 'hunter2'
+  passwordConfirmation: 'hunter2',
+  dailyGoal: []
 },{
   username: 'Will Whitmey',
   dob: 'Feb-02-1989',
@@ -107,7 +108,7 @@ User.create([{
   email: 'will@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2',
-  score: -69 
+  score: -69
 },{
   username: 'Drake',
   dob: 'Feb-02-1989',

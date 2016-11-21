@@ -12,7 +12,6 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
   main.message = null;
   main.todaysCals = todaysCals;
   main.allFood = Food.query();
-  main.yesterdayCounter = 0;
   main.caloryCounter = 0;
   main.allMyFoods = [];
   main.today = moment().format('DD/MM/YYYY');
@@ -32,10 +31,8 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
   }
 
   //this function checks if items in users foods were eaten on this weekday and adds up calories for just those items.
-  //instead of going by weekday will need to change this to specific date. could base axis on charts on weekday though.
   function todaysCals() {
     getFoods();
-    //should turn this into a switch statement v
     for(let i=0; i<main.allMyFoods.length; i++) {
       if (main.allMyFoods[i].date == main.today){
         main.caloryCounter += main.allMyFoods[i].calories;
@@ -68,7 +65,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
   main.logout = logout;
 
   let days = [];
-  //function to populate a weeks worth of objects with dates and calories. they will update each day.
+  //function to populate a MONTHS worth of objects with dates and calories. they will update each day.
   function getDays() {
     days = [];
     for (let day=1; day<28; day ++) {

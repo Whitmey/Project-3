@@ -3,9 +3,12 @@
 angular.module('foodApp')
 .controller('UsersIndexController', UsersIndexController);
 
-UsersIndexController.$inject = ['User', '$auth'];
-function UsersIndexController(User, $auth) {
+UsersIndexController.$inject = ['User', '$auth', 'moment'];
+function UsersIndexController(User, $auth, moment) {
   const usersIndex = this;
+
+  usersIndex.thisUser = User.get({ id: $auth.getPayload()._id });
+
 
   User.get({ id: $auth.getPayload()._id }, (user) => {
     usersIndex.currentUser = user;
@@ -45,15 +48,38 @@ function UsersIndexController(User, $auth) {
   usersIndex.follow = follow;
   usersIndex.unfollow = unfollow;
   usersIndex.filter = { username: '' };
+  usersIndex.dailyGoal = {};
+  usersIndex.dailyGoal.date = moment().format('DD/MM/YYYY');
 
 
-  function setGoals(user) {
-    user.dietGoals = user.goal;
-    // user.dietGoalDates = user.targetDate;
+
+  function setDailyGoal() {
+    usersIndex.currentUser.dailyGoal = [ {
+      amount: usersIndex.dailyGoal.amount,
+      target: usersIndex.dailyGoal.target,
+      date: usersIndex.dailyGoal.date
+    } ];
+    console.log(usersIndex.dailyGoal);
     usersIndex.currentUser.$update(() => {
-      console.log('Don\'t let your dreams be dreams');
+      console.log('Don\'t let your dreams be dreams', usersIndex.currentUser.dailyGoal, usersIndex.currentUser);
     });
   }
+  usersIndex.setDailyGoal = setDailyGoal;
 
-  usersIndex.setGoals = setGoals;
+  checkDailyGoal();
+
+  function checkDailyGoal() {
+
+    if(usersIndex.thisUser.completedGoals === undefined) {
+      usersIndex.thisUser.completedGoals = 0;
+    }
+    console.log(usersIndex.thisUser.completedGoals);
+    if (usersIndex.thisUser.dailyGoal.date !== moment().format('DD/MM/YYYY')) {
+
+
+      
+      // usersIndex.thisUser.completedGoals ++;
+    }
+  }
+  usersIndex.checkDailyGoal = checkDailyGoal;
 }
