@@ -16,9 +16,11 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
   main.caloryCounter = 0;
   main.allMyFoods = [];
   main.today = moment().format('DD/MM/YYYY');
+  main.currentUser = $auth.getPayload();
 
-  const thisUser = User.get({ id: $auth.getPayload()._id });
-
+  if(main.currentUser) {
+    const thisUser = User.get({ id: $auth.getPayload()._id });
+  }
 
   //this function gets just this current users foods from all existing foods. pushes them to main.allMyFoods
   function getFoods() {
