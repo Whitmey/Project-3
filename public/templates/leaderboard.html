@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <section>
   <h1>Leaderboard</h1>
       <ul>
@@ -5,3 +6,13 @@
         <h3>{{ user.username }}</h3>
       </ul>
 </section>
+=======
+<h1>Leaderboard</h1>
+<div class="leaderboard">
+  <ul>
+    <li ng-repeat="user in usersIndex.all">
+      <h4 ng-if="user.score">{{ user.username }}{{ user.score }}</h4>
+    </li>
+  </ul>
+</div>
+>>>>>>> development
