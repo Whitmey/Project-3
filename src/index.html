@@ -9,7 +9,7 @@
   <script src="/js/vendor.js" charset="utf-8"></script>
   <script src="/js/app.js" charset="utf-8"></script>
 </head>
-<body>
+<body ng-controller="MainController as main">
   <header class="container">
     <input class="burger-check" id="burger-check" type="checkbox" style="opacity:0"><label for="burger-check" class="burger"></label>
     <nav id="navigation1" class="navigation">
@@ -19,10 +19,38 @@
         <li><a ui-sref="foodsIndex">FoodIndex</a></li>
         <li><a ui-sref="leaderboard">Leaderboard</a></li>
         <li><a ui-sref="picturesBefore">Progress</a></li>
-        <li><a ui-sref="login">Logout</a></li>
+        <li><a ui-sref="login"ng-click="main.logout()" ng-if="main.isLoggedIn()">Logout</a></li>
       </ul>
     </nav>
   </header>
+  <main class="container" ui-view></main>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html ng-app="foodApp">
+<head>
+  <meta charset="utf-8">
+  <title>Better</title>
+  <link rel="stylesheet" href="/css/vendor.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/vendor.js" charset="utf-8"></script>
+  <script src="/js/app.js" charset="utf-8"></script>
+</head>
+<body ng-controller="MainController as main">
+  <header class="container">
+    <input class="burger-check" id="burger-check" type="checkbox" style="opacity:0"><label for="burger-check" class="burger"></label>
+    <nav id="navigation1" class="navigation">
+        <ul>
+          <li><a ui-sref="select">Select</a></li>
+          <li><a ui-sref="dietProfile">Profile</a></li>
+          <li><a ui-sref="foodsIndex">FoodIndex</a></li>
+          <li><a ng-click="main.logout()" ng-if="main.isLoggedIn()">Logout</a></li>
+        </ul>
+    </nav>
+  </header>
+
   <main class="container" ui-view></main>
 
 </body>
