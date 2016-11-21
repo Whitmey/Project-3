@@ -12,11 +12,13 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
   main.message = null;
   main.todaysCals = todaysCals;
   main.allFood = Food.query();
+  main.yesterdayCounter = 0;
   main.caloryCounter = 0;
   main.allMyFoods = [];
   main.today = moment().format('DD/MM/YYYY');
 
   const thisUser = User.get({ id: $auth.getPayload()._id });
+
 
   //this function gets just this current users foods from all existing foods. pushes them to main.allMyFoods
   function getFoods() {
@@ -33,10 +35,13 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
   //instead of going by weekday will need to change this to specific date. could base axis on charts on weekday though.
   function todaysCals() {
     getFoods();
-
+    //should turn this into a switch statement v
     for(let i=0; i<main.allMyFoods.length; i++) {
       if (main.allMyFoods[i].date == main.today){
         main.caloryCounter += main.allMyFoods[i].calories;
+      }
+      else if (main.allMyFoods[i].date == moment().subtract(1, 'days').format('DD/MM/YYYY')) {
+        main.yesterdayCounter += main.allMyFoods[i].calories;
       }
     }
     console.log(main.allMyFoods);
@@ -65,6 +70,29 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
 
   main.logout = logout;
 
+  let days = [];
+  //function to populate a weeks worth of objects with dates and calories. they will update each day.
+  function getDays() {
+    days = [];
+    for (let day=1; day<7; day ++) {
+      days.push( {
+        date: moment().subtract(day, 'days').format('DD/MM/YYYY'),
+        calories: 0
+      });
+    }
+    getCalories();
+    console.log(days);
+  }
+
+  function getCalories() {
+    for (let i=0; i<days.length; i++) {
+      for (let k = 0; k< main.allMyFoods.length; k++) {
+        if(main.allMyFoods[k].date === days[i].date) {
+          days[i].calories += main.allMyFoods[k].calories;
+        }
+      }
+    }
+  }
 
 
 
@@ -73,42 +101,47 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
 //angular still breaks unless chart is initiated by a button click....
   function createChart() {
     todaysCals();
+    getDays();
+
+
     var ctx = document.getElementById("myChart");
     var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: [moment().subtract(4, 'days').format('DD/MM/YYYY'), moment().subtract(3, 'days').format('DD/MM/YYYY'), moment().subtract(2, 'days').format('DD/MM/YYYY'), moment().subtract(1, 'days').format('DD/MM/YYYY'), 'Today'],
-            datasets: [{
-                label: '# of Votes',
-                data: [1500, 2000, 3000, 2500, main.caloryCounter],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
+      type: 'bar',
+      data: {
+        labels: [days[5].date, days[4].date, days[3].date, days[2].date, days[1].date, days[0].date, 'Today'],
+        datasets: [{
+          label: '# of Votes',
+          data: [days[5].calories, days[4].calories, days[3].calories, days[2].calories, days[1].calories, days[0].calories, main.caloryCounter],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(150, 205, 100, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(150, 205, 100, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
             }
+          }]
         }
+      }
     });
   }
 }
