@@ -75,21 +75,24 @@ User.create([{
   profileImage: 'https://i.ytimg.com/vi/h69YQMbz0Yg/hqdefault.jpg',
   email: 'tupac@example.com',
   password: 'hunter2',
-  passwordConfirmation: 'hunter2'
+  passwordConfirmation: 'hunter2',
+  score: -12
 },{
   username: 'Sanka',
   dob: 'May-29-1493',
   profileImage: 'http://3.bp.blogspot.com/_5RlCD1fnT-U/TFsO-ta_bmI/AAAAAAAAAac/MfEL4yRdsLE/s1600/sanka1.jpg',
   email: 'sanka@example.com',
   password: 'hunter2',
-  passwordConfirmation: 'hunter2'
+  passwordConfirmation: 'hunter2',
+  score: -27
 },{
   username: 'Aaron',
   dob: 'May-29-1453',
   profileImage: 'https://pbs.twimg.com/profile_images/3705744002/324dc6a62abaebdfd446e72545e75568_400x400.jpeg',
   email: 'aaron@example.com',
   password: 'hunter2',
-  passwordConfirmation: 'hunter2'
+  passwordConfirmation: 'hunter2',
+  score: -10000000
 },{
   username: 'Elliot Brock',
   dob: 'December-15-1994',
@@ -103,7 +106,8 @@ User.create([{
   profileImage: 'https://s-media-cache-ak0.pinimg.com/564x/4b/53/55/4b53554766a2ed8fe948c08b09f37b1b.jpg',
   email: 'will@example.com',
   password: 'hunter2',
-  passwordConfirmation: 'hunter2'
+  passwordConfirmation: 'hunter2',
+  score: -69 
 },{
   username: 'Drake',
   dob: 'Feb-02-1989',
@@ -210,7 +214,7 @@ User.create([{
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
-  username: 'lil Yachty',
+  username: 'Lil Yachty',
   dob: 'Mar-06-1981',
   profileImage: 'http://thefader-res.cloudinary.com/images/c_limit,w_1024/c_crop,h_392,w_753,x_145,y_75,f_auto,q_auto:best/90341C2-R01-006_cuwfd7/90341C2-R01-006_cuwfd7.jpg',
   email: 'yachty@example.com',
