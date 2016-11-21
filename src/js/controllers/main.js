@@ -100,8 +100,10 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
 
 //angular still breaks unless chart is initiated by a button click....
   function createChart() {
-    getDays();
     todaysCals();
+    getDays();
+
+
     var ctx = document.getElementById("myChart");
     var myChart = new Chart(ctx, {
       type: 'bar',
