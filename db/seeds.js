@@ -107,7 +107,7 @@ User.create([{
   email: 'will@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2',
-  score: -69 
+  score: -69
 },{
   username: 'Drake',
   dob: 'Feb-02-1989',
@@ -229,7 +229,7 @@ User.create([{
   passwordConfirmation: 'hunter2'
 }],(err, users) => {
   if(err) console.log('There was an error creating users', err);
-
+  console.log(users[0]);
   console.log(`${users.length} users created!`);
   mongoose.connection.close();
 });

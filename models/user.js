@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
   dob: { type: String },
   following: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
   eaten: [{ type: mongoose.Schema.ObjectId, ref: 'Food' }],
+  finances: [{ type: mongoose.Schema.ObjectId, ref: 'Finance'}],
   dietGoals: Number,
   dietGoalDates: Date,
   score: Number
@@ -57,8 +58,7 @@ function preSave(next) {
 }
 
 function addImagePath(filename) {
-  if(!filename) return null;
-  return `https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/${filename}`;
+  if(filename) return `https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/${filename}`;
 }
 
 function removeImagePath(path) {

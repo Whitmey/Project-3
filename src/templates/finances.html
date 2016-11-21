@@ -1,19 +1,15 @@
+<div ng-controller="financeMainController as financesMain" id="chartBox">
 
-
-<section ng-controller="financeMainController as financeMain">
-  <canvas id="myChart1" fixedwidth="20" height="200"></canvas>
-</section>
 
 <section class="row">
-  <form ng-submit="finances.create()" method="post">
+  <form ng-submit="financesMain.create()" method="post">
     <label>Category:</label>
-    <input type="text" name="category" ng-model="finances.financesNew.category">
+    <input type="text" name="category" ng-model="financesMain.financesNew.category">
     <label>AmountSpent:</label>
-    <input type="number" name="amountSpent" ng-model="finances.financesNew.amountSpent">
+    <input type="number" name="amountSpent" ng-model="financesMain.financesNew.amountSpent">
     <button>Add purchase</button>
   </form>
 </section>
-
 <section>
   <ul ng-repeat="finance in finances.all">
     <div class="amountSpent"><li> Category: {{ finance.category }} Price: {{ finance.amountSpent }} {{ finance.date }}</li><button ng-click="finances.delete(finance._id)">X</button>
@@ -27,7 +23,15 @@
       <button>Save</button>
     </form></div>
   </ul>
-
 </section>
-
 <h1 id="budgetText"></h1>
+
+
+<section ng-controller="financeMainController as financeMain">
+  <button ng-click="finacemain.dailyChart()">Daily</button>
+  <button ng-click="financemain.weeklyChart()">Weekly</button>
+  <button ng-click="financemain.monthlyChart()">Monthly</button>
+  <h4>{{main.amountCounter}}</h4>
+  <button ng-click="financemain.weeklyChart()" id='makeChart'>Make chart</button>
+  <canvas id="myChart" fixedwidth="20" height="200"></canvas>
+</section>

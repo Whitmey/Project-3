@@ -8,10 +8,15 @@ function PicturesBeforeController(User, $auth, $state) {
   const picturesBefore = this;
 
   User.get({ id: $auth.getPayload()._id }, (user) => {
+    console.log(user);
     picturesBefore.user = user;
   });
 
   function save() {
+    console.log('picture: ', picturesBefore);
+    // User.update({ id: picturesBefore.user._id }, {before: picturesBefore.base64 }),((err, person ) => {
+    //   if(err) return console.log(err);
+    //   console.log(person);
     User.update({ id: picturesBefore.user._id, image: 'before' }, picturesBefore.user, () => {
       $state.go('dietProfile');
     });
