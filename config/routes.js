@@ -42,7 +42,7 @@ router.route('/users/:id')
   .delete(secureRoute, usersController.delete);
 
 router.route('/finances')
-    .get(financesController.index)
+    .get(secureRoute, financesController.index)
     .post(secureRoute, financesController.create);
 
 router.route('/finances/:id')

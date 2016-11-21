@@ -70,6 +70,12 @@ gulp.task('styles', () => {
     .pipe(gulp.dest('public/css'));
 });
 
+// Images
+gulp.task('images', () => {
+  return gulp.src('src/images/*.png')
+    .pipe(gulp.dest('public/images'));
+});
+
 // html
 gulp.task('html', () => {
   return gulp.src('src/**/*.html')
@@ -95,4 +101,4 @@ gulp.task('watch', () => {
   gulp.watch('src/**/*.scss', ['styles']);
 });
 
-gulp.task('default', sequence('clean', ['bower:js', 'bower:css'], ['scripts', 'styles', 'html'], 'watch', 'nodemon'));
+gulp.task('default', sequence('clean', ['bower:js', 'bower:css'], ['scripts', 'styles', 'html', 'images'], 'watch', 'nodemon'));

@@ -49,9 +49,11 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
 
 
   function logout() {
+    console.log('function ran');
     $auth.logout()
     .then(() => {
       $state.go('foodsIndex');
+      console.log('logout pressed');
     });
   }
 
