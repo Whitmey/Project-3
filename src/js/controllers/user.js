@@ -1,4 +1,3 @@
-/* global Chart */
 
 angular.module('foodApp')
 .controller('UsersIndexController', UsersIndexController);
@@ -7,8 +6,14 @@ UsersIndexController.$inject = ['User', '$auth', 'moment'];
 function UsersIndexController(User, $auth, moment) {
   const usersIndex = this;
 
-  usersIndex.thisUser = User.get({ id: $auth.getPayload()._id });
 
+  usersIndex.thisUser;
+  // function getThisUser(){
+  //   User.get({ id: $auth.getPayload()._id }, ((user) => {
+  //     console.log('this one here!!!', user);
+  //     return user;
+  //   }));
+  // }
 
   User.get({ id: $auth.getPayload()._id }, (user) => {
     usersIndex.currentUser = user;
@@ -66,20 +71,41 @@ function UsersIndexController(User, $auth, moment) {
   }
   usersIndex.setDailyGoal = setDailyGoal;
 
-  checkDailyGoal();
 
   function checkDailyGoal() {
-
-    if(usersIndex.thisUser.completedGoals === undefined) {
-      usersIndex.thisUser.completedGoals = 0;
-    }
-    console.log(usersIndex.thisUser.completedGoals);
-    if (usersIndex.thisUser.dailyGoal.date !== moment().format('DD/MM/YYYY')) {
-
-
-      
-      // usersIndex.thisUser.completedGoals ++;
-    }
+    // User.get({ id: $auth.getPayload()._id }, ((user) => {
+    //   // console.log('this one here!!!', user);
+    //   usersIndex.thisUser = user;
+    //   console.log(usersIndex.thisUser.dailyGoal[0].target === 'exceed');
+    //   // if(usersIndex.thisUser.completedGoals === undefined) {
+    //   //   usersIndex.thisUser.completedGoals = 0;
+    //   // }
+    // //   console.log(usersIndex.thisUser._id);
+    // //   if (usersIndex.thisUser.dailyGoal.date !== moment().format('DD/MM/YYYY')) {
+    // //     switch(usersIndex.thisUser.dailyGoal[0].target) {
+    // //       case "exceed": if(usersIndex.thisUser.dailyGoal[0].calories > days[days.length-1].calories) {
+    // //         usersIndex.thisUser.completedGoals ++; console.log('You completed your last daily goal!');
+    // //       }
+    // //       else {  }
+    // //       break;
+    // //       case "meet":
+    // //       code block
+    // //       break;
+    // //       case "under":
+    // //       code block
+    // //       break;
+    // //       default:
+    // //       default code block
+    // //     }
+    // //
+    // //     //reset dailygoal to nothing
+    // //
+    // //   }
+    // }));
   }
+
+
+
+  checkDailyGoal();
   usersIndex.checkDailyGoal = checkDailyGoal;
 }
