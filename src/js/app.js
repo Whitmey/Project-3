@@ -16,15 +16,9 @@ function Router($stateProvider, $urlRouterProvider) {
       templateUrl: '/templates/leaderboard.html',
       controller: 'UsersIndexController as usersIndex'
     })
-    .state('login', {
+    .state('landing', {
       url: '/',
-      templateUrl: '/templates/landing.html',
-      controller: 'LoginController as login'
-    })
-    .state('register', {
-      url: '/',
-      templateUrl: '/templates/landing.html',
-      controller: 'RegisterController as register'
+      templateUrl: '/templates/landing.html'
     })
     .state('select', {
       url: '/select',
@@ -43,6 +37,16 @@ function Router($stateProvider, $urlRouterProvider) {
       url: '/finances',
       templateUrl: '/templates/finances.html',
       controller: 'FinancesController as finances'
+    })
+    .state('picturesBefore', {
+      url: '/pictures/before',
+      templateUrl: '/templates/picturesBefore.html',
+      controller: 'PicturesBeforeController as picturesBefore'
+    })
+    .state('picturesAfter', {
+      url: '/pictures/after',
+      templateUrl: '/templates/picturesAfter.html',
+      controller: 'PicturesAfterController as picturesAfter'
     });
   $urlRouterProvider.otherwise('/');
 }

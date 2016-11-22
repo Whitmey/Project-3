@@ -8,7 +8,10 @@ angular.module('foodApp')
 
 
 FinancesController.$inject = ['Finance', '$state', '$auth'];
+let budget = 500;
 function FinancesController(Finance, $state) {
+
+
 
   const finances = this;
   // finance.getIndex = getIndex;
@@ -28,6 +31,11 @@ function FinancesController(Finance, $state) {
 
   function create() {
     Finance.save(finances.financesNew, () => {
+      const amountSpent = finances.financesNew.amountSpent;
+      budget -= amountSpent;
+      console.log(budget);
+      budget = document.getElementById('budgetText').innerHTML;
+      console.log(budget);
       $state.reload();
     });
   }
@@ -55,5 +63,6 @@ function FinancesController(Finance, $state) {
     finances.editFinance.$update(() => {
       $state.reload();
     });
+
   }
 }

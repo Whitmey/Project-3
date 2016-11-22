@@ -9,70 +9,70 @@ User.collection.drop();
 User.create([{
   username: 'Wonder Woman',
   dob: 'June-01-1690',
-  profileImage: 'https://cnet4.cbsistatic.com/img/5SdtA9dV3jLTHJ5mGGweaI0Pm2s=/770x433/2016/07/16/69a827cf-ba37-4fd4-ae9c-ffe534c9bc22/wonderwoman.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/6eaa3180-b03d-11e6-9e59-8d3fc3665941.jpeg',
   email: 'wonder@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Goku',
   dob: 'September-03-1270',
-  profileImage: 'http://orig12.deviantart.net/6066/f/2013/233/7/6/goku_by_bpsola-d6j32pk.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/c1c59070-b03e-11e6-ac88-3d4977f73f0c.jpeg',
   email: 'goku@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Pixie Lot',
   dob: 'December-03-1970',
-  profileImage: 'http://www.aceshowbiz.com/images/wennpic/pixie-lott-gq-men-of-the-year-awards-2015-01.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/4b43c6a0-b03f-11e6-870f-651eed4d1196.jpeg',
   email: 'pixie@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Margaret Thatcher',
   dob: 'October-03-1870',
-  profileImage: 'http://www.abc.net.au/news/image/3980674-3x4-700x933.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/fc41ae90-b03f-11e6-9ae8-815fec3992cc.jpeg',
   email: 'margaret@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Michelle Keegan',
   dob: 'Febuary-04-1769',
-  profileImage: 'http://www.shemazing.net/wp-content/uploads/2015/10/michelle-keegan_1.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/c2868490-b040-11e6-ab87-fd8b160cc0d5.jpeg',
   email: 'michelle@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Megan Fox',
   dob: 'August-01-1669',
-  profileImage: 'http://cdn01.cdn.justjared.com/wp-content/uploads/headlines/2015/09/megan-fox-joins-new-girl-as-jess-new-roommate.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/c431f530-b041-11e6-8620-eb740cf2eec7.jpeg',
   email: 'megan@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Lilly Savage',
   dob: 'April-01-1257',
-  profileImage: 'http://images.npg.org.uk/800_800/9/7/mw15297.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/0ed096a0-b042-11e6-bd68-7974e347e80d.jpeg',
   email: 'lilly@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Buzz Lightyear',
   dob: 'November-12-2000',
-  profileImage: 'http://vignette2.wikia.nocookie.net/disney/images/b/bc/Buzz_Disney_INFINITY_Render.png/revision/latest?cb=20140605182818',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/74c35fb0-b042-11e6-ada6-69262ce4d582.jpeg',
   email: 'buzz@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Curtis Osano',
   dob: 'March-08-1987',
-  profileImage: 'http://images.performgroup.com/di/library/Goal_India/db/10/curtis-osano-bengaluru-fc_1ag1kbho00pcb1g2mq9brs34gx.jpg?t=574028258&w=620&h=430',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/cb5a4640-b042-11e6-94ac-8b620f3e732a.jpeg',
   email: 'curtis@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Tupac',
   dob: 'April-29-1782',
-  profileImage: 'https://i.ytimg.com/vi/h69YQMbz0Yg/hqdefault.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/7fd80620-b043-11e6-b3ca-b13143c9d9f6.jpeg',
   email: 'tupac@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2',
@@ -80,7 +80,7 @@ User.create([{
 },{
   username: 'Sanka',
   dob: 'May-29-1493',
-  profileImage: 'http://3.bp.blogspot.com/_5RlCD1fnT-U/TFsO-ta_bmI/AAAAAAAAAac/MfEL4yRdsLE/s1600/sanka1.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/d9436970-b043-11e6-87e6-dd0d453184bc.jpeg',
   email: 'sanka@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2',
@@ -88,7 +88,7 @@ User.create([{
 },{
   username: 'Aaron',
   dob: 'May-29-1453',
-  profileImage: 'https://pbs.twimg.com/profile_images/3705744002/324dc6a62abaebdfd446e72545e75568_400x400.jpeg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/54bf59b0-b044-11e6-9c28-75d46244ceee.jpeg',
   email: 'aaron@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2',
@@ -96,7 +96,7 @@ User.create([{
 },{
   username: 'Elliot Brock',
   dob: 'December-15-1994',
-  profileImage: 'https://img.buzzfeed.com/buzzfeed-static/static/2015-08/18/13/enhanced/webdr13/grid-cell-15170-1439918492-2.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/01151650-b045-11e6-a035-45f1c28fa0b8.jpeg',
   email: 'elliot@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2',
@@ -104,7 +104,7 @@ User.create([{
 },{
   username: 'Will Whitmey',
   dob: 'Feb-02-1989',
-  profileImage: 'https://s-media-cache-ak0.pinimg.com/564x/4b/53/55/4b53554766a2ed8fe948c08b09f37b1b.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/4e88f7d0-b045-11e6-bba2-1180ac52a56e.jpeg',
   email: 'will@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2',
@@ -112,125 +112,125 @@ User.create([{
 },{
   username: 'Drake',
   dob: 'Feb-02-1989',
-  profileImage: 'http://media.gq.com/photos/566f53b622c04e90668117ae/master/pass/Swerves-of-2015-drake-hotline-bling.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/836a69c0-b045-11e6-8c77-a76000356395.jpeg',
   email: 'drake@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Dikembe Mutombo',
   dob: 'Feb-02-1989',
-  profileImage: 'http://www.africansuccess.org/docs/image/deke.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/baa5aa30-b045-11e6-834e-7124537571fa.jpeg',
   email: 'dikembe@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'McLovin',
   dob: 'Mar-06-1981',
-  profileImage: 'http://www3.pictures.zimbio.com/mp/sCJRv4hmKwDl.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/09acfcf0-b046-11e6-9052-4fa8775f8957.jpeg',
   email: 'mclovin@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Beyonce',
   dob: 'Feb-02-1989',
-  profileImage: 'http://factmag-images.s3.amazonaws.com/wp-content/uploads/2013/12/beyonce-121313.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/4bd8d680-b046-11e6-8be2-b1a9658a1386.jpeg',
   email: 'beyonce@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Rihanna',
   dob: 'Mar-06-1981',
-  profileImage: 'http://www.36ng.com.ng/wp-content/uploads/2016/10/rihanna-2.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/7de68f00-b046-11e6-b98a-e1f1b1d8d220.jpeg',
   email: 'rihanna@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Serena',
   dob: 'Feb-02-1989',
-  profileImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Serena_Williams_at_2013_US_Open.jpg/220px-Serena_Williams_at_2013_US_Open.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/e0ad1e60-b046-11e6-995a-5bf3de08e6ba.gif',
   email: 'serena@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Kanye West',
   dob: 'Mar-06-1981',
-  profileImage: 'http://pixel.nymag.com/imgs/daily/vulture/2016/02/09/09-kanye-west-2.w529.h529.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/1daf4090-b047-11e6-8263-11e4429ec7ad.jpeg',
   email: 'kanye@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Amber Rose',
   dob: 'Feb-02-1989',
-  profileImage: 'http://www.hiphopweekly.com/wp-content/uploads/2016/02/amber-rose.png',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/880033a0-b047-11e6-a0f4-b97b3366e895.jpeg',
   email: 'amber@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Jaden Smith',
   dob: 'Mar-06-1981',
-  profileImage: 'http://static.djbooth.net/pics-artist/jadensmith2.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/ce327a40-b047-11e6-9e0c-c18d7e79f666.jpeg',
   email: 'jaden@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Clay Davis',
   dob: 'Feb-02-1989',
-  profileImage: 'https://pbs.twimg.com/profile_images/3538542415/237bf6e273819abce5802731b71e0f90_400x400.jpeg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/fe68dab0-b047-11e6-b426-cfbbb0cff4bb.jpeg',
   email: 'clay@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Katy Perry',
   dob: 'Mar-06-1981',
-  profileImage: 'http://cp91279.biography.com/1000509261001/1000509261001_2051017820001_Bio-Biography-Katy-Perry-SF.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/41665c20-b048-11e6-9777-553ed2f671ac.jpeg',
   email: 'katy@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Jhene Aiko',
   dob: 'Feb-02-1989',
-  profileImage: 'http://www.olisa.tv/wp-content/uploads/2016/08/jhene-aiko.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/833ce9c0-b048-11e6-aceb-1f703957f8c3.jpeg',
   email: 'jhene@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'future',
   dob: 'Mar-06-1981',
-  profileImage: 'http://thehollywoodunlocked.com/wp-content/uploads/2016/07/kQXgKE9.png',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/d1183fa0-b048-11e6-9153-03a2d75928fa.jpeg',
   email: 'future@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Ke$ha',
   dob: 'Feb-02-1989',
-  profileImage: 'http://www.pianohelp.net/pictures/Ke$ha.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/1281daa0-b049-11e6-97f4-b38be133b215.jpeg',
   email: 'kesha@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Lil Mama',
   dob: 'Feb-02-1989',
-  profileImage: 'http://thesource.com/wp-content/uploads/2015/11/Lil-Mama-3.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/6fb56980-b049-11e6-add4-6fb60cf96fdd.jpeg',
   email: 'mama@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Lil Yachty',
   dob: 'Mar-06-1981',
-  profileImage: 'http://thefader-res.cloudinary.com/images/c_limit,w_1024/c_crop,h_392,w_753,x_145,y_75,f_auto,q_auto:best/90341C2-R01-006_cuwfd7/90341C2-R01-006_cuwfd7.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/a7e03a10-b049-11e6-a105-e3b9ffdedd79.jpeg',
   email: 'yachty@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 },{
   username: 'Shakira',
   dob: 'Feb-02-1989',
-  profileImage: 'http://www.billboard.com/files/styles/article_main_image/public/media/shakira-barcelona-portrait-billboard-650.jpg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/dc232210-b049-11e6-b020-4b159442f410.jpeg',
   email: 'shakira@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2'
 }],(err, users) => {
   if(err) console.log('There was an error creating users', err);
-
+  console.log(users[0]);
   console.log(`${users.length} users created!`);
   mongoose.connection.close();
 });

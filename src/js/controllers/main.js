@@ -2,11 +2,10 @@ angular.module('foodApp')
 .controller('MainController', MainController)
 .controller('CountdownController', CountdownController);
 
-
-
-MainController.$inject = ['moment', 'Food', 'User', '$auth', '$state', '$rootScope'];
-function MainController(moment, Food, User, $auth, $state, $rootScope) {
+MainController.$inject = ['moment', 'Food', 'User', '$auth', '$state', '$rootScope', '$window'];
+function MainController(moment, Food, User, $auth, $state, $rootScope, $window) {
   const main = this;
+  const Chart = $window.Chart;
 
   main.isLoggedIn = $auth.isAuthenticated;
   main.message = null;
@@ -16,7 +15,16 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
   main.allMyFoods = [];
   main.today = moment().format('DD/MM/YYYY');
 
-  const thisUser = User.get({ id: $auth.getPayload()._id });
+  let thisUser = null;
+
+  function getUser() {
+    const payload = $auth.getPayload();
+    if(payload) {
+      thisUser = User.get({ id: $auth.getPayload()._id });
+    }
+  }
+
+  getUser();
 
 
   //this function gets just this current users foods from all existing foods. pushes them to main.allMyFoods
@@ -34,33 +42,38 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
   function todaysCals() {
     getFoods();
     for(let i=0; i<main.allMyFoods.length; i++) {
-      if (main.allMyFoods[i].date == main.today){
+      if (main.allMyFoods[i].date === main.today){
         main.caloryCounter += main.allMyFoods[i].calories;
+      } else if (main.allMyFoods[i].date === moment().subtract(1, 'days').format('DD/MM/YYYY')) {
+        main.yesterdayCounter += main.allMyFoods[i].calories;
       }
     }
     console.log(main.allMyFoods);
   }
 
 
+
   function logout() {
     $auth.logout()
     .then(() => {
-      $state.go('foodsIndex');
+      $state.go('landing');
     });
   }
 
-  const protectedStates = [];
+
 
   function secureState(e, toState) {
     main.message = null;
-    if(!$auth.isAuthenticated() && protectedStates.includes(toState.name)) {
+    main.burgerOpen = false;
+    if(!$auth.isAuthenticated() && toState.name !== 'landing') {
       e.preventDefault();
-      $state.go('login');
+      $state.go('landing');
       main.message = 'You need to login to see that!';
+
     }
   }
 
-  $rootScope.$on('stateChangeStart', secureState);
+  $rootScope.$on('$stateChangeStart', secureState);
 
   main.logout = logout;
 
@@ -87,9 +100,6 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
       }
     }
   }
-
-
-
   main.createChart = createChart;
 
 
