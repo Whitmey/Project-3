@@ -11,7 +11,6 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
   main.message = null;
   main.todaysCals = todaysCals;
   main.allFood = Food.query();
-  main.yesterdayCounter = 0;
   main.caloryCounter = 0;
   main.allMyFoods = [];
   main.today = moment().format('DD/MM/YYYY');
@@ -23,35 +22,28 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
     if(payload) {
       thisUser = User.get({ id: $auth.getPayload()._id });
     }
+    console.log(main.allFood);
   }
 
   getUser();
 
 
-  //this function gets just this current users foods from all existing foods. pushes them to main.allMyFoods
-  function getFoods() {
-    main.caloryCounter = 0;
-    main.allMyFoods = [];
-    for(let j=0; j<main.allFood.length; j++) {
-      if(thisUser.eaten.indexOf(main.allFood[j]._id) !== -1) {
-        main.allMyFoods.push(main.allFood[j]);
-      }
-    }
-  }
 
   //this function checks if items in users foods were eaten on this weekday and adds up calories for just those items.
-  //instead of going by weekday will need to change this to specific date. could base axis on charts on weekday though.
   function todaysCals() {
-    getFoods();
-    //should turn this into a switch statement v
-    for(let i=0; i<main.allMyFoods.length; i++) {
-      if (main.allMyFoods[i].date === main.today){
-        main.caloryCounter += main.allMyFoods[i].calories;
-      } else if (main.allMyFoods[i].date === moment().subtract(1, 'days').format('DD/MM/YYYY')) {
-        main.yesterdayCounter += main.allMyFoods[i].calories;
+
+    User.get({ id: $auth.getPayload()._id }, ((user) => {
+      main.caloryCounter = 0;
+      main.thisUser = user;
+      // console.log(main.thisUser.eaten);
+      for(let i=0; i<main.thisUser.eaten.length; i++) {
+        if (main.thisUser.eaten[i].date === main.today){
+          main.caloryCounter += main.thisUser.eaten[i].kcal;
+        // console.log('allfoods = ', main.allMyFoods);
+        }
       }
     }
-    console.log(main.allMyFoods);
+  ));
   }
 
 
@@ -81,10 +73,10 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
   main.logout = logout;
 
   let days = [];
-  //function to populate a weeks worth of objects with dates and calories. they will update each day.
+  //function to populate a MONTHS worth of objects with dates and calories. they will update each day.
   function getDays() {
     days = [];
-    for (let day=1; day<7; day ++) {
+    for (let day=1; day<28; day ++) {
       days.push( {
         date: moment().subtract(day, 'days').format('DD/MM/YYYY'),
         calories: 0
@@ -95,13 +87,16 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
   }
 
   function getCalories() {
-    for (let i=0; i<days.length; i++) {
-      for (let k = 0; k< main.allMyFoods.length; k++) {
-        if(main.allMyFoods[k].date === days[i].date) {
-          days[i].calories += main.allMyFoods[k].calories;
+    User.get({ id: $auth.getPayload()._id }, ((user) => {
+      main.thisUser = user;
+      for (let i=0; i<days.length; i++) {
+        for (let k = 0; k< main.thisUser.eaten.length; k++) {
+          if(main.thisUser.eaten[k].date === days[i].date) {
+            days[i].calories += main.thisUser.eaten[k].kcal;
+          }
         }
       }
-    }
+    }));
   }
   main.createChart = createChart;
 
@@ -135,18 +130,26 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
   function dailyChart() {
     todaysCals();
     getDays();
-    labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    datapoints = [65, 59, 80, 81, 56, 55, 40];
+    labels = [' ', 'Today', ' '];
+    datapoints = [main.caloryCounter, main.caloryCounter, main.caloryCounter];
     chartData(labels, datapoints);
   }
 
   function weeklyChart() {
     todaysCals();
     getDays();
-    labels = [days[5].date, days[4].date, days[3].date, days[2].date, days[1].date, days[0].date, 'Today'];
-    datapoints = [days[5].calories, days[4].calories, days[3].calories, days[2].calories, days[1].calories, days[0].calories, main.caloryCounter];
-    chartData(labels, datapoints);
+    labels = [];
+    datapoints = [];
+    for (let i=0; i<6; i++) {
+      labels.push(days[i].date);
+      datapoints.push(days[i].calories);
+    }
+    labels.reverse();
+    datapoints.reverse();
+    labels.push('Today');
+    datapoints.push(main.caloryCounter);
 
+    chartData(labels, datapoints);
   }
 
   function monthlyChart() {
@@ -154,6 +157,14 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
     getDays();
     labels = [];
     datapoints = [];
+    for (let i=0; i<days.length; i++) {
+      labels.push(days[i].date);
+      datapoints.push(days[i].calories);
+    }
+    labels.reverse();
+    datapoints.reverse();
+    labels.push('Today');
+    datapoints.push(main.caloryCounter);
     chartData(labels, datapoints);
   }
 
@@ -194,7 +205,101 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
   main.dailyChart = dailyChart;
   main.weeklyChart = weeklyChart;
   main.monthlyChart = monthlyChart;
+  main.dailyGoal = {};
+  main.dailyGoal.date = moment().format('DD/MM/YYYY');
+
+
+
+  function setDailyGoal() {
+    main.thisUser.dailyGoal.push(main.dailyGoal);
+    console.log(main.thisUser.dailyGoal);
+    //disbale form
+    main.thisUser.$update(() => {
+      console.log('goal added to user');
+      main.goalMessage = 'Goal set!';
+    });
+  }
+  main.setDailyGoal = setDailyGoal;
+  main.goalMessage = '';
+
+
+  function checkDailyGoal() {
+    todaysCals();
+    getDays();
+    User.get({ id: $auth.getPayload()._id }, ((user) => {
+      main.thisUser = user;
+      // console.log(main.thisUser.dailyGoal[0].target === 'exceed', main.thisUser.dailyGoal[0].amount);
+      if(main.thisUser.completedGoals === undefined) {
+        main.thisUser.completedGoals = 0;
+      }
+      if (main.thisUser.dailyGoal[0]) {
+        // console.log('there is an item!');
+        if (main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date != main.today) {
+          switch(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].target) {
+            case 'exceed': if(days.reverse()[days.length-1].calories > main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].amount ) {
+              if (main.thisUser.completedGoals[main.thisUser.completedGoals.length-1].date !== main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date ) {
+                main.thisUser.completedGoals.push(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1]);
+              }  main.goalMessage = 'You completed your last daily goal!';
+            } else {
+              main.goalMessage = 'You failed to meet yesterdays daily goal!';
+            }
+              break;
+            case 'meet': if(days.reverse()[days.length-1].calories === main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].amount) {
+              if (main.thisUser.completedGoals[main.thisUser.completedGoals.length-1].date !== main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date ) {
+                main.thisUser.completedGoals.push(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1]);
+              }  main.goalMessage = 'You completed your last daily goal!';
+            } else {
+              main.goalMessage = 'You failed to meet yesterdays daily goal!';
+            }
+              break;
+            case 'under': if(days.reverse()[days.length-1].calories < main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].amount) {
+              if (main.thisUser.completedGoals[main.thisUser.completedGoals.length-1].date !== main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date ) {
+                main.thisUser.completedGoals.push(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1]);
+              } main.goalMessage = 'You completed your last daily goal!';
+            } else {
+              main.goalMessage = 'You failed to meet yesterdays daily goal!';
+            }
+              break;
+          }
+        }
+      }
+    }));
+
+  }
+
+  function clearGoal() {
+
+    console.log(thisUser.dailyGoal);
+    $state.reload();
+  }
+  main.clearGoal = clearGoal;
+  checkDailyGoal();
+  main.checkDailyGoal = checkDailyGoal;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 CountdownController.$inject = [];
 function CountdownController() {
@@ -239,7 +344,6 @@ function CountdownController() {
 
   var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
   initializeClock('clockdiv', deadline);
-
 
 
 }

@@ -1,9 +1,19 @@
+
 angular.module('foodApp')
 .controller('UsersIndexController', UsersIndexController);
 
 UsersIndexController.$inject = ['User', '$auth'];
-function UsersIndexController(User, $auth) {
+function UsersIndexController(User, $auth ) {
   const usersIndex = this;
+
+
+  usersIndex.thisUser;
+  // function getThisUser(){
+  //   User.get({ id: $auth.getPayload()._id }, ((user) => {
+  //     console.log('this one here!!!', user);
+  //     return user;
+  //   }));
+  // }
 
   User.get({ id: $auth.getPayload()._id }, (user) => {
     usersIndex.currentUser = user;
@@ -44,14 +54,4 @@ function UsersIndexController(User, $auth) {
   usersIndex.unfollow = unfollow;
   usersIndex.filter = { username: '' };
 
-
-  function setGoals(user) {
-    user.dietGoals = user.goal;
-    user.dietGoalDates = user.targetDate;
-    usersIndex.currentUser.$update(() => {
-      console.log('Don\'t let your dreams be dreams');
-    });
-  }
-
-  usersIndex.setGoals = setGoals;
 }

@@ -1,6 +1,12 @@
 const mongoose  = require('mongoose');
 const bcrypt    = require('bcrypt');
 
+const dailyGoalSchema = new mongoose.Schema({
+  amount: Number,
+  target: String,
+  date: String
+});
+
 const userSchema = new mongoose.Schema({
   username: { type: String, unique: true, required: true },
   email: { type: String, unique: true, required: true },
@@ -12,11 +18,11 @@ const userSchema = new mongoose.Schema({
   dob: { type: String },
   following: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
   eaten: [{ type: mongoose.Schema.ObjectId, ref: 'Food' }],
-  finances: [{ type: mongoose.Schema.ObjectId, ref: 'Finance'}],
-  dietGoals: Number,
-  dietGoalDates: Date,
-  score: Number
+  dailyGoal: [dailyGoalSchema],
+  completedGoals: [dailyGoalSchema],
+  finances: [{ type: mongoose.Schema.ObjectId, ref: 'Finance'}]
 });
+
 
 function setPassword(value){
   this._password = value;

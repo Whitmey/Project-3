@@ -21,7 +21,7 @@ function LoginController($auth, $state) {
   const login = this;
   login.credentials = {};
   function submit() {
-    console.log(login.credentials);
+    // console.log(login.credentials);
     $auth.login(login.credentials)
     .then(() => {
       $state.go('select');

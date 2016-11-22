@@ -1,41 +1,59 @@
 
-<div class="landingContainer">
-  <div class="logo"><img src="" alt="" /></div>
+<div class="landingContainer" style="   margin-top: 50px;">
 
-  <div class="login" ng-controller="LoginController as login">
-    <form novalidate ng-submit="login.submit()">
-      <div class="row">
-        <label>Email:</label>
-        <input id="input1" class="u-full-width" type="email" placeholder="Email" ng-model="login.credentials.email">
-      </div>
-      <div class="row">
-        <label>Password:</label>
-        <input id="input1" class="u-full-width" type="password" placeholder="Password" ng-model="login.credentials.password">
-      </div>
-      <button class="btn">Login</button>
-    </form>
-    <button class="btn" ng-click="login.authenticate('facebook')">Login in with Facebook</button>
+<div class="row">
+  <div class="twelve columns logo"><img src="http://tmpfile.freelogodesign.org/0d0aa356-f827-4cf2-97ab-90e0d778099c.png" alt="" /></div>
+</div>
+
+<div class="row">
+    <div class="six columns register" style=" height: 350px; margin-top: 20px;" ng-controller="RegisterController as register">
+      <form novalidate ng-submit="register.submit()">
+        <div class="row">
+          <label>Name:</label>
+          <input id="input1" class="u-full-width" type="text" placeholder="Name" ng-model="register.user.username">
+        </div>
+        <div class="row">
+          <label>Email:</label>
+          <input id="input1" class="u-full-width" type="email" placeholder="Email" ng-model="register.user.email">
+        </div>
+        <div class="row">
+          <label>Password:</label>
+          <input id="input1" class="u-full-width" type="password" placeholder="Password" ng-model="register.user.password">
+        </div>
+        <div class="row">
+          <label>Password Confirmation:</label>
+          <input id="input1" class="u-full-width" type="password" placeholder="Password" ng-model="register.user.passwordConfirmation">
+        </div>
+        <button class="btn">Register</button>
+      </form>
+    </div>
+
+
+    <div class="six columns login" style="height: 350px; margin-top: 20px; padding-top: 30px;" ng-controller="LoginController as login">
+      <form novalidate ng-submit="login.submit()">
+        <div>
+          <label>Email:</label>
+          <input id="input1" class="u-full-width" type="email" placeholder="Email" ng-model="login.credentials.email">
+        </div>
+        <div class="row">
+          <label>Password:</label>
+          <input id="input1" class="u-full-width" type="password" placeholder="Password" ng-model="login.credentials.password">
+        </div>
+        <button class="btn">Login</button>
+      </form>
+      <button class="btn" ng-click="login.authenticate('facebook')">Login in with Facebook</button>
+    </div>
+
   </div>
 
-  <div class="register" ng-controller="RegisterController as register">
-    <form novalidate ng-submit="register.submit()">
-      <div class="row">
-        <label>Name:</label>
-        <input id="input1" class="u-full-width" type="text" placeholder="Name" ng-model="register.user.username">
-      </div>
-      <div class="row">
-        <label>Email:</label>
-        <input id="input1" class="u-full-width" type="email" placeholder="Email" ng-model="register.user.email">
-      </div>
-      <div class="row">
-        <label>Password:</label>
-        <input id="input1" class="u-full-width" type="password" placeholder="Password" ng-model="register.user.password">
-      </div>
-      <div class="row">
-        <label>Password Confirmation:</label>
-        <input id="input1" class="u-full-width" type="password" placeholder="Password" ng-model="register.user.passwordConfirmation">
-      </div>
-      <button class="btn">Register</button>
-    </form>
-  </div>
+
+
+</div>
+
+
+
+
+
+
+
 </div>

@@ -99,7 +99,8 @@ User.create([{
   profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/01151650-b045-11e6-a035-45f1c28fa0b8.jpeg',
   email: 'elliot@example.com',
   password: 'hunter2',
-  passwordConfirmation: 'hunter2'
+  passwordConfirmation: 'hunter2',
+  dailyGoal: []
 },{
   username: 'Will Whitmey',
   dob: 'Feb-02-1989',
