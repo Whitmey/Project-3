@@ -1,3 +1,115 @@
+<!-- <div class="three columns" id="sidebar">
+  <button ng-click="showSidebar = !showSidebar">Sidebar</button>
+  <div class="frame">
+    <div class="center">
+      <div class="circle-big">
+        <div class="text">
+          2500<div class="small">kcal</div>
+        </div>
+        <svg>
+          <circle class="bg" cx="57" cy="57" r="52"/>
+          <circle class="progress" cx="57" cy="57" r="52"/>
+        </svg>
+      </div>
+      <div class="circles-small">
+        <div class="circle-small">
+          <div class="text">
+            5.5<div class="small">carbs</div>
+          </div>
+          <svg>
+            <circle class="bg" cx="40" cy="40" r="37"/>
+            <circle class="progress one" cx="40" cy="40" r="37"/>
+          </svg>
+        </div>
+        <div class="circle-small">
+          <div class="text">
+            6.2<div class="small">protein</div>
+          </div>
+          <svg>
+            <circle class="bg" cx="40" cy="40" r="37"/>
+            <circle class="progress two" cx="40" cy="40" r="37"/>
+          </svg>
+        </div>
+        <div class="circle-small">
+          <div class="text">
+            4.2<div class="small">fats</div>
+          </div>
+          <svg>
+            <circle class="bg" cx="40" cy="40" r="37"/>
+            <circle class="progress two" cx="40" cy="40" r="37"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section ng-show="showSidebar">
+    <button ng-click="showFoods = !showFoods">Add meal</button>
+    <button ng-click="showGoals = !showGoals">Goals</button>
+  </section>
+
+  <section ng-show="showFoods"  class="row" ng-controller="FoodsController as foods">
+    <h4>Add a new meal:</h4>
+    <form id="createFood" ng-submit="foods.create()" method="post">
+      <label>Food/Drink/Meal eaten:</label>
+      <input type="text" name="name" value="" ng-model="foods.foodsNew.name">
+      <label>Calories:</label>
+      <input type="number" name="calories" value="" ng-model="foods.foodsNew.calories">
+      <input type="hidden" name="date" value="" ng-model="foods.foodsNew.date">
+      <button>Add meal</button>
+    </form>
+
+    <h4>My meals:</h4>
+    <ul ng-repeat="food in foods.all" >
+      <div class="meal">
+        <li>Meal: {{ food.name }} Calories: {{ food.calories }} Date: {{food.date}}</li>
+        <button ng-click="foods.delete(food._id)">X</button>
+        <div class="meal"><li>Meal: {{ food.name }} Calories: {{ food.calories }} Date: {{food.date}}</li><button ng-click="foods.delete(food._id)">X</button>
+        <button ng-click="showForm = !showForm; foods.edit(food._id)">Edit</button>
+
+        <form ng-show="showForm" ng-submit="foods.update()" method="post">
+          <label>Food/Drink/Meal eaten:</label>
+          <input type="text" name="name" ng-model="foods.editFood.name" >
+          <label>Calories:</label>
+          <input type="number" name="calories" ng-model="foods.editFood.calories">
+          <label>Date:</label>
+          <input type="text" name="date" value="" ng-model="foods.editFood.date">
+          <button class="add">Save</button>
+        </form>
+      </div>
+    </ul>
+  </section>
+
+
+  <section ng-show="showGoals" class="row">
+    <h4>Add a new goal:</h4>
+    <form id="createGoal" ng-submit="goals.create()" method="post">
+      <label>Target:</label>
+      <input type="text" name="target" value="" ng-model="goals.goalsNew.target">
+      <label>Expiry:</label>
+      <input type="text" name="expiry" value="" ng-model="goals.goalsNew.expiry">
+      <button class="add">Add goal</button>
+    </form>
+    <h4>My goals:</h4>
+    <ul ng-repeat="goal in goals.all" >
+      <div class="meal">
+        <li>Target: {{ goal.target }} Expiry: {{ goal.expiry }}</li>
+        <button class="edit" ng-click="showForm = !showForm; goals.edit(goal._id)">E</button>
+        <button class="delete" ng-click="goals.delete(goal._id)">X</button>
+
+        <form ng-show="showForm" ng-submit="goals.update()" method="post">
+          <label>Target:</label>
+          <input type="text" name="target" ng-model="goals.editGoal.target" >
+          <label>Expiry:</label>
+          <input type="text" name="expiry" ng-model="goals.editGoal.expiry">
+          <button class="add">Save</button>
+        </form>
+      </div>
+    </ul>
+  </section>
+</div> -->
+<div class="landingContainer" style="height: 570px; margin-top: 40px;">
+
 
 <div class="10 columns">
  <label>Search for food:</label>
@@ -22,4 +134,6 @@
       </div>
     </li>
   </ul>
+</div>
+
 </div>

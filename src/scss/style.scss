@@ -1,8 +1,8 @@
-// $color1: #F7F7F2;
-// $color2: #0B0033;
-// $color3: #23CE6B;
-// $color4: #121113;
-// $color5: #3498DB;
+
+
+@import "_variables";
+
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:700');
 
 #box {
   border: solid black 1px;
@@ -12,7 +12,8 @@
   display: inline-block;
 }
 body {
-  background-color: white;
+  background-color: $color1;
+
 }
 
 img {
@@ -33,7 +34,7 @@ h1 {
 }
 
 button.btn.formyButton {
-  // background: $color2;
+  background: $color2;
 }
 
 .button,button,li{margin-bottom:0}
@@ -230,39 +231,73 @@ li {
      display: inline-block;
  }
 
- // .landingContainer{
- //  }
+ .landingContainer {
+  //  height: 100vh;
+   border: 3px solid $color2;
+   border-radius: 5px;
+   background: $color5;
+   padding: 70px;
+   box-shadow: 10px 10px 5px #555555;
+  //  overflow: auto;
+  }
 
-  // .logo {
-  //   height: 200px;
-  //   background-image: url("../image/logo.png");
-  //   border: 3px solid $color 2;
-  //   border-radius: 5px;
-  // }
-  //
-  // .register {
-  //   color: white;
-  //   text-align: center;
-  //   border: 3px solid $color 2;
-  //   border-radius: 5px;
-  //   background: $color5;
-  //   height: 486px;
-  // }
-  //
-  // .login {
-  //
-  //   color: white;
-  //   text-align: center;
-  //   border: 3px solid $color 2;
-  //   border-radius: 5px;
-  //   height: 486px;
-  //   background: $color5;
-  // }
+
+
+  .logo {
+    font-family: 'Ubuntu', sans-serif;
+
+    height: 200px;
+    // background-image: url("image/logo.png");
+    background: $color1;
+
+    border: 3px solid $color2;
+    border-radius: 5px;
+    display: inline-block;
+      h1{
+        margin-right: 80px;
+        float: right;
+        line-height: 200px;
+        font-size: 100px;
+        text-shadow: 10px 10px 5px #888888;
+
+      }
+  }
+
+  .register {
+    padding-top: 50px;
+    color: white;
+    text-align: center;
+    border: 3px solid $color2;
+    border-radius: 5px;
+    background: $color1;
+    height: 486px;
+  }
+
+  .login {
+    padding-top: 62px;
+    color: white;
+    text-align: center;
+    border: 3px solid $color2;
+    border-radius: 5px;
+    height: 486px;
+    background: $color1;
+  }
 
   button.btn {
-    // background: $color2;
+    background: $color2;
+    padding: 5px;
     line-height: 15px;
     margin-top: 25px;
+    border-radius: 5px;
+
+  }
+
+  #logo {
+    float: left;
+    display: inline-block;
+    height: 200px;
+    width: 200px;
+    margin-left: 20px;
 
   }
 
@@ -271,8 +306,8 @@ li {
   margin : 0 auto;
   text-align: center;
   background-color: #ECF0F1;
-  border: 2px solid transparent;
-  border-radius: 3px;
+  border: 2px solid $color2;
+  border-radius: 5px;
   font-size: 16px;
   font-weight: 200;
   padding: 10px 0;
@@ -289,7 +324,7 @@ li {
 
   .btn {
     border: 2px solid transparent;
-    // background: $color2;
+    background: $color2;
     color: #ffffff;
     font-size: 16px;
     line-height: 25px;
