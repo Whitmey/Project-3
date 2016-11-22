@@ -29,7 +29,6 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
 
   getUser();
 
-
   let days = [];
 
   //this function checks if items in users foods were eaten on this weekday and adds up calories for just those items.
@@ -41,15 +40,6 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
       }
     }
   }
-
-  function logout() {
-    $auth.logout()
-    .then(() => {
-      $state.go('landing');
-    });
-  }
-
-
 
   function secureState(e, toState) {
     main.message = null;
@@ -63,8 +53,6 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
   }
 
   $rootScope.$on('$stateChangeStart', secureState);
-
-  main.logout = logout;
 
   //function to populate a MONTHS worth of objects with dates and calories. they will update each day.
   function getDays() {
