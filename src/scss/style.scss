@@ -55,6 +55,10 @@ progress {
   width: 20%;
 }
 
+.landing {
+  margin-top: 10px;
+}
+
 .burger {
   display: inline-block;
   border: 0;
@@ -212,6 +216,86 @@ li {
      background: #00816A;
      display: inline-block;
  }
+
+ .landingContainer{
+    position: relative;
+    top: 50px;
+  }
+  .logo{
+    width: 400px;
+    height: 200px;
+    float: left;
+    margin-left: 50px;
+  }
+  .register{
+    border: solid black 1px;
+    width: 400px;
+    height: 486px;
+    margin-right: 100px;
+    float: right;
+  }
+  .login{
+    border: solid black 1px;
+    position: absolute;
+    top: 250px;
+    width: 400px;
+    margin-left: 50px;
+  }
+
+  #input1 {
+  display: block;
+  margin : 0 auto;
+  text-align: center;
+  background-color: #ECF0F1;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 200;
+  padding: 10px 0;
+  width: 250px;
+  transition: border .5s;
+  }
+
+  #input1:focus {
+  border: 2px solid #3498DB;
+  box-shadow: none;
+  }
+
+  .btn {
+    border: 2px solid transparent;
+    background: #3498DB;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 10px 0;
+    text-decoration: none;
+    text-shadow: none;
+    border-radius: 3px;
+    box-shadow: none;
+    transition: 0.25s;
+    display: block;
+    width: 250px;
+    margin: 0 auto;
+  }
+
+  .btn:hover {
+    background-color: #2980B9;
+  }
+
+ img {
+   height: 200px;
+ }
+
+ button {
+   margin: auto;
+   display: block;
+ }
+
+ strong {
+   margin-left: 150px;
+ }
+
+
 // drag and drop option
  .smalltext{
      padding-top: 5px;
