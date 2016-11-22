@@ -5,7 +5,7 @@ function usersIndex(req, res) {
     if(err) return res.status(500).json({ error: err });
     populate();
     return res.json(users);
-  }).sort('score');
+  }).sort('completedGoals');
 }
 
 function usersShow(req, res) {

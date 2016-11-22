@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
   following: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
   eaten: [{ type: mongoose.Schema.ObjectId, ref: 'Food' }],
   dailyGoal: [dailyGoalSchema],
-  completedGoals: Number,
+  completedGoals: [dailyGoalSchema],
   score: Number
 });
 

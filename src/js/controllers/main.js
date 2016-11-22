@@ -197,7 +197,101 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
   main.dailyChart = dailyChart;
   main.weeklyChart = weeklyChart;
   main.monthlyChart = monthlyChart;
+  main.dailyGoal = {};
+  main.dailyGoal.date = moment().format('DD/MM/YYYY');
+
+
+
+  function setDailyGoal() {
+    main.thisUser.dailyGoal.push(main.dailyGoal);
+    console.log(main.thisUser.dailyGoal);
+    //disbale form
+    main.thisUser.$update(() => {
+      console.log('goal added to user');
+    });
+  }
+  main.setDailyGoal = setDailyGoal;
+  main.goalMessage = '';
+
+
+  function checkDailyGoal() {
+    todaysCals();
+    getDays();
+    User.get({ id: $auth.getPayload()._id }, ((user) => {
+      main.thisUser = user;
+      // console.log(main.thisUser.dailyGoal[0].target === 'exceed', main.thisUser.dailyGoal[0].amount);
+      if(main.thisUser.completedGoals === undefined) {
+        main.thisUser.completedGoals = 0;
+      }
+      if (main.thisUser.dailyGoal[0]) {
+        // console.log('there is an item!');
+        if (main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date != main.today) {
+          switch(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].target) {
+            case 'exceed': if(days.reverse()[days.length-1].calories > main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].amount ) {
+              if (main.thisUser.completedGoals[main.thisUser.completedGoals.length-1].date !== main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date ) {
+                main.thisUser.completedGoals.push(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1]);
+              }  main.goalMessage = 'You completed your last daily goal!';
+            } else {
+              main.goalMessage = 'You failed to meet yesterdays daily goal!';
+            }
+              break;
+            case 'meet': if(days.reverse()[days.length-1].calories === main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].amount) {
+              if (main.thisUser.completedGoals[main.thisUser.completedGoals.length-1].date !== main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date ) {
+                main.thisUser.completedGoals.push(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1]);
+              }  main.goalMessage = 'You completed your last daily goal!';
+            } else {
+              main.goalMessage = 'You failed to meet yesterdays daily goal!';
+            }
+              break;
+            case 'under': if(days.reverse()[days.length-1].calories < main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].amount) {
+              if (main.thisUser.completedGoals[main.thisUser.completedGoals.length-1].date !== main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date ) {
+                main.thisUser.completedGoals.push(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1]);
+              } main.goalMessage = 'You completed your last daily goal!';
+            } else {
+              main.goalMessage = 'You failed to meet yesterdays daily goal!';
+            }
+              break;
+          }
+        }
+      }
+    }));
+
+  }
+
+  function clearGoal() {
+    // thisUser.dailyGoal = [];
+    //show form
+    console.log(thisUser.dailyGoal);
+    $state.reload();
+  }
+  main.clearGoal = clearGoal;
+  checkDailyGoal();
+  main.checkDailyGoal = checkDailyGoal;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 CountdownController.$inject = [];
 function CountdownController() {

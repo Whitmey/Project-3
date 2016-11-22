@@ -19,7 +19,7 @@
     </form>
     <h4>My meals:</h4>
     <ul ng-repeat="food in foods.all" >
-      <div class="meal"><li>Meal: {{ food.name }} Calories: {{ food.calories }}Date: {{food.date}}</li><button ng-click="foods.delete(food._id)">X</button>
+      <div class="meal"><li>Meal: {{ food.name }} Calories: {{ food.calories }} Date: {{food.date}}</li><button ng-click="foods.delete(food._id)">X</button>
         <button ng-click="showForm = !showForm; foods.edit(food._id)">Edit</button>
 
         <form ng-show="showForm" ng-submit="foods.update()" method="post">
