@@ -10,7 +10,7 @@ function RegisterController($auth, $state) {
     console.log(register.user);
     $auth.signup(register.user)
     .then(() => {
-      $state.go('login');
+      $state.go('landing');
     });
   }
   register.submit = submit;
