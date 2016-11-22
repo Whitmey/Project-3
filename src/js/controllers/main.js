@@ -56,7 +56,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
     });
   }
 
-  const protectedStates = ['dietFriends','dietProfile','finances','select','picturesBefore','picturesAfter','leaderboard','foodsindex','select'];
+  const protectedStates = ['dietFriends','dietProfile','finances','select','picturesBefore','picturesAfter','leaderboard','foodsindex'];
 
   function secureState(e, toState) {
     main.message = null;
@@ -94,9 +94,6 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
       }
     }
   }
-
-
-
   main.createChart = createChart;
 
 

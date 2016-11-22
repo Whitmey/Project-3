@@ -63,5 +63,6 @@ function FinancesController(Finance, $state) {
     finances.editFinance.$update(() => {
       $state.reload();
     });
+
   }
 }
