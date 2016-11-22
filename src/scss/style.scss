@@ -1,5 +1,12 @@
+$color1: #F7F7F2;
+$color2: #0B0033;
+$color3: #23CE6B;
+$color4: #121113;
+$color5: #3498DB;
+
+
 body {
-  background-color: white;
+  background-color: $color1;
 }
 
 img {
@@ -16,6 +23,10 @@ h3 {
 
 h1 {
   text-align: center;
+}
+
+button.btn.formyButton {
+  background: $color2;
 }
 
 .button,button,li{margin-bottom:0}
@@ -222,25 +233,41 @@ li {
      display: inline-block;
  }
 
- // .landingContainer{
- //    // position: relative;
- //    // top: 50px;
- //  }
+ .landingContainer{
+  }
 
-  .logo{
+  .logo {
     height: 200px;
-
-    border: 1px solid black;
-  }
-  .register{
-    border: solid black 1px;
-    // height: 486px;
-  }
-  .login{
-    height: 800px;
-    border: solid black 1px;
+    background-image: url("../image/logo.png");
+    border: 3px solid $color 2;
+    border-radius: 5px;
   }
 
+  .register {
+    color: white;
+    text-align: center;
+    border: 3px solid $color 2;
+    border-radius: 5px;
+    background: $color5;
+    height: 486px;
+  }
+
+  .login {
+
+    color: white;
+    text-align: center;
+    border: 3px solid $color 2;
+    border-radius: 5px;
+    height: 486px;
+    background: $color5;
+  }
+
+  button.btn {
+    background: $color2;
+    line-height: 15px;
+    margin-top: 25px;
+
+  }
 
   #input1 {
   display: block;
@@ -265,7 +292,7 @@ li {
 
   .btn {
     border: 2px solid transparent;
-    background: #3498DB;
+    background: $color2;
     color: #ffffff;
     font-size: 16px;
     line-height: 25px;
@@ -279,6 +306,8 @@ li {
     width: 250px;
     margin: 0 auto;
   }
+
+
 
   .btn:hover {
     background-color: #2980B9;
