@@ -240,6 +240,7 @@ li {
    background: $color5;
    padding: 70px;
    box-shadow: 10px 10px 5px #555555;
+  //  overflow: auto;
   }
 
   .logo {
@@ -263,6 +264,7 @@ li {
   }
 
   .register {
+    padding-top: 50px;
     color: white;
     text-align: center;
     border: 3px solid $color2;
@@ -272,7 +274,7 @@ li {
   }
 
   .login {
-
+    padding-top: 62px;
     color: white;
     text-align: center;
     border: 3px solid $color2;

@@ -10,19 +10,19 @@
     <div class="six columns register" style=" height: 350px; margin-top: 20px;" ng-controller="RegisterController as register">
       <form novalidate ng-submit="register.submit()">
         <div class="row">
-          <label>Name:</label>
+          <label></label>
           <input id="input1" class="u-full-width" type="text" placeholder="Name" ng-model="register.user.username">
         </div>
         <div class="row">
-          <label>Email:</label>
+          <label></label>
           <input id="input1" class="u-full-width" type="email" placeholder="Email" ng-model="register.user.email">
         </div>
         <div class="row">
-          <label>Password:</label>
+          <label></label>
           <input id="input1" class="u-full-width" type="password" placeholder="Password" ng-model="register.user.password">
         </div>
         <div class="row">
-          <label>Password Confirmation:</label>
+          <label></label>
           <input id="input1" class="u-full-width" type="password" placeholder="Password" ng-model="register.user.passwordConfirmation">
         </div>
         <button class="btn">Register</button>
@@ -30,14 +30,14 @@
     </div>
 
 
-    <div class="six columns login" style="height: 350px; margin-top: 20px; padding-top: 30px;" ng-controller="LoginController as login">
+    <div class="six columns login" style="height: 350px; margin-top: 20px; " ng-controller="LoginController as login">
       <form novalidate ng-submit="login.submit()">
         <div>
-          <label>Email:</label>
+          <label></label>
           <input id="input1" class="u-full-width" type="email" placeholder="Email" ng-model="login.credentials.email">
         </div>
         <div class="row">
-          <label>Password:</label>
+          <label></label>
           <input id="input1" class="u-full-width" type="password" placeholder="Password" ng-model="login.credentials.password">
         </div>
         <button class="btn">Login</button>
