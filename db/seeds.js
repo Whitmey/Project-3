@@ -1,10 +1,31 @@
 const mongoose = require('mongoose');
 const db = require('../config/db');
 const User = require('../models/user');
+const Food = require('../models/food');
 
 mongoose.connect(db.uri);
 
 User.collection.drop();
+Food.collection.drop();
+
+Food.create([{
+  name: 'McDONALD\'S, Premium Grilled Chicken Classic Sandwich',
+  kcal: 183,
+  date: '19/11/2016'
+},{
+  name: 'McDONALD\'S, Sausage McGRIDDLES',
+  kcal: 312,
+  date: '20/11/2016'
+},{
+  name: 'POPEYES, Fried Chicken, Mild, Drumstick, meat and skin with breading',
+  kcal: 293,
+  date: '22/11/2016'
+}],(err, foods) => {
+  if(err) console.log('There was an error creating foods', err);
+  console.log(foods[0]);
+  console.log(`${foods.length} foods created!`);
+  mongoose.connection.close();
+});
 
 User.create([{
   username: 'Wonder Woman',
