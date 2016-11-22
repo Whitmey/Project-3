@@ -26,9 +26,9 @@
   <button ng-if="main.today != main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date" ng-click="main.clearGoal()">Set todays goal!</button>
 </section>
   <section>
-    <button class="display" ng-click="main.dailyChart()">Daily</button>
-    <button class="display" ng-click="main.weeklyChart()">Weekly</button>
-    <button class="display" ng-click="main.monthlyChart()">Monthly</button>
+    <button class="display" ng-click="main.dailyChart()" ng-disabled="!main.thisUser">Daily</button>
+    <button class="display" ng-click="main.weeklyChart()" ng-disabled="!main.thisUser">Weekly</button>
+    <button class="display" ng-click="main.monthlyChart()" ng-disabled="!main.thisUser">Monthly</button>
     <h4>Todays calorie count: {{main.caloryCounter}}</h4>
 
     <canvas id="myChart" fixedwidth="20" height="200"></canvas>
