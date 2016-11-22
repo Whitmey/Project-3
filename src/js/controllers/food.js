@@ -1,20 +1,20 @@
 angular.module('foodApp')
-// .controller('FoodsIndexController', FoodsIndexController)
-// .controller('FoodsNewController', FoodsNewController)
-// .controller('FoodsShowController', FoodsShowController)
-// .controller('FoodsEditController', FoodsEditController)
-.controller('FoodsController', FoodsController);
+  .controller('FoodsController', FoodsController);
 
-
-
-FoodsController.$inject = ['Food', 'User', '$auth', '$state', 'moment'];
-function FoodsController(Food, User, $auth, $state, moment) {
+FoodsController.$inject = ['Food', 'User', '$auth', '$state', 'moment', 'Usda'];
+function FoodsController(Food, User, $auth, $state, moment, Usda) {
 
   const foods = this;
-  foods.edit = editFoods;
+
+  foods.searchTerm = '';
+  foods.searchResults = [];
+  foods.ndbno = '';
+  foods.infoResults = [];
+
+  foods.search = search;
+  foods.addFood = addFood;
   foods.create = create;
-  foods.delete = foodsDelete;
-  foods.editFood = {};
+
   foods.update = update;
   foods.foodsNew = {};
   foods.foodsNew.date = moment().format('DD/MM/YYYY');
@@ -26,7 +26,32 @@ function FoodsController(Food, User, $auth, $state, moment) {
     thisUser.$update();
   });
 
+  function search() {
+    foods.searchResults = [];
+    Usda.search(foods.searchTerm).then(
+      (searchResults) => {
+        if (searchResults.data.list) {
+          foods.searchResults = searchResults.data.list.item;
+        }
+      }
+    );
+  }
+
+  function addFood(ndbno) {
+    foods.infoResults = [];
+    Usda.itemInfo(ndbno).then(
+      (infoResults) => {
+        foods.foodsNew.kcal = infoResults.data.nutrients.filter((item) => {
+          return item.unit === 'kcal';
+        })[0].value;
+        foods.foodsNew.name = infoResults.data.name;
+        create();
+      }
+    );
+  }
+
   function create() {
+    console.log(foods.foodsNew);
     Food.save(foods.foodsNew, () => {
       Food.query((res) => {
         foods.all = res;
@@ -34,37 +59,7 @@ function FoodsController(Food, User, $auth, $state, moment) {
         thisUser.eaten.push(foods.all[foods.all.length-1]);
         console.log(thisUser);
       });
-      document.getElementById('createFood').reset();
     });
-  }
-
-  function foodsDelete(foodId) {
-    // console.log(foods.all);
-
-    for(var i = 0; i< foods.all.length; i++) {
-      if(foods.all[i]._id === foodId)
-        foods.all[i].$remove(() => {
-          foods.all = Food.query();
-        });
-      const j = thisUser.eaten.indexOf(foodId);
-      if (j !== -1) {
-        thisUser.eaten.splice(j, 1);
-      }
-    }
-    thisUser.$update();
-    console.log(thisUser);
-  }
-
-
-
-
-  function editFoods(foodId) {
-    thisUser.$update();
-    console.log(thisUser);
-    for(var i = 0; i< foods.all.length; i++) {
-      if(foods.all[i]._id === foodId)
-        foods.editFood = foods.all[i];
-    }
   }
 
   function update() {
@@ -72,8 +67,4 @@ function FoodsController(Food, User, $auth, $state, moment) {
       foods.all = Food.query();
     });
   }
-
-
-
-
 }

@@ -44,7 +44,8 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
     for(let i=0; i<main.allMyFoods.length; i++) {
       if (main.allMyFoods[i].date === main.today){
         main.caloryCounter += main.allMyFoods[i].calories;
-      }
+
+      } 
     }
     console.log(main.allMyFoods);
   }

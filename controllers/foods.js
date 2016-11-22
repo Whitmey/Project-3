@@ -22,38 +22,38 @@ function foodsShow(req, res) {
   });
 }
 
-function foodsUpdate(req, res) {
-  Food.findById(req.params.id, (err, food) => {
-    if(err) return res.status(500).json({ error: err });
-    if(!food) return res.status(404).json({ error: 'Not found' });
+// function foodsUpdate(req, res) {
+//   Food.findById(req.params.id, (err, food) => {
+//     if(err) return res.status(500).json({ error: err });
+//     if(!food) return res.status(404).json({ error: 'Not found' });
+//
+//     for(const key in req.body) {
+//       food[key] = req.body[key];
+//     }
+//
+//     food.save((err, food) => {
+//       if(err) return res.status(400).json({ error: err });
+//       res.json(food);
+//     });
+//   });
+// }
 
-    for(const key in req.body) {
-      food[key] = req.body[key];
-    }
-
-    food.save((err, food) => {
-      if(err) return res.status(400).json({ error: err });
-      res.json(food);
-    });
-  });
-}
-
-function foodsDelete(req, res) {
-  Food.findById(req.params.id, (err, food) => {
-    if(err) return res.status(500).json({ error: err });
-    if(!food) return res.status(404).json({ error: 'Not found' });
-
-    food.remove(err => {
-      if(err) return res.status(500).json({ error: err });
-      res.status(204).send();
-    });
-  });
-}
+// function foodsDelete(req, res) {
+//   Food.findById(req.params.id, (err, food) => {
+//     if(err) return res.status(500).json({ error: err });
+//     if(!food) return res.status(404).json({ error: 'Not found' });
+//
+//     food.remove(err => {
+//       if(err) return res.status(500).json({ error: err });
+//       res.status(204).send();
+//     });
+//   });
+// }
 
 module.exports = {
   index: foodsIndex,
   create: foodsCreate,
-  show: foodsShow,
-  update: foodsUpdate,
-  delete: foodsDelete
+  show: foodsShow
+  // update: foodsUpdate,
+  // delete: foodsDelete
 };

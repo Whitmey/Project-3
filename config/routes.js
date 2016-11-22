@@ -4,9 +4,8 @@ const secureRoute = require('../lib/secureRoute');
 const oauthController = require('../controllers/oauth');
 const foodsController = require('../controllers/foods');
 const usersController = require('../controllers/users');
+const usdasController = require('../controllers/usdas');
 const financesController = require('../controllers/finances');
-const imageUpload = require('../lib/imageUpload');
-
 
 
 router
@@ -19,28 +18,27 @@ router.route('/foods')
   .get(foodsController.index)
   .post(secureRoute, foodsController.create);
 
-router.route('/foods/:id')
+// router.route('/foods/:id')
   // .get(foodsController.show)
-  // .put(secureRoute, imageUpload,foodsController.update)
-  .delete(secureRoute, foodsController.delete);
+  // .put(secureRoute, foodsController.update)
+  // .delete(secureRoute, foodsController.delete);
 
 
 // router.route('/goals')
 //   .get(goalsController.index)
 //   .post(secureRoute, goalsController.create);
-//
+
 // router.route('/goals/:id')
 //   .get(goalsController.show)
 //   .put(secureRoute, goalsController.update)
 //   .delete(secureRoute, goalsController.delete);
-
 
 router
   .get('/users', usersController.index);
 
 router.route('/users/:id')
   .get(usersController.show)
-  .put(secureRoute, imageUpload, usersController.update)
+  .put(secureRoute, usersController.update)
   .delete(secureRoute, usersController.delete);
 
 router.route('/finances')
@@ -51,5 +49,11 @@ router.route('/finances/:id')
     .get(financesController.show)
     .put(secureRoute, financesController.update)
     .delete(secureRoute, financesController.delete);
+
+router
+  .get('/usdas', usdasController.search);
+
+router
+  .get('/usdasi', usdasController.info);
 
 module.exports = router;
