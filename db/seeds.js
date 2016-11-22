@@ -109,7 +109,7 @@ User.create([{
 },{
   username: 'Aaron',
   dob: 'May-29-1453',
-  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/54bf59b0-b044-11e6-9c28-75d46244ceee.jpeg',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/496dff8cfc4d9c825049146348d40688.gif',
   email: 'aaron@example.com',
   password: 'hunter2',
   passwordConfirmation: 'hunter2',
