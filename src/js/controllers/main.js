@@ -44,8 +44,6 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
     for(let i=0; i<main.allMyFoods.length; i++) {
       if (main.allMyFoods[i].date === main.today){
         main.caloryCounter += main.allMyFoods[i].calories;
-      } else if (main.allMyFoods[i].date === moment().subtract(1, 'days').format('DD/MM/YYYY')) {
-        main.yesterdayCounter += main.allMyFoods[i].calories;
       }
     }
     console.log(main.allMyFoods);
@@ -218,6 +216,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
     //disbale form
     main.thisUser.$update(() => {
       console.log('goal added to user');
+      main.goalMessage = 'Goal set!';
     });
   }
   main.setDailyGoal = setDailyGoal;
@@ -269,8 +268,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
   }
 
   function clearGoal() {
-    // thisUser.dailyGoal = [];
-    //show form
+
     console.log(thisUser.dailyGoal);
     $state.reload();
   }

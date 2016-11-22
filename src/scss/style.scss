@@ -222,30 +222,25 @@ li {
      display: inline-block;
  }
 
- .landingContainer{
-    position: relative;
-    top: 50px;
-  }
+ // .landingContainer{
+ //    // position: relative;
+ //    // top: 50px;
+ //  }
+
   .logo{
-    width: 400px;
     height: 200px;
-    float: left;
-    margin-left: 50px;
+
+    border: 1px solid black;
   }
   .register{
     border: solid black 1px;
-    width: 400px;
-    height: 486px;
-    margin-right: 100px;
-    float: right;
+    // height: 486px;
   }
   .login{
+    height: 800px;
     border: solid black 1px;
-    position: absolute;
-    top: 250px;
-    width: 400px;
-    margin-left: 50px;
   }
+
 
   #input1 {
   display: block;
@@ -260,6 +255,8 @@ li {
   width: 250px;
   transition: border .5s;
   }
+
+
 
   #input1:focus {
   border: 2px solid #3498DB;
