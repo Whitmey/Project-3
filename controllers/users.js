@@ -4,7 +4,7 @@ function usersIndex(req, res) {
   User.find((err, users) => {
     if(err) return res.status(500).json({ error: err });
     return res.json(users);
-  }).sort('completedGoals');
+  }).sort('completedGoals.length');
 }
 
 function usersShow(req, res) {
