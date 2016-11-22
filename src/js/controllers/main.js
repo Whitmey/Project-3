@@ -15,38 +15,32 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
   main.allMyFoods = [];
   main.today = moment().format('DD/MM/YYYY');
 
-  let thisUser = null;
+  main.thisUser = null;
 
   function getUser() {
     const payload = $auth.getPayload();
     if(payload) {
-      thisUser = User.get({ id: $auth.getPayload()._id });
+      User.get({ id: $auth.getPayload()._id }, (user) => {
+        main.thisUser = user;
+        checkDailyGoal();
+      });
     }
-    console.log(main.allFood);
   }
 
   getUser();
 
 
+  let days = [];
 
   //this function checks if items in users foods were eaten on this weekday and adds up calories for just those items.
   function todaysCals() {
-
-    User.get({ id: $auth.getPayload()._id }, ((user) => {
-      main.caloryCounter = 0;
-      main.thisUser = user;
-      // console.log(main.thisUser.eaten);
-      for(let i=0; i<main.thisUser.eaten.length; i++) {
-        if (main.thisUser.eaten[i].date === main.today){
-          main.caloryCounter += main.thisUser.eaten[i].kcal;
-        // console.log('allfoods = ', main.allMyFoods);
-        }
+    main.caloryCounter = 0;
+    for(let i=0; i<main.thisUser.eaten.length; i++) {
+      if (main.thisUser.eaten[i].date === main.today){
+        main.caloryCounter += main.thisUser.eaten[i].kcal;
       }
     }
-  ));
   }
-
-
 
   function logout() {
     $auth.logout()
@@ -72,7 +66,6 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
 
   main.logout = logout;
 
-  let days = [];
   //function to populate a MONTHS worth of objects with dates and calories. they will update each day.
   function getDays() {
     days = [];
@@ -83,20 +76,16 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
       });
     }
     getCalories();
-    console.log(days);
   }
 
   function getCalories() {
-    User.get({ id: $auth.getPayload()._id }, ((user) => {
-      main.thisUser = user;
-      for (let i=0; i<days.length; i++) {
-        for (let k = 0; k< main.thisUser.eaten.length; k++) {
-          if(main.thisUser.eaten[k].date === days[i].date) {
-            days[i].calories += main.thisUser.eaten[k].kcal;
-          }
+    for (let i=0; i<days.length; i++) {
+      for (let k = 0; k< main.thisUser.eaten.length; k++) {
+        if(main.thisUser.eaten[k].date === days[i].date) {
+          days[i].calories += main.thisUser.eaten[k].kcal;
         }
       }
-    }));
+    }
   }
   main.createChart = createChart;
 
@@ -112,11 +101,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
   let chart = null;
 
   function createChart(data) {
-
-
     const chartElement = document.getElementById('myChart');
-
-
 
     if (chart && chart.destroy) {
       chart.destroy();
@@ -141,6 +126,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
     labels = [];
     datapoints = [];
     for (let i=0; i<6; i++) {
+      console.log(days[1]);
       labels.push(days[i].date);
       datapoints.push(days[i].calories);
     }
@@ -169,6 +155,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
   }
 
   function chartData(labels, datapoints) {
+    console.log(datapoints);
     const data = {
       labels: labels,
       datasets: [
@@ -197,9 +184,6 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
       ]
     };
     createChart(data);
-
-
-
   }
 
   main.dailyChart = dailyChart;
@@ -226,54 +210,49 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
   function checkDailyGoal() {
     todaysCals();
     getDays();
-    User.get({ id: $auth.getPayload()._id }, ((user) => {
-      main.thisUser = user;
-      // console.log(main.thisUser.dailyGoal[0].target === 'exceed', main.thisUser.dailyGoal[0].amount);
-      if(main.thisUser.completedGoals === undefined) {
-        main.thisUser.completedGoals = 0;
-      }
-      if (main.thisUser.dailyGoal[0]) {
-        // console.log('there is an item!');
-        if (main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date != main.today) {
-          switch(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].target) {
-            case 'exceed': if(days.reverse()[days.length-1].calories > main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].amount ) {
-              if (main.thisUser.completedGoals[main.thisUser.completedGoals.length-1].date !== main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date ) {
-                main.thisUser.completedGoals.push(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1]);
-              }  main.goalMessage = 'You completed your last daily goal!';
-            } else {
-              main.goalMessage = 'You failed to meet yesterdays daily goal!';
-            }
-              break;
-            case 'meet': if(days.reverse()[days.length-1].calories === main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].amount) {
-              if (main.thisUser.completedGoals[main.thisUser.completedGoals.length-1].date !== main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date ) {
-                main.thisUser.completedGoals.push(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1]);
-              }  main.goalMessage = 'You completed your last daily goal!';
-            } else {
-              main.goalMessage = 'You failed to meet yesterdays daily goal!';
-            }
-              break;
-            case 'under': if(days.reverse()[days.length-1].calories < main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].amount) {
-              if (main.thisUser.completedGoals[main.thisUser.completedGoals.length-1].date !== main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date ) {
-                main.thisUser.completedGoals.push(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1]);
-              } main.goalMessage = 'You completed your last daily goal!';
-            } else {
-              main.goalMessage = 'You failed to meet yesterdays daily goal!';
-            }
-              break;
+
+    if(main.thisUser.completedGoals === undefined) {
+      main.thisUser.completedGoals = 0;
+    }
+    if (main.thisUser.dailyGoal[0]) {
+      // console.log('there is an item!');
+      if (main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date !== main.today) {
+        switch(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].target) {
+          case 'exceed': if(days.reverse()[days.length-1].calories > main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].amount ) {
+            if (main.thisUser.completedGoals[main.thisUser.completedGoals.length-1].date !== main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date ) {
+              main.thisUser.completedGoals.push(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1]);
+            }  main.goalMessage = 'You completed your last daily goal!';
+          } else {
+            main.goalMessage = 'You failed to meet yesterdays daily goal!';
           }
+            break;
+          case 'meet': if(days.reverse()[days.length-1].calories === main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].amount) {
+            if (main.thisUser.completedGoals[main.thisUser.completedGoals.length-1].date !== main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date ) {
+              main.thisUser.completedGoals.push(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1]);
+            }  main.goalMessage = 'You completed your last daily goal!';
+          } else {
+            main.goalMessage = 'You failed to meet yesterdays daily goal!';
+          }
+            break;
+          case 'under': if(days.reverse()[days.length-1].calories < main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].amount) {
+            if (main.thisUser.completedGoals[main.thisUser.completedGoals.length-1].date !== main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date ) {
+              main.thisUser.completedGoals.push(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1]);
+            } main.goalMessage = 'You completed your last daily goal!';
+          } else {
+            main.goalMessage = 'You failed to meet yesterdays daily goal!';
+          }
+            break;
         }
       }
-    }));
-
+    }
   }
 
   function clearGoal() {
 
-    console.log(thisUser.dailyGoal);
+    console.log(main.thisUser.dailyGoal);
     $state.reload();
   }
   main.clearGoal = clearGoal;
-  checkDailyGoal();
   main.checkDailyGoal = checkDailyGoal;
 }
 
