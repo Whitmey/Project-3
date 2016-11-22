@@ -13,14 +13,24 @@
   <header class="container">
     <input class="burger-check" id="burger-check" type="checkbox" style="opacity:0"><label for="burger-check" class="burger"></label>
     <nav id="navigation1" class="navigation">
+
+      <p ng-if="main.message">{{ main.message }} </p>
+
       <ul>
         <li><a ui-sref="select">Select</a></li>
+
         <li><a ui-sref="dietProfile">Profile</a></li>
+
         <li><a ui-sref="foodsIndex">FoodIndex</a></li>
+
         <li><a ui-sref="leaderboard">Leaderboard</a></li>
+
         <li><a ui-sref="picturesBefore">Progress</a></li>
-        <li><a ui-sref="login">Logout</a></li>
+
+        <li><a ng-click="main.logout()">Logout</a></li>
+
       </ul>
+
     </nav>
   </header>
   <main class="container" ui-view></main>

@@ -10,13 +10,13 @@
     </div>
     <button>Login</button>
   </form>
-  <button ng-click="login.authenticate('facebook')">Login in with Facebook</button>  
+  <button ng-click="login.authenticate('facebook')">Login  with Facebook</button>
 </div>
 
 <div ng-controller="RegisterController as register">
   <form novalidate ng-submit="register.submit()">
     <div class="row">
-      <label>Name:</label>
+      <label>Username:</label>
       <input class="u-full-width" type="text" placeholder="Name" ng-model="register.user.username">
     </div>
     <div class="row">
@@ -29,7 +29,7 @@
     </div>
     <div class="row">
       <label>Password Confirmation:</label>
-      <input class="u-full-width" type="password" placeholder="Password" ng-model="register.user.passwordConfirmation">
+      <input class="u-full-width" type="password" placeholder="Password Comfirmation" ng-model="register.user.passwordConfirmation">
     </div>
     <button>Register</button>
   </form>

@@ -48,21 +48,22 @@ function MainController(moment, Food, User, $auth, $state, $rootScope) {
   }
 
 
+
   function logout() {
     $auth.logout()
     .then(() => {
-      $state.go('foodsIndex');
+      $state.go('landing');
     });
   }
 
-  const protectedStates = [];
+  const protectedStates = ['dietFriends','dietProfile','finances','select','picturesBefore','picturesAfter','leaderboard','foodsindex','select'];
 
   function secureState(e, toState) {
     main.message = null;
     if(!$auth.isAuthenticated() && protectedStates.includes(toState.name)) {
       e.preventDefault();
       $state.go('login');
-      main.message = 'You need to login to see that!';
+      main.message = 'You need to login to use that!';
     }
   }
 
