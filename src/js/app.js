@@ -16,15 +16,9 @@ function Router($stateProvider, $urlRouterProvider) {
       templateUrl: '/templates/leaderboard.html',
       controller: 'UsersIndexController as usersIndex'
     })
-    .state('login', {
+    .state('landing', {
       url: '/',
-      templateUrl: '/templates/landing.html',
-      controller: 'LoginController as login'
-    })
-    .state('register', {
-      url: '/',
-      templateUrl: '/templates/landing.html',
-      controller: 'RegisterController as register'
+      templateUrl: '/templates/landing.html'
     })
     .state('select', {
       url: '/select',

@@ -9,9 +9,9 @@
   <script src="/js/vendor.js" charset="utf-8"></script>
   <script src="/js/app.js" charset="utf-8"></script>
 </head>
-<body>
+<body ng-controller="MainController as main">
   <header class="container">
-    <input class="burger-check" id="burger-check" type="checkbox" style="opacity:0"><label for="burger-check" class="burger"></label>
+    <input class="burger-check" id="burger-check" type="checkbox" style="opacity:0" ng-model="main.burgerOpen"><label for="burger-check" class="burger"></label>
     <nav id="navigation1" class="navigation">
 
       <p ng-if="main.message">{{ main.message }} </p>
@@ -22,12 +22,13 @@
         <li><a ui-sref="foodsIndex">FoodIndex</a></li>
         <li><a ui-sref="leaderboard">Leaderboard</a></li>
         <li><a ui-sref="picturesBefore">Progress</a></li>
-        <li><a ng-click="main.logout()">Logout</a></li>
-
+        <li><a ui-sref="login" ng-click="main.logout()" ng-if="main.isLoggedIn()">Logout</a></li>
       </ul>
 
     </nav>
   </header>
+
+  <p ng-if="main.message">{{main.message}}</p>
   <main class="container" ui-view></main>
 
 </body>
