@@ -2,6 +2,9 @@
 
 @import "variables";
 
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:700');
+
+
 body {
   background-color: $color1;
 }
@@ -230,14 +233,33 @@ li {
      display: inline-block;
  }
 
- .landingContainer{
+ .landingContainer {
+  //  height: 100vh;
+   border: 3px solid $color2;
+   border-radius: 5px;
+   background: $color5;
+   padding: 70px;
+   box-shadow: 10px 10px 5px #555555;
   }
 
   .logo {
+    font-family: 'Ubuntu', sans-serif;
+
     height: 200px;
-    background-image: url("../image/logo.png");
+    // background-image: url("image/logo.png");
+    background: $color1;
+
     border: 3px solid $color2;
     border-radius: 5px;
+    display: inline-block;
+      h1{
+        margin-right: 80px;
+        float: right;
+        line-height: 200px;
+        font-size: 100px;
+        text-shadow: 10px 10px 5px #888888;
+
+      }
   }
 
   .register {
@@ -245,7 +267,7 @@ li {
     text-align: center;
     border: 3px solid $color2;
     border-radius: 5px;
-    background: $color5;
+    background: $color1;
     height: 486px;
   }
 
@@ -256,13 +278,24 @@ li {
     border: 3px solid $color2;
     border-radius: 5px;
     height: 486px;
-    background: $color5;
+    background: $color1;
   }
 
   button.btn {
     background: $color2;
+    padding: 5px;
     line-height: 15px;
     margin-top: 25px;
+    border-radius: 5px;
+
+  }
+
+  #logo {
+    float: left;
+    display: inline-block;
+    height: 200px;
+    width: 200px;
+    margin-left: 20px;
 
   }
 
@@ -271,8 +304,8 @@ li {
   margin : 0 auto;
   text-align: center;
   background-color: #ECF0F1;
-  border: 2px solid transparent;
-  border-radius: 3px;
+  border: 2px solid $color2;
+  border-radius: 5px;
   font-size: 16px;
   font-weight: 200;
   padding: 10px 0;
