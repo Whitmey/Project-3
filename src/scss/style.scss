@@ -60,15 +60,49 @@ section {
   text-align: center;
 }
 
-
 #goalDiv {
   border: 2px solid black;
   border-radius: 5px;
 }
 
-
 .profileBox {
-  width: 20%;
+  float: left;
+  padding-right: 30px;
+  margin: 14px 0;
+  img {
+    border-radius: 50%;
+    border: 2px $brand-vivid-blue solid;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+  }
+  h6 {
+    margin: 0;
+    text-align: center;
+    margin-top: -10px;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+}
+
+.friendsBox {
+  position: relative;
+  input {
+    width: 450px;
+    height: 39px;
+  }
+  button {
+    margin: 0 4px;
+    display: inline-block;
+    border-color: $brand-vivid-blue;
+    color: $brand-dark-blue;
+  }
+}
+
+#backButton {
+  display: inline-block;
+  position: absolute;
+  right: 6.5%;
 }
 
 .landing {
@@ -352,8 +386,6 @@ li {
  button {
    margin: auto;
    display: block;
-   color: teal;
-
  }
 
  strong {

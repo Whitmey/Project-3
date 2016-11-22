@@ -1,16 +1,15 @@
-<p>Friends</p>
 <div class="friendsBox">
-<input type="text" ng-model="usersIndex.filter.username">
+  <input type="text" ng-model="usersIndex.filter.username" placeholder="Search">
+  <button id="backButton" ui-sref="dietProfile">Back</button>
   <ul>
     <li ng-repeat="user in usersIndex.all | filter: usersIndex.filter" ng-if="!usersIndex.isSelf(user)">
       <div class="profileBox">
-        <h3>{{ user.username }}</h3>
-        <img class="profileImage" ng-src="{{ user.profileImage }}" alt="Picture of {{ user.username }}" />
+        <img ng-src="{{ user.profileImage }}" alt="Picture of {{ user.username }}" />
+        <h6>{{ user.username }}</h6>
         <button ng-click="usersIndex.follow(user)" ng-if="!usersIndex.isFollowing(user)">Follow</button>
-        <button ng-click="usersIndex.unfollow(user)" ng-if="usersIndex.isFollowing(user)">Unfollow</button>
+        <button style="padding: 0 21px" ng-click="usersIndex.unfollow(user)" ng-if="usersIndex.isFollowing(user)">Unfollow</button>
       </div>
     </li>
   </ul>
 </div>
-<button ui-sref="dietProfile">Back</button>
-<button ui-sref="select">Back to select</button>
+<!-- <button ui-sref="select">Back to select</button> -->
