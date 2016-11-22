@@ -22,31 +22,28 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
     if(payload) {
       thisUser = User.get({ id: $auth.getPayload()._id });
     }
+    console.log(main.allFood);
   }
 
   getUser();
 
 
-  //this function gets just this current users foods from all existing foods. pushes them to main.allMyFoods
-  function getFoods() {
-    main.caloryCounter = 0;
-    main.allMyFoods = [];
-    for(let j=0; j<main.allFood.length; j++) {
-      if(thisUser.eaten.indexOf(main.allFood[j]._id) !== -1) {
-        main.allMyFoods.push(main.allFood[j]);
-      }
-    }
-  }
 
   //this function checks if items in users foods were eaten on this weekday and adds up calories for just those items.
   function todaysCals() {
-    getFoods();
-    for(let i=0; i<main.allMyFoods.length; i++) {
-      if (main.allMyFoods[i].date === main.today){
-        main.caloryCounter += main.allMyFoods[i].calories;
-      } 
+
+    User.get({ id: $auth.getPayload()._id }, ((user) => {
+      main.caloryCounter = 0;
+      main.thisUser = user;
+      // console.log(main.thisUser.eaten);
+      for(let i=0; i<main.thisUser.eaten.length; i++) {
+        if (main.thisUser.eaten[i].date === main.today){
+          main.caloryCounter += main.thisUser.eaten[i].kcal;
+        // console.log('allfoods = ', main.allMyFoods);
+        }
+      }
     }
-    console.log(main.allMyFoods);
+  ));
   }
 
 
@@ -90,13 +87,16 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
   }
 
   function getCalories() {
-    for (let i=0; i<days.length; i++) {
-      for (let k = 0; k< main.allMyFoods.length; k++) {
-        if(main.allMyFoods[k].date === days[i].date) {
-          days[i].calories += main.allMyFoods[k].calories;
+    User.get({ id: $auth.getPayload()._id }, ((user) => {
+      main.thisUser = user;
+      for (let i=0; i<days.length; i++) {
+        for (let k = 0; k< main.thisUser.eaten.length; k++) {
+          if(main.thisUser.eaten[k].date === days[i].date) {
+            days[i].calories += main.thisUser.eaten[k].kcal;
+          }
         }
       }
-    }
+    }));
   }
   main.createChart = createChart;
 
@@ -216,6 +216,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
     //disbale form
     main.thisUser.$update(() => {
       console.log('goal added to user');
+      main.goalMessage = 'Goal set!';
     });
   }
   main.setDailyGoal = setDailyGoal;
@@ -267,8 +268,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
   }
 
   function clearGoal() {
-    // thisUser.dailyGoal = [];
-    //show form
+
     console.log(thisUser.dailyGoal);
     $state.reload();
   }
