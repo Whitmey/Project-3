@@ -4,17 +4,22 @@
 
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:700');
 
-#box {
-  border: solid black 1px;
-}
 
 .display {
   display: inline-block;
 }
 body {
   background-color: #FEFEFE;
+  color: $color4;
+  font-family: 'Ubuntu', sans-serif;
 
 
+
+}
+
+button.four.columns.display {
+  background-color: $color5;
+  color: white;
 }
 
 .row {
@@ -247,7 +252,10 @@ li {
   //  overflow: auto;
   }
 
+  .container {
+    // box-shadow: 10px 10px 5px #555555;
 
+  }
 
   .logo {
     font-family: 'Ubuntu', sans-serif;
@@ -269,12 +277,14 @@ li {
       }
   }
 
-  #landingContainer > h2{
+  .container > h2{
     // margin-right: 80px;
     // float: right;
     line-height: 200px;
     font-size: 100px;
-    text-shadow: 10px 10px 5px #888888;
+    font-family: 'Ubuntu', sans-serif;
+
+    // text-shadow: 10px 10px 5px #888888;
 
   }
 
@@ -304,10 +314,15 @@ li {
   button.btn {
     background: $color2;
     padding: 5px;
+    font-weight: 400;
     line-height: 15px;
     margin-top: 25px;
     border-radius: 5px;
+  }
 
+  button.goal {
+    background-color: $color3;
+    color: white;
   }
 
   #logo {
@@ -599,5 +614,11 @@ li {
 	}
 }
 .leaderboard  {
+  text-align: center;
+}
+
+.mealItem {
+  border: solid black 1px;
+  border-radius: 5px;
   text-align: center;
 }

@@ -5,7 +5,7 @@
 
 <div ng-controller="MainController as main" id="chartBox">
   <div class="container">
-  <h1 class="row twelve columns"> Diet Profile</h1>
+  <h2 class="row twelve columns"> Diet Profile</h2>
 
   <div ng-if="main.today != main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date" id="goalDiv" class="row twelve columns">
 
@@ -21,7 +21,7 @@
 
       <input type="hidden" id="goalDate" ng-model="main.dailyGoal.date">
 
-      <button >Set Daily Goal</button>
+      <button class="goal" >Set Daily Goal</button>
     </form>
   </div>
 

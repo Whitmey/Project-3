@@ -1,30 +1,32 @@
 
-<div class="landingContainer" style="height: 570px; margin-top: 40px;">
+<div class="container" >
 
-<h2>Food Tracker</h2>
-<div class="10 columns">
- <label>Search for food:</label>
- <input class="display" type="text" ng-model="foods.searchTerm">
- <button class="display" ng-click="foods.search()">Search</button>
-</div>
-<div class="10 columns" ng-if="foods.searchResults.length > 0">
-  <ul>
-    <li ng-repeat="searchResult in foods.searchResults">
-      <p>{{ searchResult.name }}</p>
-      <button ng-click="foods.addFood(searchResult.ndbno)">+</button>
-    </li>
-  </ul>
-</div>
-
-<div class="12 columns" ng-controller="UsersIndexController as usersIndex">
-  <ul>
-    <li ng-repeat="meak in usersIndex.currentUser.eaten">
-      <div id="box">
-        <p>{{ usersIndex.currentUser.eaten[$index].name }}</p>
-        <p>Calories: {{ usersIndex.currentUser.eaten[$index].kcal }}</p>
+  <h2 class="row twelve columns"> Food Tracker</h2>
+  <div class="10 columns">
+    <label>Search for food:</label>
+    <input class="display" type="text" ng-model="foods.searchTerm">
+    <button class="display goal"  ng-click="foods.search()">Search</button>
+  </div>
+  <div class="10 columns" ng-if="foods.searchResults.length > 0">
+    <ul>
+      <li ng-repeat="searchResult in foods.searchResults">
+        <div class="mealItem">
+        <p>{{ searchResult.name }}</p>
+        <button class="goal" ng-click="foods.addFood(searchResult.ndbno)">+</button>
       </div>
-    </li>
-  </ul>
-</div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="12 columns" ng-controller="UsersIndexController as usersIndex">
+    <ul>
+      <li ng-repeat="meal in usersIndex.currentUser.eaten">
+        <div class="mealItem">
+          <h5>{{ meal.name }}</h5>
+          <p>Calories: {{ meal.kcal    }}        Date eaten: {{ meal.date }}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
 
 </div>
