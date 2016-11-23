@@ -622,6 +622,9 @@ li {
   button {
     display: inline-block;
   }
+  select {
+    width: 140px;
+  }
 }
 
 .financeList {
@@ -640,5 +643,8 @@ li {
   }
   input {
     margin: 13px 0 0 0;
+  }
+  select {
+    width: 140px;
   }
 }

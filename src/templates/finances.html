@@ -4,7 +4,13 @@
 
 <section class="newFinanceBox">
   <form ng-submit="finances.create()" method="post">
-    <input class="display" type="text" name="category" ng-model="finances.financesNew.category" placeholder="Category">
+    <select name="category" class="display" ng-model="finances.financesNew.category">
+      <option value="Entertainment">Entertainment</option>
+      <option value="Food">Food</option>
+      <option value="Utilities">Utilities</option>
+      <option value="Rent">Rent</option>
+      <option value="Other">Other</option>
+    </select>
     <input class="display" type="number" name="amountSpent" ng-model="finances.financesNew.amountSpent" placeholder="Amount Spent (£)">
     <button>Add purchase</button>
   </form>
@@ -20,7 +26,14 @@
       <button ng-click="showForm = !showForm; finances.edit(finance._id)">Edit</button>
 
       <form ng-show="showForm" ng-submit="finances.update()" method="post">
-        <input class="display" type="text" name="category" ng-model="finances.editFinance.category" >
+        <!-- <input class="display" type="text" name="category" ng-model="finances.editFinance.category" > -->
+        <select name="category" class="display" ng-model="finances.editFinance.category">
+          <option value="Entertainment">Entertainment</option>
+          <option value="Food">Food</option>
+          <option value="Utilities">Utilities</option>
+          <option value="Rent">Rent</option>
+          <option value="Other">Other</option>
+        </select>
         <input class="display" type="number" name="amountSpent" ng-model="finances.editFinance.amountSpent">
         <button class="display">Save</button>
       </form>
