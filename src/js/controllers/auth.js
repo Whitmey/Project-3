@@ -6,10 +6,12 @@ RegisterController.$inject = ['$auth', '$state'];
 function RegisterController($auth, $state) {
   const register = this;
   register.user = {};
+  register.regButtonText = 'Register';
   function submit() {
     console.log(register.user);
     $auth.signup(register.user)
     .then(() => {
+      register.regButtonText = 'Registered';
       $state.go('landing');
     });
   }

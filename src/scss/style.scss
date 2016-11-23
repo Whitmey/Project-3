@@ -5,8 +5,31 @@
 // $color5: #3498DB;
 
 
+
+@import "_variables";
+
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:700');
+
+
+.display {
+  display: inline-block;
+}
 body {
-  // background-color: $color1;
+  background-color: #FEFEFE;
+  color: $color4;
+  font-family: 'Ubuntu', sans-serif;
+
+
+
+}
+
+button.four.columns.display {
+  background-color: $color5;
+  color: white;
+}
+
+.row {
+  text-align: center;
 }
 
 img {
@@ -223,39 +246,97 @@ li {
      display: inline-block;
  }
 
- .landingContainer{
+
+ .landingContainer {
+  //  height: 100vh;
+   border: 3px solid $color2;
+   border-radius: 5px;
+   background-image: url("https://wallpaperscraft.com/image/vegetables_salad_meal_sliced_89641_3840x2160.jpg");
+   background-size: cover;
+   padding: 70px;
+   box-shadow: 10px 10px 5px #555555;
+  //  overflow: auto;
   }
 
-  // .logo {
-  //   height: 200px;
-  //   background-image: url("../image/logo.png");
-  //   border: 3px solid $color 2;
-  //   border-radius: 5px;
-  // }
-  //
-  // .register {
-  //   color: white;
-  //   text-align: center;
-  //   border: 3px solid $color 2;
-  //   border-radius: 5px;
-  //   background: $color5;
-  //   height: 486px;
-  // }
-  //
-  // .login {
-  //
-  //   color: white;
-  //   text-align: center;
-  //   border: 3px solid $color 2;
-  //   border-radius: 5px;
-  //   height: 486px;
-  //   background: $color5;
-  // }
+  .container {
+    // box-shadow: 10px 10px 5px #555555;
+
+  }
+
+  .logo {
+    font-family: 'Ubuntu', sans-serif;
+
+    height: 200px;
+    // background-image: url("image/logo.png");
+    background: #fefefe;
+    opacity: 0.9;
+    border: 3px solid $color2;
+    border-radius: 5px;
+    display: inline-block;
+      h2{
+        margin-right: 80px;
+        float: right;
+        line-height: 200px;
+        font-size: 100px;
+        // text-shadow: 5px 5px 5px #555555;
+
+      }
+  }
+
+  .container > h2{
+    // margin-right: 80px;
+    // float: right;
+    line-height: 200px;
+    font-size: 100px;
+    font-family: 'Ubuntu', sans-serif;
+
+    // text-shadow: 10px 10px 5px #888888;
+
+  }
+
+  .register {
+    padding-top: 50px;
+    color: white;
+    text-align: center;
+    opacity: 0.9;
+    border: 3px solid $color2;
+    border-radius: 5px;
+    background: #fefefe;
+    height: 486px;
+  }
+
+  .login {
+    padding-top: 62px;
+    color: white;
+    opacity: 0.9;
+
+    text-align: center;
+    border: 3px solid $color2;
+    border-radius: 5px;
+    height: 486px;
+    background: #fefefe;
+  }
 
   button.btn {
-    // background: $color2;
+    background: $color2;
+    padding: 5px;
+    font-weight: 400;
     line-height: 15px;
     margin-top: 25px;
+    border-radius: 5px;
+  }
+
+  button.goal {
+    background-color: $color3;
+    color: white;
+  }
+
+  #logo {
+    float: left;
+    display: inline-block;
+    height: 200px;
+    width: 200px;
+    margin-left: 20px;
 
   }
 
@@ -300,7 +381,8 @@ li {
 
 
   .btn:hover {
-    background-color: #2980B9;
+    background-color: $color5;
+    color: white;
   }
 
  img {
@@ -333,8 +415,7 @@ li {
 }
 
 .active {
-  background-color: #fcfcfc
-}
+  background-color: #fcfcfc}
 
 // select page
 .menuCircle h1 {
@@ -342,8 +423,16 @@ li {
   text-align: inherit;
   line-height: 400px;
 }
+
+#menuContainer {
+
+  margin-left: 60px;
+}
+
 .menuCircle {
   background: teal;
+  margin-top: 120px;
+  margin-left: 20px;
   width: 400px;
   height: 400px;
   -webkit-border-radius: 500px;
@@ -352,6 +441,10 @@ li {
   -webkit-transition: height 1s, width 1s;
   float: left;
 }
+
+
+
+
 .middle {
   margin: 0 20px 0 20px;
 }
@@ -526,5 +619,11 @@ li {
 	}
 }
 .leaderboard  {
+  text-align: center;
+}
+
+.mealItem {
+  border: solid black 1px;
+  border-radius: 5px;
   text-align: center;
 }

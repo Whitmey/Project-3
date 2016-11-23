@@ -42,7 +42,20 @@ function FoodsController(Food, User, $auth, $state, moment, Usda) {
     Usda.itemInfo(ndbno).then(
       (infoResults) => {
         foods.foodsNew.kcal = infoResults.data.nutrients.filter((item) => {
+          console.log(item);
           return item.unit === 'kcal';
+        })[0].value;
+        foods.foodsNew.protein = infoResults.data.nutrients.filter((item) => {
+          console.log(item);
+          return item.name === 'Protein';
+        })[0].value;
+        foods.foodsNew.carbs = infoResults.data.nutrients.filter((item) => {
+          console.log(item);
+          return item.nutrient_id === '205';
+        })[0].value;
+        foods.foodsNew.fat = infoResults.data.nutrients.filter((item) => {
+          console.log(item);
+          return item.nutrient_id === '606';
         })[0].value;
         foods.foodsNew.name = infoResults.data.name;
         create();

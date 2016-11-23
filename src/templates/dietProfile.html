@@ -1,12 +1,15 @@
 
-  <p>Diet Profile</p>
-  <button class="display" ui-sref="select">Back</button>
-  <button class="display" ui-sref="dietFriends">Friends</button>
+
+  <!-- <button class="display" ui-sref="select">Back</button>
+  <button class="display" ui-sref="dietFriends">Friends</button> -->
 
 <div ng-controller="MainController as main" id="chartBox">
-  <div id="goalDiv">
+  <div class="container">
+  <h2 class="row twelve columns"> Diet Profile</h2>
 
-    <form ng-if="main.today != main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date" ng-submit="main.setDailyGoal()">
+  <div ng-if="main.today != main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date" id="goalDiv" class="row twelve columns">
+
+    <form  ng-submit="main.setDailyGoal()">
       <label for="calories">Todays calorie goal:</label>
       <input type="number" id="calories" placeholder="eg. 2500" ng-model="main.dailyGoal.amount">
 
@@ -16,22 +19,24 @@
         <option value="exceed">Exceed target</option>
       </select>
 
-      <label for="goalDate">Date:</label>
-      <input type="text" id="goalDate" ng-model="main.dailyGoal.date">
+      <input type="hidden" id="goalDate" ng-model="main.dailyGoal.date">
 
-      <button >Set Daily Goal</button>
+      <button class="goal" >Set Daily Goal</button>
     </form>
   </div>
-  <h4>{{main.goalMessage}} My completed goals: {{main.thisUser.completedGoals.length}}</h4>
-  <button ng-if="main.today != main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].date" ng-click="main.clearGoal()">Set todays goal!</button>
-</section>
-  <section>
-    <button class="display" ng-click="main.dailyChart()" ng-disabled="!main.thisUser">Daily</button>
-    <button class="display" ng-click="main.weeklyChart()" ng-disabled="!main.thisUser">Weekly</button>
-    <button class="display" ng-click="main.monthlyChart()" ng-disabled="!main.thisUser">Monthly</button>
-    <h4>Todays calorie count: {{main.caloryCounter}}</h4>
 
-    <canvas id="myChart" fixedwidth="20" height="200"></canvas>
-    <progress id="progressbar" style="width: 100%" value="{{main.caloryCounter}}" max="{{main.dailyGoal.amount}}"></progress>
+    <h4 class="row twelve columns">{{main.goalMessage}}</h4>
+    <section class="row">
+  <h4 class="six columns">My completed goals: {{main.thisUser.completedGoals.length}}</h4>  <h4 class="six columns"> Todays calorie count: {{main.caloryCounter}}</h4>
+</section>
+  <section class ="row">
+    <button class="four columns display" ng-click="main.dailyChart()" ng-disabled="!main.thisUser">Daily Chart</button>
+    <button class="four columns display" ng-click="main.weeklyChart()" ng-disabled="!main.thisUser">Weekly Chart</button>
+    <button class="four columns display" ng-click="main.monthlyChart()" ng-disabled="!main.thisUser">Monthly Chart</button>
   </section>
+
+    <canvas class="row" id="myChart" fixedwidth="20" height="200"></canvas>
+    <progress id="progressbar" style="width: 100%" value="{{main.caloryCounter}}" max="{{main.dailyGoal.amount}}"></progress>
+
+</div>
 </div>
