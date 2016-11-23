@@ -223,7 +223,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
               main.thisUser.completedGoals.push(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1]);
             }  main.goalMessage = 'You completed your last daily goal!';
           } else {
-            main.goalMessage = 'You failed to meet yesterdays daily goal!';
+            main.goalMessage = 'You didn\'t quite meet yesterday\'s goal, better luck today!';
           }
             break;
           case 'meet': if(days.reverse()[days.length-1].calories === main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].amount) {
@@ -231,7 +231,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
               main.thisUser.completedGoals.push(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1]);
             }  main.goalMessage = 'You completed your last daily goal!';
           } else {
-            main.goalMessage = 'You failed to meet yesterdays daily goal!';
+            main.goalMessage = 'You didn\'t quite meet yesterday\'s goal, better luck today!';
           }
             break;
           case 'under': if(days.reverse()[days.length-1].calories < main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].amount) {
@@ -239,7 +239,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
               main.thisUser.completedGoals.push(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1]);
             } main.goalMessage = 'You completed your last daily goal!';
           } else {
-            main.goalMessage = 'You failed to meet yesterdays daily goal!';
+            main.goalMessage = 'You didn\'t quite meet yesterday\'s goal, better luck today!';
           }
             break;
         }

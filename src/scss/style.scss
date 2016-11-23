@@ -12,8 +12,13 @@
   display: inline-block;
 }
 body {
-  background-color: $color1;
+  background-color: #FEFEFE;
 
+
+}
+
+.row {
+  text-align: center;
 }
 
 img {
@@ -235,7 +240,8 @@ li {
   //  height: 100vh;
    border: 3px solid $color2;
    border-radius: 5px;
-   background: $color5;
+   background-image: url("https://wallpaperscraft.com/image/vegetables_salad_meal_sliced_89641_3840x2160.jpg");
+   background-size: cover;
    padding: 70px;
    box-shadow: 10px 10px 5px #555555;
   //  overflow: auto;
@@ -248,39 +254,51 @@ li {
 
     height: 200px;
     // background-image: url("image/logo.png");
-    background: $color1;
-
+    background: #fefefe;
+    opacity: 0.9;
     border: 3px solid $color2;
     border-radius: 5px;
     display: inline-block;
-      h1{
+      h2{
         margin-right: 80px;
         float: right;
         line-height: 200px;
         font-size: 100px;
-        text-shadow: 10px 10px 5px #888888;
+        // text-shadow: 5px 5px 5px #555555;
 
       }
+  }
+
+  #landingContainer > h2{
+    // margin-right: 80px;
+    // float: right;
+    line-height: 200px;
+    font-size: 100px;
+    text-shadow: 10px 10px 5px #888888;
+
   }
 
   .register {
     padding-top: 50px;
     color: white;
     text-align: center;
+    opacity: 0.9;
     border: 3px solid $color2;
     border-radius: 5px;
-    background: $color1;
+    background: #fefefe;
     height: 486px;
   }
 
   .login {
     padding-top: 62px;
     color: white;
+    opacity: 0.9;
+
     text-align: center;
     border: 3px solid $color2;
     border-radius: 5px;
     height: 486px;
-    background: $color1;
+    background: #fefefe;
   }
 
   button.btn {
@@ -342,7 +360,8 @@ li {
 
 
   .btn:hover {
-    background-color: #2980B9;
+    background-color: $color5;
+    color: white;
   }
 
  img {
@@ -376,8 +395,7 @@ li {
 }
 
 .active {
-  background-color: #fcfcfc
-}
+  background-color: #fcfcfc}
 
 // select page
 .menuCircle h1 {
@@ -385,8 +403,16 @@ li {
   text-align: inherit;
   line-height: 400px;
 }
+
+#menuContainer {
+
+  margin-left: 60px;
+}
+
 .menuCircle {
   background: teal;
+  margin-top: 120px;
+  margin-left: 20px;
   width: 400px;
   height: 400px;
   -webkit-border-radius: 500px;
@@ -395,6 +421,10 @@ li {
   -webkit-transition: height 1s, width 1s;
   float: left;
 }
+
+
+
+
 .middle {
   margin: 0 20px 0 20px;
 }
