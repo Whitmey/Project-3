@@ -8,7 +8,7 @@ function Router($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('foodsIndex', {
       url: '/foods',
-      templateUrl: '/templates/foodsIndex.html',
+      templateUrl: '/templates/foodsindex.html',
       controller: 'FoodsController as foods'
     })
     .state('leaderboard', {

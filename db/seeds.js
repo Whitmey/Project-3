@@ -58,12 +58,20 @@ Food.create([{
   fat: 5,
   date: '16/11/2016'
 },{
+  username: 'Aaron',
+  dob: 'May-29-1453',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/496dff8cfc4d9c825049146348d40688.gif',
+  email: 'aaron@example.com',
+  password: 'hunter2',
+  passwordConfirmation: 'hunter2',
+  score: -10000000,
   name: 'Meal 8',
   kcal: 2267,
   protein: 45,
   carbs: 460,
   fat: 8,
   date: '15/11/2016'
+
 },{
   name: 'Meal 9',
   kcal: 2200,
