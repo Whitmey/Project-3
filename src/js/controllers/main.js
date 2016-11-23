@@ -200,7 +200,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
       labels: labels,
       datasets: [
         {
-          label: 'Calories',
+          label: 'Calories (kcal)',
           fill: true,
           lineTension: 0.1,
           backgroundColor: 'rgba(255,255,0,0.4)',
@@ -222,7 +222,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
           spanGaps: false
         },
         {
-          label: 'Protein',
+          label: 'Protein (grams)',
           fill: true,
           lineTension: 0.1,
           backgroundColor: 'rgba(0,0,255,0.4)',
@@ -244,7 +244,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
           spanGaps: false
         },
         {
-          label: 'Carbohydrates',
+          label: 'Carbohydrates (grams)',
           fill: true,
           lineTension: 0.1,
           backgroundColor: 'rgba(0,255,0,0.4)',
@@ -266,7 +266,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
           spanGaps: false
         },
         {
-          label: 'Fat',
+          label: 'Fat (grams)',
           fill: true,
           lineTension: 0.1,
           backgroundColor: 'rgba(255,0,0,0.4)',

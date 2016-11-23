@@ -84,7 +84,6 @@ function financeMainController($auth, $state, $rootScope, Finance) {
         datapoints[4] += parseInt(main.all[i].amountSpent);
       }
     }
-    console.log(datapoints);
     createChart();
   }
 
@@ -102,6 +101,7 @@ function financeMainController($auth, $state, $rootScope, Finance) {
   $rootScope.$on('stateChangeStart', secureState);
 
   function createChart() {
+    console.log(datapoints);
     const ctx = document.getElementById('myChart1');
     const myChart = new Chart(ctx, {
       type: 'radar',
