@@ -1,9 +1,11 @@
-<h1>Leaderboard</h1>
+<h1>LeaderBoard</h1>
 
 <div class="leaderboard">
   <ul>
     <li ng-repeat="user in usersIndex.all">
+      <div id="box">
       <h2 >{{ user.username }}</h2> <h4>Completed Goals:{{ user.completedGoals.length }}</h4>
+    </div>
     </li>
   </ul>
 </div>

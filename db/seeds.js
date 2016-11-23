@@ -11,110 +11,199 @@ Food.collection.drop();
 Food.create([{
   name: 'Meal 1',
   kcal: 1830,
+  protein: 30,
+  carbs: 400,
+  fat: 8,
   date: '22/11/2016'
 },{
   name: 'Meal 2',
   kcal: 3120,
+  protein: 50,
+  carbs: 450,
+  fat: 4,
   date: '21/11/2016'
 },{
   name: 'Meal 3',
   kcal: 2937,
+  protein: 40,
+  carbs: 450,
+  fat: 8,
   date: '20/11/2016'
 },{
   name: 'Meal 4',
   kcal: 2569,
+  protein: 56,
+  carbs: 500,
+  fat: 12,
   date: '19/11/2016'
 },{
   name: 'Meal 5',
   kcal: 2002,
+  protein: 30,
+  carbs: 430,
+  fat: 5,
   date: '18/11/2016'
 },{
   name: 'Meal 6',
   kcal: 2103,
+  protein: 50,
+  carbs: 480,
+  fat: 8,
   date: '17/11/2016'
 },{
   name: 'Meal 7',
   kcal: 2154,
+  protein: 60,
+  carbs: 600,
+  fat: 5,
   date: '16/11/2016'
 },{
+  username: 'Aaron',
+  dob: 'May-29-1453',
+  profileImage: 'https://s3-eu-west-1.amazonaws.com/wdi-fitness-app/496dff8cfc4d9c825049146348d40688.gif',
+  email: 'aaron@example.com',
+  password: 'hunter2',
+  passwordConfirmation: 'hunter2',
+  score: -10000000,
   name: 'Meal 8',
   kcal: 2267,
+  protein: 45,
+  carbs: 460,
+  fat: 8,
   date: '15/11/2016'
+
 },{
   name: 'Meal 9',
   kcal: 2200,
+  protein: 39,
+  carbs: 510,
+  fat: 12,
   date: '14/11/2016'
 },{
   name: 'Meal 10',
   kcal: 2540,
+  protein: 30,
+  carbs: 490,
+  fat: 4,
   date: '13/11/2016'
 },{
   name: 'Meal 11',
   kcal: 1602,
+  protein: 56,
+  carbs: 490,
+  fat: 8,
   date: '12/11/2016'
 },{
   name: 'Meal 12',
   kcal: 3003,
+  protein: 30,
+  carbs: 400,
+  fat: 8,
   date: '11/11/2016'
 },{
   name: 'Meal 13',
   kcal: 2854,
+  protein: 40,
+  carbs: 500,
+  fat: 10,
   date: '10/11/2016'
 },{
   name: 'Meal 14',
   kcal: 2667,
+  protein: 40,
+  carbs: 530,
+  fat: 6,
   date: '09/11/2016'
 },{
   name: 'Meal 15',
   kcal: 2700,
+  protein: 39,
+  carbs: 490,
+  fat: 8,
   date: '08/11/2016'
 },{
   name: 'Meal 16',
   kcal: 2440,
+  protein: 50,
+  carbs: 600,
+  fat: 13,
   date: '07/11/2016'
 },{
   name: 'Meal 17',
   kcal: 2540,
+  protein: 30,
+  carbs: 400,
+  fat: 3,
   date: '06/11/2016'
 },{
   name: 'Meal 18',
   kcal: 1902,
+  protein: 50,
+  carbs: 510,
+  fat: 8,
   date: '05/11/2016'
 },{
   name: 'Meal 19',
   kcal: 2903,
+  protein: 30,
+  carbs: 400,
+  fat: 8,
   date: '04/11/2016'
 },{
   name: 'Meal 20',
   kcal: 2854,
+  protein: 43,
+  carbs: 500,
+  fat: 6,
   date: '03/11/2016'
 },{
   name: 'Meal 21',
   kcal: 2507,
+  protein: 50,
+  carbs: 560,
+  fat: 9,
   date: '02/11/2016'
 },{
   name: 'Meal 22',
   kcal: 2202,
+  protein: 30,
+  carbs: 400,
+  fat: 8,
   date: '01/11/2016'
 },{
   name: 'Meal 23',
   kcal: 2200,
+  protein: 45,
+  carbs: 530,
+  fat: 7,
   date: '31/10/2016'
 },{
   name: 'Meal 24',
   kcal: 2540,
+  protein: 45,
+  carbs: 600,
+  fat: 8,
   date: '30/10/2016'
 },{
   name: 'Meal 25',
   kcal: 1602,
+  protein: 50,
+  carbs: 500,
+  fat: 9,
   date: '29/10/2016'
 },{
   name: 'Meal 26',
   kcal: 3003,
+  protein: 50,
+  carbs: 570,
+  fat: 8,
   date: '28/10/2016'
 },{
   name: 'Meal 27',
   kcal: 2854,
+  protein: 30,
+  carbs: 400,
+  fat: 8,
   date: '27/10/2016'
 }],(err, foods) => {
   if(err) console.log('There was an error creating foods', err);

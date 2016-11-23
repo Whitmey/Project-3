@@ -12,10 +12,20 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
   main.todaysCals = todaysCals;
   main.allFood = Food.query();
   main.caloryCounter = 0;
+  main.proteinCounter = 0;
+  main.carbCounter = 0;
+  main.fatCounter = 0;
   main.allMyFoods = [];
   main.today = moment().format('DD/MM/YYYY');
 
   main.thisUser = null;
+
+  function logout() {
+    $auth.logout();
+    $state.go('landing');
+  }
+
+  main.logout = logout;
 
   function getUser() {
     const payload = $auth.getPayload();
@@ -34,9 +44,15 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
   //this function checks if items in users foods were eaten on this weekday and adds up calories for just those items.
   function todaysCals() {
     main.caloryCounter = 0;
+    main.proteinCounter = 0;
+    main.carbCounter = 0;
+    main.fatCounter = 0;
     for(let i=0; i<main.thisUser.eaten.length; i++) {
       if (main.thisUser.eaten[i].date === main.today){
         main.caloryCounter += main.thisUser.eaten[i].kcal;
+        main.proteinCounter += main.thisUser.eaten[i].protein;
+        main.carbCounter += main.thisUser.eaten[i].carbs;
+        main.fatCounter += main.thisUser.eaten[i].fat;
       }
     }
   }
@@ -60,7 +76,10 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
     for (let day=1; day<28; day ++) {
       days.push( {
         date: moment().subtract(day, 'days').format('DD/MM/YYYY'),
-        calories: 0
+        calories: 0,
+        protein: 0,
+        carbs: 0,
+        fat: 0
       });
     }
     getCalories();
@@ -71,6 +90,9 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
       for (let k = 0; k< main.thisUser.eaten.length; k++) {
         if(main.thisUser.eaten[k].date === days[i].date) {
           days[i].calories += main.thisUser.eaten[k].kcal;
+          days[i].protein += main.thisUser.eaten[k].protein;
+          days[i].carbs += main.thisUser.eaten[k].carbs;
+          days[i].fat += main.thisUser.eaten[k].fat;
         }
       }
     }
@@ -86,6 +108,9 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
 
   let labels = [];
   let datapoints = [];
+  let datapoints2 = [];
+  let datapoints3 = [];
+  let datapoints4 = [];
   let chart = null;
 
   function createChart(data) {
@@ -105,7 +130,11 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
     getDays();
     labels = [' ', 'Today', ' '];
     datapoints = [main.caloryCounter, main.caloryCounter, main.caloryCounter];
-    chartData(labels, datapoints);
+    datapoints2 = [main.proteinCounter, main.proteinCounter, main.proteinCounter];
+    datapoints3 = [main.carbCounter, main.carbCounter, main.carbCounter];
+    datapoints4 = [main.fatCounter, main.fatCounter, main.fatCounter];
+    // datapoints2 =
+    chartData(labels, datapoints, datapoints2, datapoints3, datapoints4);
   }
 
   function weeklyChart() {
@@ -113,17 +142,28 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
     getDays();
     labels = [];
     datapoints = [];
+    datapoints2 = [];
+    datapoints3 = [];
+    datapoints4 = [];
     for (let i=0; i<6; i++) {
       console.log(days[1]);
       labels.push(days[i].date);
       datapoints.push(days[i].calories);
+      datapoints2.push(days[i].protein);
+      datapoints3.push(days[i].carbs);
+      datapoints4.push(days[i].fat);
     }
     labels.reverse();
     datapoints.reverse();
+    datapoints2.reverse();
+    datapoints3.reverse();
+    datapoints4.reverse();
     labels.push('Today');
     datapoints.push(main.caloryCounter);
-
-    chartData(labels, datapoints);
+    datapoints2.push(main.proteinCounter);
+    datapoints3.push(main.carbCounter);
+    datapoints4.push(main.fatCounter);
+    chartData(labels, datapoints, datapoints2, datapoints3, datapoints4);
   }
 
   function monthlyChart() {
@@ -131,33 +171,45 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
     getDays();
     labels = [];
     datapoints = [];
+    datapoints2 = [];
+    datapoints3 = [];
+    datapoints4 = [];
     for (let i=0; i<days.length; i++) {
       labels.push(days[i].date);
       datapoints.push(days[i].calories);
+      datapoints2.push(days[i].protein);
+      datapoints3.push(days[i].carbs);
+      datapoints4.push(days[i].fat);
     }
     labels.reverse();
     datapoints.reverse();
+    datapoints2.reverse();
+    datapoints3.reverse();
+    datapoints4.reverse();
     labels.push('Today');
     datapoints.push(main.caloryCounter);
-    chartData(labels, datapoints);
+    datapoints2.push(main.proteinCounter);
+    datapoints3.push(main.carbCounter);
+    datapoints4.push(main.fatCounter);
+    chartData(labels, datapoints, datapoints2, datapoints3, datapoints4);
   }
 
-  function chartData(labels, datapoints) {
-    console.log(datapoints);
+  function chartData(labels, datapoints, datapoints2, datapoints3, datapoints4) {
+    console.log(datapoints, datapoints2, datapoints3, datapoints4);
     const data = {
       labels: labels,
       datasets: [
         {
-          label: 'My First dataset',
+          label: 'Calories',
           fill: true,
           lineTension: 0.1,
-          backgroundColor: 'rgba(75,192,192,0.4)',
-          borderColor: 'rgba(75,192,192,1)',
+          backgroundColor: 'rgba(255,255,0,0.4)',
+          borderColor: 'rgba(255,255,0,0.4)',
           borderCapStyle: 'butt',
           borderDash: [],
           borderDashOffset: 0.0,
           borderJoinStyle: 'miter',
-          pointBorderColor: 'rgba(75,192,192,1)',
+          pointBorderColor: 'rgba(255,255,0,0.4)',
           pointBackgroundColor: '#fff',
           pointBorderWidth: 1,
           pointHoverRadius: 5,
@@ -167,6 +219,72 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
           pointRadius: 1,
           pointHitRadius: 10,
           data: datapoints,
+          spanGaps: false
+        },
+        {
+          label: 'Protein',
+          fill: true,
+          lineTension: 0.1,
+          backgroundColor: 'rgba(0,0,255,0.4)',
+          borderColor: 'rgba(0,0,255,0.4)',
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: 'rgba(0,0,255,0.4)',
+          pointBackgroundColor: '#fff',
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: 'rgba(0,0,255,0.4)',
+          pointHoverBorderColor: 'rgba(220,220,220,1)',
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          data: datapoints2,
+          spanGaps: false
+        },
+        {
+          label: 'Carbohydrates',
+          fill: true,
+          lineTension: 0.1,
+          backgroundColor: 'rgba(0,255,0,0.4)',
+          borderColor: 'rgba(0,255,0,0.4)',
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: 'rgba(0,255,0,0.4)',
+          pointBackgroundColor: '#fff',
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: 'rgba(0,255,0,0.4)',
+          pointHoverBorderColor: 'rgba(0,255,0,0.4)',
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          data: datapoints3,
+          spanGaps: false
+        },
+        {
+          label: 'Fat',
+          fill: true,
+          lineTension: 0.1,
+          backgroundColor: 'rgba(255,0,0,0.4)',
+          borderColor: 'rgba(255,0,0,0.4)',
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: 'rgba(255,0,0,0.4)',
+          pointBackgroundColor: '#fff',
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: 'rgba(255,0,0,0.4)',
+          pointHoverBorderColor: 'rgba(255,0,0,0.4)',
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          data: datapoints4,
           spanGaps: false
         }
       ]
@@ -211,7 +329,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
               main.thisUser.completedGoals.push(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1]);
             }  main.goalMessage = 'You completed your last daily goal!';
           } else {
-            main.goalMessage = 'You failed to meet yesterdays daily goal!';
+            main.goalMessage = 'You didn\'t quite meet yesterday\'s goal, better luck today!';
           }
             break;
           case 'meet': if(days.reverse()[days.length-1].calories === main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].amount) {
@@ -219,7 +337,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
               main.thisUser.completedGoals.push(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1]);
             }  main.goalMessage = 'You completed your last daily goal!';
           } else {
-            main.goalMessage = 'You failed to meet yesterdays daily goal!';
+            main.goalMessage = 'You didn\'t quite meet yesterday\'s goal, better luck today!';
           }
             break;
           case 'under': if(days.reverse()[days.length-1].calories < main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1].amount) {
@@ -227,7 +345,7 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
               main.thisUser.completedGoals.push(main.thisUser.dailyGoal[main.thisUser.dailyGoal.length-1]);
             } main.goalMessage = 'You completed your last daily goal!';
           } else {
-            main.goalMessage = 'You failed to meet yesterdays daily goal!';
+            main.goalMessage = 'You didn\'t quite meet yesterday\'s goal, better luck today!';
           }
             break;
         }
