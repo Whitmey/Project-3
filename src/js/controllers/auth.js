@@ -10,6 +10,7 @@ function RegisterController($auth, $state) {
     console.log(register.user);
     $auth.signup(register.user)
     .then(() => {
+      document.getElementById('regButton').innerHTML = 'Registered';
       $state.go('landing');
     });
   }
