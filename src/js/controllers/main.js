@@ -17,6 +17,13 @@ function MainController(moment, Food, User, $auth, $state, $rootScope, $window) 
 
   main.thisUser = null;
 
+  function logout() {
+    $auth.logout();
+    $state.go('landing');
+  }
+
+  main.logout = logout;
+
   function getUser() {
     const payload = $auth.getPayload();
     if(payload) {
