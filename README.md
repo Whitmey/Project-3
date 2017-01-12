@@ -1,12 +1,15 @@
    #iTrack
    ___
+
    ####GA WDI Project Three<br>
+
    #####Aaron Hall, Curtis Osano, Elliot Mountford-Brock, Will Whitmey<br>
    See iTrack [here](https://i-track.herokuapp.com/#/)
 
    ---
    ![Imgur](http://i.imgur.com/srZk1Ku.png)
    <br>
+
    ###Overview
    For this collaborative project, the brief was to produce a MEAN stack app, hosted on Heroku. We chose to build an app where users could track their fitness goals and finances. The idea was for the user to input meals, purchases etc and this data is consequently compiled and displayed back to them through various charts and graphs.
 
