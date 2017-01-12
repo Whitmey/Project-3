@@ -2,7 +2,7 @@
 ___
 ####GA WDI Project Three<br>
 #####Aaron Hall, Curtis Osano, Elliot Mountford-Brock, Will Whitmey<br>
-See myGarden [here](https://i-track.herokuapp.com/#/)
+See iTrack [here](https://i-track.herokuapp.com/#/)
 
 ---
 ![Imgur](http://i.imgur.com/srZk1Ku.png)
